@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Unit Tests
+        run: npm test
+
+      - name: Build Application
+        run: npm run build
+
+      - name: Deploy to Production
+        run: |
+          # Aquí puedes agregar comandos para implementar tu aplicación en un servidor de producción
+          # Esto dependerá de tu entorno de alojamiento y configuración específica
