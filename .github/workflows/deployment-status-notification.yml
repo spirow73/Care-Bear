@@ -1,0 +1,8 @@
+name: Deployment Status Notification
+on: [deployment_status]
+
+jobs:
+  comment-on-deployment-status:
+    name: Comment on the Deployment Status
+    runs-on: ubuntu-latest
+    # ... rest of the job steps ...
