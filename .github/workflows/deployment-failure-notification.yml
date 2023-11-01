@@ -1,0 +1,9 @@
+name: Deployment Failure notification
+on: [deployment_status]
+
+jobs:
+  add-failure-comment:
+    name: Add a comment to the commit that caused the failure
+    if: github.event.deployment_status.state == 'failure'
+    runs-on: ubuntu-latest
+    # ... rest of the job steps ...
