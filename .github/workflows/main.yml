@@ -1,62 +1,42 @@
-name: Deployment Status Notification
-on: [deployment_status]
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
 
 jobs:
-  comment-on-deployment-status:
-    name: Comment on the Deployment Status
+  build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Change working directory to care-bear
+      - name: Change Directory to care-bear
         run: cd care-bear
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Test Dependency Installation
-        run: npm run test-dependencies
-
-      - name: Run Tests
+      - name: Run Unit Tests
         run: npm test
 
-      - name: Build
-        run: npm run build
-
-      - name: Add commit comment based on deployment status
-        run: |
-          status="${{ github.event.deployment_status.state }}"
-          message=""
-          if [ "$status" = "success" ]; then
-            message="Deployment has succeeded. :tada:"
-          elif [ "$status" = "failure" ]; then
-            message="Deployment has failed. :x:"
-          fi
-
-          curl -L -X POST \
-          --url https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/comments \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data "{\"body\": \"$message\"}"
-        if: github.event.deployment_status.state == 'success' || github.event.deployment_status.state == 'failure'
+      - name: Notify on Failure
+        if: failure()
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const issue_body = Build failed on ${context.ref};
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Build Failure",
+              body: issue_body
+            });
