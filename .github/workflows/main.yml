@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 name: Deployment Status Notification
 on: [deployment_status]
 
