@@ -39,7 +39,7 @@ jobs:
         run: npm run test-dependencies
 
       - name: Run Tests
-        run: npm test
+        run: npx jest
 
       - name: Build
         run: npm run build
