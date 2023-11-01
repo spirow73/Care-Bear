@@ -39,4 +39,4 @@ jobs:
               repo: context.repo.repo,
               title: "Build Failure",
               body: issue_body
-            });
+            })
