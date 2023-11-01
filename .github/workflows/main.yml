@@ -1,4 +1,3 @@
-#Triggered for deployment status changes
 name: Deployment Failure notification
 on: [deployment_status]
 
@@ -13,42 +12,44 @@ jobs:
         node-version: [14.x, 16.x]
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-    
-    - name: Install Dependencies
-      run: npm ci
-    
-    - name: Test Dependency Installation
-      run: npm run test-dependencies
-    
-    - name: Run Tests
-      run: npm test
-    
-    - name: Build
-      run: npm run build
+      - uses: actions/checkout@v2
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      
+      - name: Install Dependencies
+        run: npm ci
+      
+      - name: Test Dependency Installation
+        run: npm run test-dependencies
+      
+      - name: Run Tests
+        run: npm test
+      
+      - name: Build
+        run: npm run build
 
+      # Ensure this is indented correctly; this was out of alignment before
       - name: Deploy to Production
         run: |
-          # Aquí puedes agregar comandos para implementar tu aplicación en un servidor de producción
-          # Esto dependerá de tu entorno de alojamiento y configuración específica
+          # Here you can add commands to deploy your app to a production server
+          # This will depend on your specific hosting environment and configuration
 
+      # This was also out of alignment and incorrectly indented
       - name: Add commit comment - failure
         run: |
           curl -L -X POST \
@@ -57,4 +58,4 @@ jobs:
           --header 'content-type: application/json' \
           --data '{
             "body": "Deployment has failed."
-            }'
+          }'
