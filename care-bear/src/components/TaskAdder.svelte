@@ -1,6 +1,6 @@
 <!-- TaskAdder.svelte -->
 <script>
-	import { addTask } from '../lib/supabaseClient.js';
+	import { addTaskToDb } from '$lib/taskStore';
 
 	export let title = 'Add Task';
 	let taskName = '';
@@ -19,7 +19,7 @@
 			is_completed: false // You can set this based on user input if needed.
 		};
 
-		addTask(newTask);
+		addTaskToDb(newTask);
 
 		taskName = '';
 		taskDate = '';

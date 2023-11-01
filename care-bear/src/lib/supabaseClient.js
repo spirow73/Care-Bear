@@ -21,10 +21,22 @@ export async function addTask(newTask) {
       .upsert([newTask]);
   
     if (error) {
-      console.error('Error al agregar la tarea:', error);
+      console.error('Error adding task:', error);
     } else {
-      console.log('Tarea agregada exitosamente:', data);
-      // Puedes realizar alguna acción adicional si es necesario
+      console.log('Task added:', data);
+    }
+  }
+
+export async function deleteTask(id) {
+    const { data, error } = await supabase
+      .from('tasks')
+      .delete()
+      .match({ id });
+  
+    if (error) {
+      console.error('Error deleting task:', error);
+    } else {
+      console.log('Task deleted:', data);
     }
   }
   

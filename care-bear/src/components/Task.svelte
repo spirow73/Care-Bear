@@ -1,13 +1,14 @@
 <!-- Task.svelte -->
 <script>
+	import { deleteTaskFromDb } from '$lib/taskStore';
+
 	export let definition;
 	export let due_date;
 	export let isCompleted;
+	export let id;
 
 	function handleDelete() {
-		if (onDelete) {
-			onDelete();
-		}
+		deleteTaskFromDb(id);
 	}
 </script>
 
