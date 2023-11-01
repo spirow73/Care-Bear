@@ -1,5 +1,8 @@
 module.exports = {
+<<<<<<< HEAD
     testEnvironment: 'jest-environment-jsdom',
+=======
+>>>>>>> 17ce6d835f506711f4ed1663ecf21f38804bd1d1
     transform: {
       '^.+\\.svelte$': 'jest-transform-svelte',
       '^.+\\.js$': 'babel-jest',
