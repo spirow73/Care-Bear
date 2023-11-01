@@ -55,7 +55,6 @@ jobs:
             message="Deployment has failed. :x:"
           fi
 
-=======
 #Triggered for deployment status changes
 name: Deployment Failure notification
 on: [deployment_status]
