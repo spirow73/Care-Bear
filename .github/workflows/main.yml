@@ -30,6 +30,9 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      - name: Change working directory to care-bear
+        run: cd care-bear
+
       - name: Install Dependencies
         run: npm ci
 
