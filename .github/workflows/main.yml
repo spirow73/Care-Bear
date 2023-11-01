@@ -64,4 +64,6 @@ jobs:
     - name: Install Dependencies
       run: npm ci
     
-    # Your deployment steps go here
+    - name: Deploy
+      run: |
+        # Include your deployment script or command here
