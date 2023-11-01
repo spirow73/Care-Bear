@@ -1,47 +1,69 @@
-name: CI/CD Pipeline
+name: Node.js CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
+    name: Build and Test
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    
+    - name: Install Dependencies
+      run: npm ci
+    
+    - name: Test Dependency Installation
+      run: npm run test-dependencies
+    
+    - name: Run Tests
+      run: npm test
+    
+    - name: Build
+      run: npm run build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Unit Tests
-        run: npm test
-
-      - name: Build Application
-        run: npm run build
-
-      - name: Deploy to Production
-        run: |
-          # Aquí puedes agregar comandos para implementar tu aplicación en un servidor de producción
-          # Esto dependerá de tu entorno de alojamiento y configuración específica
-
-      - name: Notify on Failure
-        if: failure()
-        uses: actions/github-script@v5
-        with:
-          script: |
-            const issue_body = `Build failed on ${context.ref}`;
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: "Build Failure",
-              body: issue_body
-            });
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    
+    - name: Install Dependencies
+      run: npm ci
+    
+    - name: Deploy
+      run: |
+        # Include your deployment script or command here
