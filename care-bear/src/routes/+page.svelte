@@ -1,12 +1,26 @@
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import TaskList from '../components/TaskList.svelte';
+	import supabase from '../lib/supabaseClient.js';
 
-<style lang="postcss">
-	:global(html) {
-		font-family: sans-serif;
-		font-size: 16px;
-		line-height: 1.5;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
+	import TaskAdder from '../components/TaskAdder.svelte';
+
+	let tasks = [];
+
+	async function fetchTasks() {
+		const { data, error } = await supabase.from('tasks').select('*');
+		if (error) {
+			console.error('Error fetching tasks:', error);
+		} else {
+			tasks = data;
+		}
 	}
-</style>
+
+	// Calls fetchTasks when the page loads or when necessary.
+	fetchTasks();
+</script>
+
+<div>
+	<TaskAdder />
+
+	<TaskList {tasks} />
+</div>

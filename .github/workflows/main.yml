@@ -1,14 +1,13 @@
-name: Node.js CI/CD Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - develop
 
 jobs:
   build:
-    name: Build and Test
     runs-on: ubuntu-latest
 
     strategy:
@@ -47,23 +46,20 @@ jobs:
     - name: Build
       run: npm run build
 
-  deploy:
-    needs: build
-    name: Deploy
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    
-    - name: Install Dependencies
-      run: npm ci
-    
-    - name: Deploy
-      run: |
-        # Include your deployment script or command here
+      - name: Deploy to Production
+        run: |
+          # Aquí puedes agregar comandos para implementar tu aplicación en un servidor de producción
+          # Esto dependerá de tu entorno de alojamiento y configuración específica
+
+      - name: Notify on Failure
+        if: failure()
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const issue_body = `Build failed on ${context.ref}`;
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Build Failure",
+              body: issue_body
+            });
