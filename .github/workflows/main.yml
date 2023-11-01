@@ -1,11 +1,17 @@
-#Triggered for deployment status changes
-name: Deployment Failure notification
-on: [deployment_status]
+name: Deployment Failure Notification
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  deployment_status:
+    types: [failure]
 
 jobs:
-  add-failure-comment:
-    name: Add a comment to the commit that caused the failure
-    if: github.event.deployment_status.state == 'failure'
+  # Trabajo para verificar la implementación y enviar una notificación en caso de error
+  verify-deployment:
+    name: Verify Deployment
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +37,14 @@ jobs:
           # Aquí puedes agregar comandos para implementar tu aplicación en un servidor de producción
           # Esto dependerá de tu entorno de alojamiento y configuración específica
 
+  # Job to add a commit comment when deployment fails
+  add-failure-comment:
+    name: Add Commit Comment - Failure
+    runs-on: ubuntu-latest
+
+    if: github.event.deployment_status.state == 'failure'
+
+    steps:
       - name: Add commit comment - failure
         run: |
           curl -L -X POST \
@@ -39,4 +53,4 @@ jobs:
           --header 'content-type: application/json' \
           --data '{
             "body": "Deployment has failed."
-            }'
+          }'
