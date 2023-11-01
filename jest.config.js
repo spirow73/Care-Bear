@@ -1,4 +1,5 @@
 module.exports = {
+    testEnvironment: 'jest-environment-jsdom',
     transform: {
       '^.+\\.svelte$': 'jest-transform-svelte',
       '^.+\\.js$': 'babel-jest',

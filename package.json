@@ -13,7 +13,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-svelte": "^2.1.1",
     "vitest": "^0.34.6",
-    "webpack": "^5.0.0", // Ensure you have webpack and any other necessary packages installed
+    "webpack": "^5.0.0",
     "webpack-cli": "^4.0.0"
   }
 }
