@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "build": "webpack --mode production",
+    "test-dependencies": "node -e \"Object.keys(require('./package').dependencies).forEach(dependency => require(dependency))\"",
+    "test": "jest"
+  },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
@@ -7,10 +12,8 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-svelte": "^2.1.1",
-    "vitest": "^0.34.6"
-  },
-  "scripts": {
-    "test-dependencies": "node -e \"Object.keys(require('./package').dependencies).forEach(dependency => require(dependency))\""
+    "vitest": "^0.34.6",
+    "webpack": "^5.0.0", // Ensure you have webpack and any other necessary packages installed
+    "webpack-cli": "^4.0.0"
   }
 }
-
