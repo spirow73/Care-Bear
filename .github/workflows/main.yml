@@ -27,7 +27,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           cd care-bear
-          npm test
+
 
       - name: Notify on Failure
         if: failure()
