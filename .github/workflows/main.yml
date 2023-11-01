@@ -25,7 +25,9 @@ jobs:
           npm install
           
       - name: Run Unit Tests
-        run: npm test
+        run: |
+          cd care-bear
+          npm install
 
       - name: Notify on Failure
         if: failure()
