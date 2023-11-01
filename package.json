@@ -8,5 +8,9 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-svelte": "^2.1.1",
     "vitest": "^0.34.6"
+  },
+  "scripts": {
+    "test-dependencies": "node -e \"Object.keys(require('./package').dependencies).forEach(dependency => require(dependency))\""
   }
 }
+
