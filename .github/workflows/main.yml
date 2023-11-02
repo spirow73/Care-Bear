@@ -27,6 +27,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           cd care-bear
+          npx jest
 
 
       - name: Notify on Failure
