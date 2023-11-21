@@ -1,22 +1,27 @@
 <script>
-    import { journalEntryStore } from './path/to/JournalEntryStore.js';
-    import { onMount } from 'svelte';
-  
-    let selectedEntry = {};
-  
-    onMount(() => {
-      // Retrieve selected entry from the store
-      selectedEntry = $journalEntryStore;
-    });
-  
-    function editEntry() {
-      // Logic for editing the selected entry
-    }
-  </script>
-  
-  <h1>{selectedEntry.title}</h1>
-  <div>
-    <p>{selectedEntry.content}</p>
-    <button on:click={editEntry}>Edit</button>
-  </div>
-  
+  import { journalEntryStore } from '$lib/journalEntryStore.js';
+
+  let newEntry = {
+    title: '',
+    content: ''
+  };
+
+  async function addEntry() {
+    await journalEntryStore.addEntry(1, newEntry);
+    newEntry = { title: '', content: '' };
+  }
+</script>
+
+<h1>Add New Journal Entry</h1>
+
+<form on:submit|preventDefault={addEntry}>
+  <label>
+    Title:
+    <input bind:value={newEntry.title} placeholder="Enter title" />
+  </label>
+  <label>
+    Content:
+    <textarea bind:value={newEntry.content} placeholder="Enter content"></textarea>
+  </label>
+  <button type="submit">Add Entry</button>
+</form>

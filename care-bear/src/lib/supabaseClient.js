@@ -43,3 +43,5 @@ export async function deleteTask(id) {
   
   export default supabase;
 
+  
+

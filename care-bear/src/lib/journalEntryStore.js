@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { supabase } from './supabase'; // Supabase client setup
+import supabase from './supabaseJournal';
 
 const createJournalEntryStore = () => {
   const { subscribe, set, update } = writable([]);
@@ -18,6 +18,7 @@ const createJournalEntryStore = () => {
       set(data || []);
     } catch (error) {
       console.error('Error fetching journal entries:', error.message);
+      throw error;
     }
   };
 
@@ -25,7 +26,7 @@ const createJournalEntryStore = () => {
     try {
       const { data, error } = await supabase
         .from('journal_entries')
-        .insert({ user_id: userId, entry: newEntry });
+        .insert({ user_id: userId, ...newEntry });
 
       if (error) {
         throw error;
@@ -34,6 +35,7 @@ const createJournalEntryStore = () => {
       update(entries => [...entries, data[0]]);
     } catch (error) {
       console.error('Error adding journal entry:', error.message);
+      throw error;
     }
   };
 
@@ -49,14 +51,17 @@ const createJournalEntryStore = () => {
       }
 
       update(entries => {
-        const index = entries.findIndex(entry => entry.id === entryId);
-        if (index !== -1) {
-          entries[index].entry = updatedContent;
-        }
-        return entries;
+        const updatedEntries = entries.map(entry => {
+          if (entry.id === entryId) {
+            return { ...entry, entry: updatedContent };
+          }
+          return entry;
+        });
+        return updatedEntries;
       });
     } catch (error) {
       console.error('Error updating journal entry:', error.message);
+      throw error;
     }
   };
 
@@ -74,6 +79,7 @@ const createJournalEntryStore = () => {
       update(entries => entries.filter(entry => entry.id !== entryId));
     } catch (error) {
       console.error('Error deleting journal entry:', error.message);
+      throw error;
     }
   };
 
