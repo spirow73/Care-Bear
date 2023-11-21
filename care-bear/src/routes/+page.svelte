@@ -1,26 +1,24 @@
-<script>
-	import TaskList from '../components/TaskList.svelte';
-	import supabase from '../lib/supabaseClient.js';
-
-	import TaskAdder from '../components/TaskAdder.svelte';
-
-	let tasks = [];
-
-	async function fetchTasks() {
-		const { data, error } = await supabase.from('tasks').select('*');
-		if (error) {
-			console.error('Error fetching tasks:', error);
-		} else {
-			tasks = data;
-		}
-	}
-
-	// Calls fetchTasks when the page loads or when necessary.
-	fetchTasks();
-</script>
-
-<div>
-	<TaskAdder />
-
-	<TaskList {tasks} />
-</div>
+<nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+	<div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+		<div class="text-sm lg:flex-grow">
+			<a
+				href="#responsive-header"
+				class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                
+                Home
+            </a>
+			<a
+				href="/journal"
+				class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+			>
+				Journal
+			</a>
+			<a
+				href="/tasks"
+				class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+			>
+				Tasks
+			</a>
+		</div>
+	</div>
+</nav>

@@ -30,11 +30,16 @@ declare module '$env/static/private' {
 	export const ACSvcPort: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 	export const ChocolateyInstall: string;
 	export const ChocolateyLastPathUpdate: string;
 >>>>>>> Stashed changes
+=======
+	export const ChocolateyInstall: string;
+	export const ChocolateyLastPathUpdate: string;
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
 	export const COLOR: string;
 	export const COLORTERM: string;
@@ -44,6 +49,7 @@ declare module '$env/static/private' {
 	export const ComSpec: string;
 	export const DriverData: string;
 	export const EDITOR: string;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	export const EFC_9436: string;
 =======
@@ -51,6 +57,8 @@ declare module '$env/static/private' {
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
 	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 >>>>>>> Stashed changes
+=======
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -59,6 +67,7 @@ declare module '$env/static/private' {
 	export const INTEL_DEV_REDIST: string;
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
+	export const LOCAL_GIT_DIRECTORY: string;
 	export const LOGONSERVER: string;
 <<<<<<< Updated upstream
 =======
@@ -93,14 +102,16 @@ declare module '$env/static/private' {
 	export const OneDrive: string;
 <<<<<<< Updated upstream
 	export const OneDriveConsumer: string;
+<<<<<<< HEAD
 	export const OnlineServices: string;
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const OS: string;
 	export const Path: string;
 	export const PATHEXT: string;
-	export const platformcode: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
@@ -111,11 +122,14 @@ declare module '$env/static/private' {
 	export const PROMPT: string;
 	export const PSModulePath: string;
 	export const PUBLIC: string;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	export const RegionCode: string;
 =======
 	export const RlsSvcPort: string;
 >>>>>>> Stashed changes
+=======
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 	export const SESSIONNAME: string;
 	export const SystemDrive: string;
 	export const SystemRoot: string;
@@ -172,11 +186,16 @@ declare module '$env/dynamic/private' {
 		ACSvcPort: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 		ChocolateyInstall: string;
 		ChocolateyLastPathUpdate: string;
 >>>>>>> Stashed changes
+=======
+		ChocolateyInstall: string;
+		ChocolateyLastPathUpdate: string;
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 		CHROME_CRASHPAD_PIPE_NAME: string;
 		COLOR: string;
 		COLORTERM: string;
@@ -186,6 +205,7 @@ declare module '$env/dynamic/private' {
 		ComSpec: string;
 		DriverData: string;
 		EDITOR: string;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 		EFC_9436: string;
 =======
@@ -193,6 +213,8 @@ declare module '$env/dynamic/private' {
 		FPS_BROWSER_APP_PROFILE_STRING: string;
 		FPS_BROWSER_USER_PROFILE_STRING: string;
 >>>>>>> Stashed changes
+=======
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 		GIT_ASKPASS: string;
 		HOME: string;
 		HOMEDRIVE: string;
@@ -201,6 +223,7 @@ declare module '$env/dynamic/private' {
 		INTEL_DEV_REDIST: string;
 		LANG: string;
 		LOCALAPPDATA: string;
+		LOCAL_GIT_DIRECTORY: string;
 		LOGONSERVER: string;
 <<<<<<< Updated upstream
 =======
@@ -235,14 +258,16 @@ declare module '$env/dynamic/private' {
 		OneDrive: string;
 <<<<<<< Updated upstream
 		OneDriveConsumer: string;
+<<<<<<< HEAD
 		OnlineServices: string;
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		OS: string;
 		Path: string;
 		PATHEXT: string;
-		platformcode: string;
 		PROCESSOR_ARCHITECTURE: string;
 		PROCESSOR_IDENTIFIER: string;
 		PROCESSOR_LEVEL: string;
@@ -253,11 +278,14 @@ declare module '$env/dynamic/private' {
 		PROMPT: string;
 		PSModulePath: string;
 		PUBLIC: string;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 		RegionCode: string;
 =======
 		RlsSvcPort: string;
 >>>>>>> Stashed changes
+=======
+>>>>>>> 09fa802bc832641ebf522db49f41367f48e58983
 		SESSIONNAME: string;
 		SystemDrive: string;
 		SystemRoot: string;
