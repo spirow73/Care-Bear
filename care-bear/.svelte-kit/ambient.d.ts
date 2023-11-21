@@ -26,8 +26,15 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const ACSetupSvcPort: string;
+	export const ACSvcPort: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
+<<<<<<< Updated upstream
+=======
+	export const ChocolateyInstall: string;
+	export const ChocolateyLastPathUpdate: string;
+>>>>>>> Stashed changes
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
 	export const COLOR: string;
 	export const COLORTERM: string;
@@ -37,15 +44,26 @@ declare module '$env/static/private' {
 	export const ComSpec: string;
 	export const DriverData: string;
 	export const EDITOR: string;
+<<<<<<< Updated upstream
 	export const EFC_9436: string;
+=======
+	export const EFC_10428: string;
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
+>>>>>>> Stashed changes
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
 	export const INIT_CWD: string;
+	export const INTEL_DEV_REDIST: string;
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
+<<<<<<< Updated upstream
+=======
+	export const MIC_LD_LIBRARY_PATH: string;
+>>>>>>> Stashed changes
 	export const NODE: string;
 	export const NODE_ENV: string;
 	export const NODE_EXE: string;
@@ -73,8 +91,11 @@ declare module '$env/static/private' {
 	export const NPM_PREFIX_NPM_CLI_JS: string;
 	export const NUMBER_OF_PROCESSORS: string;
 	export const OneDrive: string;
+<<<<<<< Updated upstream
 	export const OneDriveConsumer: string;
 	export const OnlineServices: string;
+=======
+>>>>>>> Stashed changes
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const OS: string;
 	export const Path: string;
@@ -90,7 +111,11 @@ declare module '$env/static/private' {
 	export const PROMPT: string;
 	export const PSModulePath: string;
 	export const PUBLIC: string;
+<<<<<<< Updated upstream
 	export const RegionCode: string;
+=======
+	export const RlsSvcPort: string;
+>>>>>>> Stashed changes
 	export const SESSIONNAME: string;
 	export const SystemDrive: string;
 	export const SystemRoot: string;
@@ -102,7 +127,10 @@ declare module '$env/static/private' {
 	export const USERDOMAIN_ROAMINGPROFILE: string;
 	export const USERNAME: string;
 	export const USERPROFILE: string;
+<<<<<<< Updated upstream
 	export const VBOX_MSI_INSTALL_PATH: string;
+=======
+>>>>>>> Stashed changes
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
@@ -110,6 +138,7 @@ declare module '$env/static/private' {
 	export const VSCODE_INJECTION: string;
 	export const VSCODE_NONCE: string;
 	export const windir: string;
+	export const ZES_ENABLE_SYSMAN: string;
 }
 
 /**
@@ -139,8 +168,15 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		ACSetupSvcPort: string;
+		ACSvcPort: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
+<<<<<<< Updated upstream
+=======
+		ChocolateyInstall: string;
+		ChocolateyLastPathUpdate: string;
+>>>>>>> Stashed changes
 		CHROME_CRASHPAD_PIPE_NAME: string;
 		COLOR: string;
 		COLORTERM: string;
@@ -150,15 +186,26 @@ declare module '$env/dynamic/private' {
 		ComSpec: string;
 		DriverData: string;
 		EDITOR: string;
+<<<<<<< Updated upstream
 		EFC_9436: string;
+=======
+		EFC_10428: string;
+		FPS_BROWSER_APP_PROFILE_STRING: string;
+		FPS_BROWSER_USER_PROFILE_STRING: string;
+>>>>>>> Stashed changes
 		GIT_ASKPASS: string;
 		HOME: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
 		INIT_CWD: string;
+		INTEL_DEV_REDIST: string;
 		LANG: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
+<<<<<<< Updated upstream
+=======
+		MIC_LD_LIBRARY_PATH: string;
+>>>>>>> Stashed changes
 		NODE: string;
 		NODE_ENV: string;
 		NODE_EXE: string;
@@ -186,8 +233,11 @@ declare module '$env/dynamic/private' {
 		NPM_PREFIX_NPM_CLI_JS: string;
 		NUMBER_OF_PROCESSORS: string;
 		OneDrive: string;
+<<<<<<< Updated upstream
 		OneDriveConsumer: string;
 		OnlineServices: string;
+=======
+>>>>>>> Stashed changes
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		OS: string;
 		Path: string;
@@ -203,7 +253,11 @@ declare module '$env/dynamic/private' {
 		PROMPT: string;
 		PSModulePath: string;
 		PUBLIC: string;
+<<<<<<< Updated upstream
 		RegionCode: string;
+=======
+		RlsSvcPort: string;
+>>>>>>> Stashed changes
 		SESSIONNAME: string;
 		SystemDrive: string;
 		SystemRoot: string;
@@ -215,7 +269,10 @@ declare module '$env/dynamic/private' {
 		USERDOMAIN_ROAMINGPROFILE: string;
 		USERNAME: string;
 		USERPROFILE: string;
+<<<<<<< Updated upstream
 		VBOX_MSI_INSTALL_PATH: string;
+=======
+>>>>>>> Stashed changes
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		VSCODE_GIT_ASKPASS_MAIN: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
@@ -223,6 +280,7 @@ declare module '$env/dynamic/private' {
 		VSCODE_INJECTION: string;
 		VSCODE_NONCE: string;
 		windir: string;
+		ZES_ENABLE_SYSMAN: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
