@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import V2JournalData from '$lib/components/journal/V2JournalData.svelte';
-	import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
+	import JournalEntry from '$lib/components/journal/-JournalEntry.svelte';
 
 	// Lets try to create a supabase client
 	import { createClient } from '@supabase/supabase-js';
