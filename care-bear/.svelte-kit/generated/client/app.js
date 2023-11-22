@@ -14,16 +14,22 @@ export const nodes = [
 export const server_loads = [];
 
 export const dictionary = {
-		"/": [2],
-		"/calendar": [3],
-		"/calender": [4],
-		"/journal": [5],
-		"/mood": [6],
-		"/tasks": [7]
-	};
+	'/': [2],
+	'/auth': [3],
+	'/journal': [4],
+	'/login': [5],
+	'/sign-up': [6],
+	'/calendar': [7],
+	'/calender': [8],
+	'/journal': [9],
+	'/mood': [10],
+	'/tasks': [11]
+};
 
 export const hooks = {
-	handleError: (({ error }) => { console.error(error) }),
+	handleError: ({ error }) => {
+		console.error(error);
+	}
 };
 
 export { default as root } from '../root.svelte';

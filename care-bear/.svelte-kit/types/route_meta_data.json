@@ -4,5 +4,8 @@
 	"/calender": [],
 	"/journal": [],
 	"/mood": [],
+	"/auth": [],
+	"/login": [],
+	"/sign-up": [],
 	"/tasks": []
 }
