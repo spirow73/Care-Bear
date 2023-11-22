@@ -12,7 +12,7 @@
     /* Add your Svelte styles here */
   </style>
   
-  <main class="max-w-md mx-auto mt-10 p-6 bg-gray-100 rounded-md">
+  <main class="  bg-gray-100 rounded-md">
     <h1 class="text-2xl font-bold mb-4">How are you feeling today?</h1>
     <div class="flex">
       <div
@@ -38,4 +38,4 @@
       <p class="mt-4">You selected: {selectedMood}</p>
     {/if}
   </main>
-  
+
