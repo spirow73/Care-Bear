@@ -1,5 +1,8 @@
 {
 	"/": [],
+	"/auth": [],
 	"/journal": [],
+	"/login": [],
+	"/sign-up": [],
 	"/tasks": []
 }
