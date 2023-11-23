@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import V2JournalData from '../../components/V2JournalData.svelte';
+	import V2JournalData from '$lib/components/journal/V2JournalData.svelte';
+	import JournalEntry from '$lib/components/journal/-JournalEntry.svelte';
 
 	// Lets try to create a supabase client
 	import { createClient } from '@supabase/supabase-js';
@@ -41,4 +42,8 @@
 		entry={data.entry}
 		timestamp={data.timestamp}
 	/>
+
+	<hr class="my-8 border-gray-300" />
+
+	<JournalEntry />
 </div>

@@ -1,6 +1,6 @@
 <script>
-	import ButtonContainer from '../../components/ButtonContainer.svelte';
-	import InputField from '../../components/InputField.svelte';
+	import ButtonContainer from '$lib/components/generic/ButtonContainer.svelte';
+	import InputField from '$lib/components/generic/InputField.svelte';
 	import { goto } from '$app/navigation';
 
 	let username = '';
