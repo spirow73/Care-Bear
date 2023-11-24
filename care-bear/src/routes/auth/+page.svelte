@@ -1,5 +1,5 @@
 <script>
-	import ButtonContainer from '../../components/ButtonContainer.svelte';
+	import ButtonContainer from '$lib/components/generic/ButtonContainer.svelte';
 	import { goto } from '$app/navigation';
 
 	function handleLoginClick(event) {
@@ -12,8 +12,6 @@
 		goto('/sign-up');
 	}
 </script>
-
-<!-- Tu HTML aquí -->
 
 <div class="flex flex-col items-center justify-center min-h-screen m-4">
 	<h1 class="text-5xl font-bold text-gray-800 mb-10 text-center">Welcome to Care Bear</h1>

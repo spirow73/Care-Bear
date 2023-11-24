@@ -1,10 +1,15 @@
 {
 	"/": [],
 	"/auth": [],
+	"/auth/login": [],
+	"/auth/sign-up": [],
 	"/calendar": [],
+	"/journalv2": [],
+	"/journalv3": [],
 	"/journal": [],
-	"/login": [],
+	"/journal/[id]": [
+		"src/routes/journal/[id]/+page.js"
+	],
 	"/mood": [],
-	"/sign-up": [],
-	"/tasks": []
+	"/task": []
 }
