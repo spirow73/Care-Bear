@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div class="p-4 m-2 border rounded">
+<div class="p-4 m-3 border rounded">
 	<h1 class="text-2xl font-semibold mb-2">{title}</h1>
 	<input
 		type="text"
