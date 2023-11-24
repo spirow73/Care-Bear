@@ -16,7 +16,7 @@
 					Journal
 				</a>
 				<a
-					href="/tasks"
+					href="/task"
 					class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-white mr-4"
 				>
 					Tasks

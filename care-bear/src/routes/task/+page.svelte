@@ -4,7 +4,7 @@
 
 	import TaskAdder from '$lib/components/task/TaskAdder.svelte';
 
-	let tasks = [];
+	let task = [];
 
 	async function fetchTasks() {
 		const { data, error } = await supabase.from('tasks').select('*');
@@ -22,5 +22,5 @@
 <div>
 	<TaskAdder />
 
-	<TaskList {tasks} />
+	<TaskList {task} />
 </div>
