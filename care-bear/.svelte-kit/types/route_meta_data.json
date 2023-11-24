@@ -1,11 +1,10 @@
 {
 	"/": [],
-	"/calendar": [],
-	"/calender": [],
-	"/journal": [],
-	"/mood": [],
 	"/auth": [],
+	"/calendar": [],
+	"/journal": [],
 	"/login": [],
+	"/mood": [],
 	"/sign-up": [],
 	"/tasks": []
 }

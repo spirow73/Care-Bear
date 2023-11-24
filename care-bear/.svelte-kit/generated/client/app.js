@@ -8,28 +8,26 @@ export const nodes = [
 	() => import('./nodes/4'),
 	() => import('./nodes/5'),
 	() => import('./nodes/6'),
-	() => import('./nodes/7')
+	() => import('./nodes/7'),
+	() => import('./nodes/8'),
+	() => import('./nodes/9')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
-	'/': [2],
-	'/auth': [3],
-	'/journal': [4],
-	'/login': [5],
-	'/sign-up': [6],
-	'/calendar': [7],
-	'/calender': [8],
-	'/journal': [9],
-	'/mood': [10],
-	'/tasks': [11]
-};
+		"/": [2],
+		"/auth": [3],
+		"/calendar": [4],
+		"/journal": [5],
+		"/login": [6],
+		"/mood": [7],
+		"/sign-up": [8],
+		"/tasks": [9]
+	};
 
 export const hooks = {
-	handleError: ({ error }) => {
-		console.error(error);
-	}
+	handleError: (({ error }) => { console.error(error) }),
 };
 
 export { default as root } from '../root.svelte';
