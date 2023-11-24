@@ -1,92 +1,73 @@
 import { writable } from 'svelte/store';
-import supabase from './supabaseJournal';
+import { fetchJournalEntries, addJournalEntry, deleteJournalEntry } from './supabaseJournal';
 
-const createJournalEntryStore = () => {
-	const { subscribe, set, update } = writable([]);
+// Create a writable Svelte store for journal entries
+const journalEntries = writable([]);
 
-	const fetchEntries = async (userId) => {
-		try {
-			const { data, error } = await supabase
-				.from('journal_entries')
-				.select('*')
-				.eq('user_id', userId);
+// Function to load initial journal entries from the database
+async function loadInitialEntries() {
+  const initialEntries = await fetchJournalEntries();
+  journalEntries.set(initialEntries);
+}
 
-			if (error) {
-				throw error;
-			}
+// Load initial entries when the store is first imported
+loadInitialEntries();
 
-			set(data || []);
-		} catch (error) {
-			console.error('Error fetching journal entries:', error.message);
-			throw error;
-		}
-	};
+async function getEntryContent(entryId) {
+  const { data, error } = await supabase.from('journal_entry').select('content').eq('id', entryId).single();
 
-	const addEntry = async (userId, newEntry) => {
-		try {
-			const { data, error } = await supabase
-				.from('journal_entries')
-				.insert({ user_id: userId, ...newEntry });
+  if (error) {
+    throw new Error(`Error fetching entry content: ${error.message}`);
+  }
 
-			if (error) {
-				throw error;
-			}
+  return data ? data.content : null;
+}
 
-			update((entries) => [...entries, data[0]]);
-		} catch (error) {
-			console.error('Error adding journal entry:', error.message);
-			throw error;
-		}
-	};
+// Function to add a new entry to the database and update the store
+async function addEntryToDb(userId, newEntry) {
+  await addJournalEntry(newEntry);
+  journalEntries.update(existingEntries => [...existingEntries, newEntry]);
+}
 
-	const updateEntry = async (entryId, updatedContent) => {
-		try {
-			const { error } = await supabase
-				.from('journal_entries')
-				.update({ entry: updatedContent })
-				.eq('id', entryId);
+async function updateEntryContent(entryId, newContent) {
+  const { data, error } = await supabase.from('journal_entry').update({ content: newContent }).eq('id', entryId);
 
-			if (error) {
-				throw error;
-			}
+  if (error) {
+    console.error('Error updating entry content:', error.message);
+    throw error;
+  } else {
+    console.log('Entry content updated:', data);
+    return data;
+  }
+}
 
-			update((entries) => {
-				const updatedEntries = entries.map((entry) => {
-					if (entry.id === entryId) {
-						return { ...entry, entry: updatedContent };
-					}
-					return entry;
-				});
-				return updatedEntries;
-			});
-		} catch (error) {
-			console.error('Error updating journal entry:', error.message);
-			throw error;
-		}
-	};
+// Function to delete an entry from the database and update the store
+async function deleteEntryFromDb(entryId) {
+  await deleteJournalEntry(entryId);
+  journalEntries.update(existingEntries => existingEntries.filter(entry => entry.id !== entryId));
+}
 
-	const deleteEntry = async (entryId) => {
-		try {
-			const { error } = await supabase.from('journal_entries').delete().eq('id', entryId);
+// Function to periodically fetch new entries and update the store
+async function fetchNewEntries() {
+  const newEntries = await fetchJournalEntries(); // Fetch the latest entries from the database
+  journalEntries.set(newEntries);
+}
 
-			if (error) {
-				throw error;
-			}
+// Start polling to fetch new entries every 5 seconds (adjust as needed)
+const pollingInterval = setInterval(fetchNewEntries, 5000);
 
-			update((entries) => entries.filter((entry) => entry.id !== entryId));
-		} catch (error) {
-			console.error('Error deleting journal entry:', error.message);
-			throw error;
-		}
-	};
+// Function to stop polling (if needed)
+function stopPolling() {
+  clearInterval(pollingInterval);
+}
 
-	return {
-		subscribe,
-		fetchEntries,
-		addEntry,
-		updateEntry,
-		deleteEntry
-	};
+// Exporting the store and functions
+export const journalEntryStore = {
+  subscribe: journalEntries.subscribe,
+  addEntryToDb,
+  updateEntryContent,
+  deleteEntryFromDb,
+  getEntryContent,
+  loadInitialEntries,
+  stopPolling,
 };
-
-export const journalEntryStore = createJournalEntryStore();
