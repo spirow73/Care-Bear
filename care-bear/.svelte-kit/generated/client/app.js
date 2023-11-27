@@ -16,7 +16,8 @@ export const nodes = [
 	() => import('./nodes/12'),
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
-	() => import('./nodes/15')
+	() => import('./nodes/15'),
+	() => import('./nodes/16')
 ];
 
 export const server_loads = [];
@@ -31,11 +32,12 @@ export const dictionary = {
 		"/journalv3": [10],
 		"/journal": [7],
 		"/journal/[id]": [8],
-		"/moodActivities": [14],
+		"/moodActivities": [15],
 		"/mood": [11],
-		"/mood/meditation": [12],
-		"/mood/yoga": [13],
-		"/task": [15]
+		"/mood/breathingExercise": [12],
+		"/mood/meditation": [13],
+		"/mood/yoga": [14],
+		"/task": [16]
 	};
 
 export const hooks = {

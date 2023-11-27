@@ -33,16 +33,23 @@
         <ul>
           {#each yogaActivities as { name, description, videoUrl }}
             <li class="mb-4 pt-9">
-              <h3 class="text-xl font-bold mb-2">{name}</h3>
-              <p class="text-gray-700">{description}</p>
-              <div class="aspect-w-16 aspect-h-9">
-                <iframe src={videoUrl} frameborder="0" allowfullscreen class="w-full h-full"></iframe>
+              <div class="flex">
+                <div class="w-3/4 pr-4">
+                  <h3 class="text-xl font-bold mb-2">{name}</h3>
+                  <p class="text-gray-700">{description}</p>
+                </div>
+                <div class="w-1/4">
+                  <div class="aspect-w-16 aspect-h-9">
+                    <iframe src={videoUrl} frameborder="0" allowfullscreen class="w-full h-full"></iframe>
+                  </div>
+                </div>
               </div>
             </li>
           {/each}
         </ul>
       </section>
-  
+      
+      
       <!-- Instructions -->
       <section>
         <h2 class="text-2xl font-bold mb-4">How to Perform Yoga Exercises</h2>

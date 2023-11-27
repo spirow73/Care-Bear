@@ -76,7 +76,11 @@
 
 	<div class="p-9 ...  bg-slate-500  pt-6 pb-8 rounded-md ">Meditation</div>
 </a>	
-<div  class="px-9 ...  bg-slate-500  pt-6 pb-8  rounded-md">soothing Music</div>
-	<div  class="px-9 ...  bg-slate-500  pt-6 pb-8  rounded-md">Breathing Exercise</div>
-  </div>
+
+<a 
+	href="/mood/breathingExercise"
+	class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-white mr-4">
+
+	<div class="p-9 ...  bg-slate-500  pt-6 pb-8 rounded-md ">Breathing Exercise</div>
+</a></div>
 </div>

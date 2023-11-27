@@ -1,5 +1,6 @@
 <!-- App.svelte -->
 
+
 <script>
   let meditationTechniques = [
     {
@@ -139,11 +140,29 @@
     },
     {
       title: "Chakra Meditation",
-      description: "Focus on energy centers in the body (chakras) to balance and harmonize your energy.",
-      videoUrl: "https://www.youtube.com/embed/DZhNgVyIrHw&si",
+      description: [
+        "Choose a quiet and comfortable place where you won't be disturbed. Sit or lie down in a relaxed position.",
+        "Close your eyes and take a few deep breaths to relax your body. Release any tension you may be holding in your muscles.",
+        "Imagine roots extending from the base of your spine, connecting you to the Earth. Feel a sense of stability and grounding.",
+        "Begin at the base of your spine and visualize each chakra one by one, starting with the Root Chakra and moving upward to the Crown Chakra.",
+        "Root Chakra (Muladhara): Located at the base of the spine, associated with grounding and stability. Visualize a red spinning wheel of energy.",
+        "Sacral Chakra (Svadhisthana): Located in the lower abdomen, associated with creativity and emotions. Visualize an orange spinning wheel of energy.",
+        "Solar Plexus Chakra (Manipura): Located in the upper abdomen, associated with personal power and confidence. Visualize a yellow spinning wheel of energy.",
+        "Heart Chakra (Anahata): Located in the center of the chest, associated with love and compassion. Visualize a green spinning wheel of energy.",
+        "Throat Chakra (Vishuddha): Located in the throat, associated with communication and self-expression. Visualize a blue spinning wheel of energy",
+        "Third Eye Chakra (Ajna): Located between the eyebrows, associated with intuition and insight. Visualize an indigo spinning wheel of energy.",
+        "Crown Chakra (Sahasrara): Located at the top of the head, associated with spiritual connection. Visualize a violet or white spinning wheel of energy.",
+        "As you focus on each chakra, imagine the energy flowing freely and evenly. Visualize any blockages or negativity being released and washed away.",
+        "For each chakra, you can use positive affirmations related to the qualities associated with that energy center. Repeat these affirmations silently or aloud.",
+        "Once you have focused on all seven chakras, take a few moments to simply sit in stillness, feeling the overall balance and harmony in your energy centers.",
+        
+      ],
+     videoUrl: "https://www.youtube.com/embed/y8NDRElMWwk?si=KKuJskMlZpwXLGDq",
     },
     // Add more meditation techniques
   ];
+
+  
 </script>
 
 
