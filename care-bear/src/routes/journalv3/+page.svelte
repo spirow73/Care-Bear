@@ -1,15 +1,26 @@
 
 <script>
-	import JournalList from '$lib/components/journal/-JournalList.svelte';
-	import JournalEntry from '$lib/components/journal/-JournalEntry.svelte';
-	import JournalEditor from '$lib/components/journal/-JournalEditor.svelte';
+    import { onMount } from 'svelte';
+    import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
+
+    let entry = null;
+
+    onMount(async () => {
+        try {
+            const response = await fetch('https://your-api-endpoint.com/journal/entry/1'); // Replace with your actual API endpoint
+            if (response.ok) {
+                entry = await response.json();
+            } else {
+                throw new Error('Failed to fetch entry');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    });
 </script>
 
-<main class="container mx-auto my-8 px-4">
-	<h1 class="text-3xl font-semibold mb-4">Journal Page</h1>
-
-	<!-- Display Journal Components -->
-	<JournalList />
-	<JournalEntry />
-	<JournalEditor />
-</main>
+{#if entry}
+    <JournalEntry {entry} />
+{:else}
+    <p>Loading...</p>
+{/if}
