@@ -185,7 +185,7 @@
         <div class="flex mb-8">
           <div class="w-3/4 pr-4">
             <h3 class="text-xl font-bold mb-2">{title}</h3>
-            {#each description as step (index)}
+            {#each description as step }
               <p class="text-gray-700 mb-2">{step}</p>
             {/each}
           </div>

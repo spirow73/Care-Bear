@@ -72,14 +72,14 @@
     <!-- Main Content -->
     <main class="container mx-auto my-8">
   
-      <!-- Meditation Techniques -->
+      <!-- Breathing Techniques -->
       <section>
-        <h2 class="text-2xl font-bold mb-4">Meditation Techniques</h2>
+        <h2 class="text-2xl font-bold mb-4">Breathing Techniques</h2>
         {#each breathingExercise as { title, description }}
           <div class="flex mb-8">
             <div class="w-3/4 pr-4">
               <h3 class="text-xl font-bold mb-2">{title}</h3>
-              {#each description as step (index)}
+              {#each description as step }
                 <p class="text-gray-700 mb-2">{step}</p>
               {/each}
             </div>
