@@ -17,7 +17,8 @@ export const nodes = [
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
 	() => import('./nodes/15'),
-	() => import('./nodes/16')
+	() => import('./nodes/16'),
+	() => import('./nodes/17')
 ];
 
 export const server_loads = [];
@@ -37,7 +38,8 @@ export const dictionary = {
 		"/mood/breathingExercise": [12],
 		"/mood/meditation": [13],
 		"/mood/yoga": [14],
-		"/task": [16]
+		"/profile": [16],
+		"/task": [17]
 	};
 
 export const hooks = {
