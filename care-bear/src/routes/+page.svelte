@@ -1,13 +1,23 @@
 <script>
-	import bear from "../images/bear.png"
-	import off from "../images/off.png"
-	import on from "../images/on.png"
+	import Mood from '$lib/components/Mood.svelte';
+	import { onMount } from 'svelte';
+	import bear from "../images/bear.png";
+	import off from "../images/off.png";
+	import on from "../images/on.png";
 
 
 	let isOn = false;
 
   const toggleImage = () => {
     isOn = !isOn;
+
+
+
+  let moodEntries = [];
+
+  onMount(async () => {
+    moodEntries = await fetchLatestMoodEntries();
+  });
   };
 </script>
 <div class="flex flex-col items-center justify-self-start">
@@ -29,19 +39,15 @@
 	<a href="/tasks">
 	<ul class="bg-orange-200 ml-12 text-center border-solid border-solid border-2 border-black rounded-full">
 	  <li>Task 1</li>
-	  <li>TAsk 2</li>
+	  <li>Task 2</li>
 	  <li>Task 3</li>
 	  <!-- Add more list items as needed -->
 	</ul>
 </a>
 </div>
-<div class="col-end-7 col-span-2 bg-orange-200 mr-20 text-center border-solid border-2 border-black rounded-full">
-	<a href="/mood">
-	<h2>moods</h2>
-	<h2>moods</h2>
-	<h2>moods</h2>
-</a>
-</div>
+
+	 <Mood />
+
 </div>
 
 

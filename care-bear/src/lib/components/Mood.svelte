@@ -1,41 +1,35 @@
-<!-- MoodPage.svelte -->
+ <!-- MoodPage.svelte -->
 
-<script>
-    let selectedMood = "";
-  
-    function selectMood(mood) {
-      selectedMood = mood;
+
+ <script>
+  import { fetchLatestMoodEntries } from '$lib/moodClient';
+  import { onMount } from 'svelte';
+
+  let moodEntries = [];
+
+  onMount(async () => {
+    try {
+      moodEntries = await fetchLatestMoodEntries();
+      console.log('Fetched Mood Entries:', moodEntries);
+    } catch (error) {
+      console.error('Error fetching mood entries:', error);
     }
-  </script>
-  
-  <style>
-    /* Add your Svelte styles here */
-  </style>
-  
-  <main class="  bg-gray-100 rounded-md">
-    <h1 class="text-2xl font-bold mb-4">How are you feeling today?</h1>
-    <div class="flex">
-      <div
-        class="{ 'cursor-pointer p-4 m-2 border rounded bg-blue-200': selectedMood === 'happy', 'cursor-pointer p-4 m-2 border rounded bg-gray-200': selectedMood !== 'happy' }"
-        on:click={() => selectMood('happy')}
-      >
-        Happy
-      </div>
-      <div
-        class="{ 'cursor-pointer p-4 m-2 border rounded bg-blue-200': selectedMood === 'sad', 'cursor-pointer p-4 m-2 border rounded bg-gray-200': selectedMood !== 'sad' }"
-        on:click={() => selectMood('sad')}
-      >
-        Sad
-      </div>
-      <div
-        class="{ 'cursor-pointer p-4 m-2 border rounded bg-blue-200': selectedMood === 'stressed', 'cursor-pointer p-4 m-2 border rounded bg-gray-200': selectedMood !== 'stressed' }"
-        on:click={() => selectMood('stressed')}
-      >
-        Stressed
-      </div>
-    </div>
-    {#if selectedMood !== ""}
-      <p class="mt-4">You selected: {selectedMood}</p>
-    {/if}
-  </main>
+  });
+</script>
 
+<div class="col-end-7 col-span-2 bg-orange-200 mr-20 text-center border-solid border-2 border-black rounded-full">
+  <a href="/mood">
+    <h2><b>Moods</b></h2>
+
+    {#if moodEntries.length > 0}
+      {#each moodEntries as entry (entry.mood_entry_id)}
+        <div>
+          <p>Date: {entry.timestamp}</p>
+          <p>{entry.mood_description}</p>
+        </div>
+      {/each}
+    {:else}
+      <p>No moods registered.</p>
+    {/if}
+  </a>
+</div>
