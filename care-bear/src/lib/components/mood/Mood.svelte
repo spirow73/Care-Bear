@@ -17,14 +17,14 @@
   });
 </script>
 
-<div class="col-end-7 col-span-2 bg-orange-200 mr-20 text-center border-solid border-2 border-black rounded-full">
+
   <a href="/mood">
     <h2><b>Moods</b></h2>
 
     {#if moodEntries.length > 0}
       {#each moodEntries as entry (entry.mood_entry_id)}
         <div>
-          <p>Date: {entry.timestamp}</p>
+          <!-- <p>Date: {entry.timestamp}</p> -->
           <p>{entry.mood_description}</p>
         </div>
       {/each}
@@ -32,4 +32,4 @@
       <p>No moods registered.</p>
     {/if}
   </a>
-</div>
+

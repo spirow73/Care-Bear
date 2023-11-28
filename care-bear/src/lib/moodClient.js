@@ -5,29 +5,14 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// const { data: realTimeData, error: realTimeError } = supabase
-//   .from('mood_entry')
-//   .on(['INSERT', 'UPDATE'], (payload) => {
-//     // Handle real-time insert/update events (new or modified mood entry)
-//     const updatedEntryIndex = moodEntries.findIndex(entry => entry.mood_entry_id === payload.new.mood_entry_id);
-
-//     if (updatedEntryIndex !== -1) {
-//       moodEntries[updatedEntryIndex] = payload.new;
-//     } else {
-//       moodEntries = [payload.new, ...moodEntries.slice(0, 2)];
-//     }
-//   })
-//   .subscribe();
-// moodClient.js
 export async function fetchLatestMoodEntries() {
     const { data, error } = await supabase
       .from('mood_entry')
       .select(`
         mood_entry_id,
-        timestamp,
         mood:mood(moodref_id, description)
       `)
-      .order('timestamp', { ascending: false })
+      .order('mood_entry_id', { ascending: false })
       .limit(3);
   
     if (error) {
@@ -36,8 +21,7 @@ export async function fetchLatestMoodEntries() {
     } else {
       const latestEntries = data.map((entry) => ({
         mood_entry_id: entry.mood_entry_id,
-        timestamp: entry.timestamp,
-        mood_description: entry.mood ? entry.mood.description : 'Unknown Mood',
+        mood_description: entry.mood ? entry.mood.description : 'No moods registered yet',
       }));
   
       return latestEntries;
@@ -53,6 +37,7 @@ export async function fetchLatestMoodEntries() {
     };
   
     const { data, error } = await supabase.from('mood_entry').upsert([newMoodEntry]);
+    console.log(data);
   
     if (error) {
       console.error('Error adding mood entry:', error);
