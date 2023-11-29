@@ -1,24 +1,48 @@
 // taskStore.js
 import { writable } from 'svelte/store';
-import { fetchTasks, addTask, deleteTask } from './supabaseClient';
+import { fetchTasks, createTask, updateTask, deleteTask } from './taskClient';
 
-const tasks = writable([]);
+export let tasks = writable([]);
 
-// Cargar tareas desde la base de datos al inicio de la aplicación
-fetchTasks().then(initialTasks => {
-  tasks.set(initialTasks);
-});
-
-// Agregar una tarea a la base de datos y actualizar el estado
-async function addTaskToDb(newTask) {
-  await addTask(newTask);
-  tasks.update(existingTasks => [...existingTasks, newTask]);
+export async function loadDbTasks() {
+	try {
+		tasks.set(await fetchTasks());
+	} catch (error) {
+		console.error('Error loading tasks:', error);
+	}
 }
 
-// Eliminar una tarea de la base de datos y actualizar el estado
-async function deleteTaskFromDb(id) {
-  await deleteTask(id);
-  tasks.update(existingTasks => existingTasks.filter(task => task.id !== id));
+export async function addDbTask(task) {
+	console.log('addDbTask:', task); // Depuración para ver qué se recibe
+	try {
+		const newTask = await createTask(task);
+		console.log('newTask:', newTask); // Depuración para ver qué se recibe
+		// Change the newTask deadline to a Date object (it is a ISO string)
+		newTask.deadline = new Date(newTask.deadline);
+		if (newTask) {
+			tasks.update((currentTasks) => [...currentTasks, newTask]);
+		} else {
+			console.error('Received null or undefined task');
+		}
+	} catch (error) {
+		console.error('Error adding task:', error);
+	}
 }
 
-export { tasks, addTaskToDb, deleteTaskFromDb };
+export async function updateDbTask(task_id, updatedTask) {
+	try {
+		const newTask = await updateTask(task_id, updatedTask);
+		tasks.update((tasks) => tasks.map((task) => (task.task_id === task_id ? newTask : task)));
+	} catch (error) {
+		console.error('Error updating task:', error);
+	}
+}
+
+export async function removeDbTask(task_id) {
+	try {
+		await deleteTask(task_id);
+		tasks.update((tasks) => tasks.filter((task) => task.task_id !== task_id));
+	} catch (error) {
+		console.error('Error removing task:', error);
+	}
+}

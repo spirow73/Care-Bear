@@ -45,9 +45,7 @@
     <div class="lg:col-start-4 lg:col-end-7 col-span-1 lg:col-span-2 bg-orange-200 mt-4 lg:mr-4 text-center border-solid border-2 border-black rounded-full">
         <Mood />
     </div>
-    <div class="lg:col-start-6 lg:col-end-7 col-span-1 lg:col-span-1 bg-orange-200 mt-4 lg:mr-20 text-center border-solid border-2 border-black rounded-full">
-        <!-- Placeholder for future content if needed -->
-    </div>
+
 </div>
 
 <style>
