@@ -8,6 +8,12 @@
 	export let deadline;
 	export let isCompleted;
 
+	$: formattedDeadline = new Date(deadline).toLocaleDateString('es-ES', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric'
+	});
+
 	function handleDelete() {
 		console.log(task_id);
 		removeDbTask(task_id);
@@ -34,6 +40,7 @@
 			</svg>
 		</button>
 	</div>
+	<p class="text-gray-600">{formattedDeadline}</p>
 	<p class="text-gray-600">{description}</p>
 	<p class={isCompleted ? 'text-green-600' : 'text-red-600'}>
 		{isCompleted ? 'Completed' : 'Pending'}

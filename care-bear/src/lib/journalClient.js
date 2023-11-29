@@ -1,40 +1,68 @@
-// supabaseJournalClient.js
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from './supabaseClient';
 
-const supabaseUrl = 'https://djhxrvvfyaoduxzlowlf.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqaHhydnZmeWFvZHV4emxvd2xmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA0ODU2MDEsImV4cCI6MjAxNjA2MTYwMX0.N5ILlFpgSQp_k8o4XKNOZIyJ5alm1kQkxDCk8VNC2js';
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-async function fetchJournals() {
-  const { data, error } = await supabase.from('journal').select('*');
-
-  if (error) {
-    console.error('Error fetching journals:', error.message);
-    return [];
-  } else {
-    console.log('Journals:', data);
-    return data || [];
-  }
+export async function fetchJournals() {
+	try {
+		let { data, error } = await supabase.from('journal').select('*');
+		if (error) throw error;
+		return data;
+	} catch (error) {
+		console.error('Error fetching journals:', error);
+		throw error;
+	}
 }
 
-async function addJournal(newJournal) {
-  const { data, error } = await supabase.from('journal').upsert([newJournal]);
-
-  if (error) {
-    console.error('Error adding journal:', error.message);
-  } else {
-    console.log('Journal added:', data);
-  }
+export async function fetchJournalById(journalId) {
+	try {
+		let { data, error } = await supabase
+			.from('journal')
+			.select('*')
+			.eq('journal_id', journalId)
+			.single();
+		if (error) throw error;
+		return data;
+	} catch (error) {
+		console.error('Error fetching journal:', error);
+		throw error;
+	}
 }
 
-async function deleteJournal(journalId) {
-  const { data, error } = await supabase.from('journal').delete().eq('journal_id', journalId);
-
-  if (error) {
-    console.error('Error deleting journal:', error.message);
-  } else {
-    console.log('Journal deleted successfully');
-  }
+export async function createJournal(journal) {
+	try {
+		let { data, error } = await supabase.from('journal').insert([journal]).select();
+		if (error) throw error;
+		return data[0];
+	} catch (error) {
+		console.error('Error creating journal:', error);
+		throw error;
+	}
 }
 
-export { fetchJournals, addJournal, deleteJournal, supabase as supabaseJournalClient };
+export async function updateJournal(journalId, updatedFields) {
+	try {
+		let { data, error } = await supabase
+			.from('journal')
+			.update(updatedFields)
+			.eq('journal_id', journalId)
+			.select();
+		if (error) throw error;
+		return data[0];
+	} catch (error) {
+		console.error('Error updating journal:', error);
+		throw error;
+	}
+}
+
+export async function deleteJournal(journalId) {
+	try {
+		let { data, error } = await supabase
+			.from('journal')
+			.delete()
+			.eq('journal_id', journalId)
+			.select();
+		if (error) throw error;
+		return data[0];
+	} catch (error) {
+		console.error('Error deleting journal:', error);
+		throw error;
+	}
+}

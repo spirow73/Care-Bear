@@ -2,12 +2,20 @@
 <script>
 	import { tasks, loadDbTasks, addDbTask, updateDbTask, removeDbTask } from '$lib/taskStore.js';
 	import { onMount } from 'svelte';
+	import Calendar from '../Calendar.svelte';
 
 	onMount(async () => {
 		await loadDbTasks();
 	});
 
 	export let title = 'Add Task';
+	export let calendarDate;
+
+	$: formattedDeadline = new Date(calendarDate).toLocaleDateString('es-ES', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric'
+	});
 
 	let newTask = {
 		user_id: 1,
@@ -23,9 +31,14 @@
 	};
 
 	let addTask = async () => {
-		// Combinar la fecha y la hora en un objeto Date
-		const combinedDate = new Date(`${dateData.date}T${dateData.time}:00.000Z`);
-		newTask.deadline = combinedDate.toISOString();
+		let newTaskDeadline;
+		if (calendarDate) {
+			newTaskDeadline = calendarDate;
+		} else {
+			newTaskDeadline = new Date(`${dateData.date}T${dateData.time}:00.000Z`).toISOString();
+		}
+
+		newTask.deadline = newTaskDeadline;
 
 		await addDbTask(newTask);
 
@@ -67,7 +80,7 @@
 	// }
 </script>
 
-<div class="p-4 m-3 border rounded">
+<div class="p-4 m-3 border rounded bg-white">
 	<h3 class="text-xl font-semibold mb-2">{title}</h3>
 	<input
 		type="text"
@@ -82,7 +95,11 @@
 		class="border rounded p-2 mb-2"
 	/>
 	<div class="flex mb-2">
-		<input type="date" bind:value={dateData.date} class="border rounded p-2 mr-2" />
+		{#if formattedDeadline}
+			<p>{formattedDeadline}</p>
+		{:else}
+			<input type="date" bind:value={dateData.date} class="border rounded p-2 mr-2" />
+		{/if}
 		<input type="time" bind:value={dateData.time} class="border rounded p-2" />
 	</div>
 	<button

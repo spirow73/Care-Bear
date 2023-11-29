@@ -17,6 +17,26 @@ export async function fetchTasks() {
 	}
 }
 
+export async function fetchLast3Tasks() {
+	try {
+		const { data, error } = await supabase
+			.from('task')
+			.select('*')
+			.order('created_at', { ascending: false })
+			.limit(3);
+		if (error) {
+			throw new Error(error.message);
+		}
+		return data.map((task) => ({
+			...task,
+			deadline: new Date(task.deadline)
+		}));
+	} catch (error) {
+		console.error('Error fetching last 3 tasks:', error);
+		throw error;
+	}
+}
+
 export async function createTask(task) {
 	try {
 		const { data, error } = await supabase.from('task').insert([task]).select();

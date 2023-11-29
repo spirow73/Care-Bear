@@ -1,25 +1,19 @@
 <script>
 	// Importing the journalEntryStore module from '$lib/journalEntryStore.js'
 	import { journalEntryStore } from '$lib/journalEntryStore.js';
-  
+
 	// Declaring a variable 'entry' that will be used in the component
 	export let entry;
-  
+
 	// Async function to handle editing content
-	async function onEditContent() {
-		try {
-			// Fetching the content for the selected journal ID using journalEntryStore
-			const content = await journalEntryStore.getEntryContent(entry.id, selectedJournal.id);
-			entry = { ...entry, content }; // Updating the entry with new content retrieved
-		} catch (error) {
-			console.error('Error fetching entry content:', error.message); // Handling errors if content retrieval fails
-		}
-	}
+	async function onEditContent() {}
 </script>
 
 <div class="mt-6">
 	<!-- Container div for displaying entry content -->
-	<div class="relative p-4 bg-white shadow-lg rounded-lg mb-6 transition-all hover:shadow-xl bg-gray-50">
+	<div
+		class="relative p-4 bg-white shadow-lg rounded-lg mb-6 transition-all hover:shadow-xl bg-gray-50"
+	>
 		<!-- Checking if entry content exists -->
 		{#if entry.content}
 			<!-- Displaying the entry content -->
