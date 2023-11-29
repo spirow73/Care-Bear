@@ -36,7 +36,7 @@
   <div class="flex flex-wrap justify-center">
     {#each Object.keys(moods) as moodId}
       <div
-        class={`w-full sm:w-1/2 md:w-1/3 lg:w-1/4 cursor-pointer p-4 m-2 border rounded ${
+        class={`w-full sm:w-1/2 md:w-1/3 lg:w-1/6 cursor-pointer p-4 m-2 border rounded ${
           selectedMood === moodId ? 'border-black' : 'bg-orange-200'
         }`}
         on:click={() => selectMood(moodId)}
@@ -51,13 +51,13 @@
     {/each}
   </div>
   {#if selectedMood !== ''}
-
   <p class="mt-4 text-center">You selected mood: {selectedMood}</p>
   <div class="flex justify-center">
  <button class="mt-2 bg-orange-200 text-black p-2 rounded  hover:text-white" on:click={() => confirmMood(Object.keys(moods).find(key => moods[key].description === selectedMood))}>Confirm Mood</button>
   </div>
  
 
+  <!-- Replace Object.keys(moods)[0] with the actual moodId based on your use case -->
 {/if}
 
 </main>
