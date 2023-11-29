@@ -128,14 +128,14 @@
 <div class="container">
 	<!-- Existing code... -->
 
-	<!-- Task list -->
+	<!-- Task list 
 	<div class="tasks">
 		{#each tasks.slice().reverse() as task}
 			<div class="task">
 				{task.title}
 			</div>
 		{/each}
-	</div>
+	</div> -->
 
 	<!-- Existing code... -->
 </div>
