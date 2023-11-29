@@ -21,8 +21,19 @@
 
   const selectMood = async (moodId) => {
     selectedMood = moods[moodId].description;
-  };
+    
+    Object.keys(moods).forEach(key => {
+      const element = document.getElementById(`mood_${key}`);
+      if (element) {
+        element.classList.remove('border', 'border-black');
+      }
+    });
 
+    const selectedElement = document.getElementById(`mood_${moodId}`);
+    if (selectedElement) {
+      selectedElement.classList.add('border', 'border-black');
+    }
+  };
   const confirmMood = async (moodId) => {
     if (selectedMood !== '') {
       const timestamp = new Date().toISOString();
@@ -36,13 +47,14 @@
   <div class="flex flex-wrap justify-center">
     {#each Object.keys(moods) as moodId}
       <div
-        class={`w-full sm:w-1/2 md:w-1/3 lg:w-1/4 cursor-pointer p-4 m-2 border-rounded ${
-          selectedMood === moodId ? 'border-black' : 'bg-orange-200'
-        }`}
-        on:click={() => selectMood(moodId)}
+      id={`mood_${moodId}`}
+    class={`w-full sm:w-1/2 md:w-1/3 lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 ${
+      selectedMood === moodId ? 'border border-red' : 'bg-orange-200'
+    }`}
+    on:click={() => selectMood(moodId)}
       >
         <img
-          class="h-auto max-w-xs md:max-w-lg rounded-lg mx-auto"
+          class="h-auto max-w-xs md:max-w-lg rounded-lg mx-auto transition-transform transform hover:scale-105"
           src={moods[moodId].image}
           alt={`${moods[moodId].description} emoji`}
         />
@@ -51,10 +63,9 @@
     {/each}
   </div>
   {#if selectedMood !== ''}
-  <p class="mt-4 text-center">You selected mood:<b>{selectedMood}</b></p>
-  <div class="flex justify-center">
- <button class="mt-2 bg-orange-200 text-black p-2 rounded  hover:text-white" on:click={() => confirmMood(Object.keys(moods).find(key => moods[key].description === selectedMood))}>Confirm Mood</button>
-  </div>
-{/if}
-
+    <p class="mt-4 text-center">You selected mood: <b>{selectedMood}</b></p>
+    <div class="flex justify-center">
+      <button class="mt-2 bg-orange-200 text-black p-2 rounded hover:text-white" on:click={() => confirmMood(Object.keys(moods).find(key => moods[key].description === selectedMood))}>Confirm Mood</button>
+    </div>
+  {/if}
 </main>
