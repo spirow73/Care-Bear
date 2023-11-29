@@ -52,7 +52,10 @@
   </div>
   {#if selectedMood !== ''}
   <p class="mt-4 text-center">You selected mood: {selectedMood}</p>
-  <button class="mt-2 bg-blue-500 text-white p-2 rounded" on:click={() => confirmMood(Object.keys(moods).find(key => moods[key].description === selectedMood))}>Confirm Mood</button>
+  <div class="flex justify-center">
+ <button class="mt-2 bg-orange-200 text-black p-2 rounded  hover:text-white" on:click={() => confirmMood(Object.keys(moods).find(key => moods[key].description === selectedMood))}>Confirm Mood</button>
+  </div>
+ 
 
   <!-- Replace Object.keys(moods)[0] with the actual moodId based on your use case -->
 {/if}

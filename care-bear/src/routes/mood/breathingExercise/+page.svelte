@@ -64,7 +64,7 @@
   <div class="bg-gray-100 font-sans min-h-screen">
   
     <!-- Header -->
-    <header class="bg-blue-500 text-white text-center py-4">
+    <header class="bg-orange-200 text-black text-center py-4">
       <h1 class="text-4xl font-bold">Breathing Exercise</h1>
       <p class="text-lg">Find calmness and inner peace</p>
     </header>
@@ -76,16 +76,15 @@
       <section>
         <h2 class="text-2xl font-bold mb-4">Breathing Techniques</h2>
         {#each breathingExercise as { title, description }}
-          <div class="flex mb-8">
-            <div class="w-3/4 pr-4">
-              <h3 class="text-xl font-bold mb-2">{title}</h3>
-              {#each description as step }
-                <p class="text-gray-700 mb-2">{step}</p>
-              {/each}
-            </div>
+          <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h3 class="text-xl font-bold mb-2">{title}</h3>
+            {#each description as step }
+              <p class="text-gray-700 mb-2">{step}</p>
+            {/each}
           </div>
         {/each}
       </section>
+  
   
     </main>
   

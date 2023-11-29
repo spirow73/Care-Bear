@@ -170,7 +170,7 @@
 <div class="bg-gray-100 font-sans min-h-screen">
 
   <!-- Header -->
-  <header class="bg-blue-500 text-white text-center py-4">
+  <header class="bg-orange-200 text-black text-center py-4">
     <h1 class="text-4xl font-bold">Meditation Techniques</h1>
     <p class="text-lg">Find calmness and inner peace</p>
   </header>
@@ -179,20 +179,16 @@
   <main class="container mx-auto my-8">
 
     <!-- Meditation Techniques -->
-    <section>
+    <section class="mt-12">
       <h2 class="text-2xl font-bold mb-4">Meditation Techniques</h2>
       {#each meditationTechniques as { title, description, videoUrl }}
-        <div class="flex mb-8">
-          <div class="w-3/4 pr-4">
-            <h3 class="text-xl font-bold mb-2">{title}</h3>
-            {#each description as step }
-              <p class="text-gray-700 mb-2">{step}</p>
-            {/each}
-          </div>
-          <div class="w-1/4">
-            <div class="aspect-w-16 aspect-h-9">
-              <iframe src={videoUrl} frameborder="0" allowfullscreen class="w-full h-full"></iframe>
-            </div>
+        <div class="bg-white rounded-lg shadow-md mb-8 p-6">
+          <h3 class="text-xl font-bold mb-2">{title}</h3>
+          {#each description as step }
+            <p class="text-gray-700 mb-2">{step}</p>
+          {/each}
+          <div class="aspect-w-16 aspect-h-9">
+            <iframe src={videoUrl} frameborder="0" allowfullscreen class="w-full h-full"></iframe>
           </div>
         </div>
       {/each}
