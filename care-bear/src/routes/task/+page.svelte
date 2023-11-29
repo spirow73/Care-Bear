@@ -1,26 +1,19 @@
 <script>
 	import TaskList from '$lib/components/task/TaskList.svelte';
-	import supabase from '../../lib/supabaseClient.js';
-
 	import TaskAdder from '$lib/components/task/TaskAdder.svelte';
 
-	let task = [];
+	import { loadDbTasks } from '$lib/taskStore.js';
+	import { onMount } from 'svelte';
+	import { tasks } from '$lib/taskStore.js';
 
-	async function fetchTasks() {
-		const { data, error } = await supabase.from('tasks').select('*');
-		if (error) {
-			console.error('Error fetching tasks:', error);
-		} else {
-			tasks = data;
-		}
-	}
-
-	// Calls fetchTasks when the page loads or when necessary.
-	fetchTasks();
+	onMount(async () => {
+		await loadDbTasks();
+		console.log($tasks);
+	});
 </script>
 
 <div>
 	<TaskAdder />
 
-	<TaskList {task} />
+	<TaskList tasks={$tasks} />
 </div>
