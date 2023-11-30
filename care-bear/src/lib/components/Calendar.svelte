@@ -69,174 +69,96 @@
 	}
 </script>
 
-<div class="container">
-	<div class="calendar-header">
-		<button on:click={() => changeMonth(-1)}>&lt; Prev</button>
-		<span id="month-year">
-			{selectedDate
-				? `${selectedDate.toLocaleString('default', {
-						month: 'long'
-				  })} ${selectedDate.getFullYear()}`
-				: 'Loading...'}
-		</span>
-		<button on:click={() => changeMonth(1)}>Next &gt;</button>
-	</div>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+	<div class="max-w-md w-full space-y-8 border border-gray-300 rounded-lg p-6">
+		<div>
+			<!-- Calendar Header -->
+			<div class="flex justify-between items-center">
+				<button
+					class="bg-orange-200 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
+					on:click={() => changeMonth(-1)}
+					aria-label="Previous Month"
+				>
+					&lt; Prev
+				</button>
+				<span
+					class="text-xl font-bold text-orange-300"
+					id="month-year"
+					role="heading"
+					aria-level="2"
+					aria-live="assertive"
+				>
+					{selectedDate
+						? `${selectedDate.toLocaleString('default', {
+								month: 'long'
+						  })} ${selectedDate.getFullYear()}`
+						: 'Loading...'}
+				</span>
+				<button
+					class="bg-orange-200 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
+					on:click={() => changeMonth(1)}
+					aria-label="Next Month"
+				>
+					Next &gt;
+				</button>
+			</div>
 
-	<div class="weekdays">
-		<div>Sun</div>
-		<div>Mon</div>
-		<div>Tue</div>
-		<div>Wed</div>
-		<div>Thu</div>
-		<div>Fri</div>
-		<div>Sat</div>
-	</div>
+			<!-- Weekdays -->
+			<div class="grid grid-cols-7 gap-1 mt-4" role="row">
+				<div class="text-center font-semibold text-gray-600" role="columnheader">Sun</div>
+				<div class="text-center font-semibold text-gray-600" role="columnheader">Mon</div>
+				<div class="text-center font-semibold text-gray-600" role="columnheader">Tue</div>
+				<div class="text-center font-semibold text-gray-600" role="columnheader">Wed</div>
+				<div class="text-center font-semibold text-gray-600" role="columnheader">Thu</div>
+				<div class="text-center font-semibold text-gray-600" role="columnheader">Fri</div>
+				<div class="text-center font-semibold text-gray-600" role="columnheader">Sat</div>
+			</div>
 
-	<div class="days">
-		{#each blankDays as _, i}
-			<div class="day empty" />
-		{/each}
-		{#each daysInMonth as day}
-			<div class="day" on:click={() => openEventModal(day)}>
-				{day}
-				<div class="events">
-					{displayEvents(
-						new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day)
-							.toISOString()
-							.split('T')[0]
-					)}
+			<!-- Days -->
+			<div class="grid grid-cols-7 gap-1 mt-1" role="rowgroup">
+				{#each blankDays as _, i}
+					<div class="text-center text-gray-400" role="gridcell" aria-hidden="true" />
+				{/each}
+				{#each daysInMonth as day}
+					<div
+						class="text-center p-2 cursor-pointer hover:bg-orange-100 rounded-full border border-gray-300"
+						on:click={() => openEventModal(day)}
+						role="gridcell"
+						aria-label={day}
+					>
+						{day}
+						<div class="text-xs mt-1 text-gray-500">
+							{displayEvents(
+								new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day)
+									.toISOString()
+									.split('T')[0]
+							)}
+						</div>
+					</div>
+				{/each}
+			</div>
+
+			<!-- Event Input -->
+			{#if showEventModal}
+				<div class="mt-4 p-4 border rounded bg-white shadow-md">
+					<p class="text-lg font-semibold mb-2 text-black" role="heading" aria-level="2">
+						Selected date: {newEventDate}
+					</p>
+					<TaskAdder calendarDate={newEventDate} />
 				</div>
-			</div>
-		{/each}
+			{/if}
+		</div>
 	</div>
-
-	<!-- Event input -->
-	{#if showEventModal}
-		<!-- <div class="modal">
-			<h2>Add Event</h2>
-			<input type="text" placeholder="Event Name" bind:value={newEventName} />
-			<input type="time" bind:value={newEventTime} />
-			<button on:click={saveEvent}>Save Event</button>
-			<button on:click={() => (showEventModal = false)}>Cancel</button>
-		</div> -->
-		<p>Selected date: {newEventDate}</p>
-		<TaskAdder calendarDate={newEventDate} />
-	{/if}
 </div>
 
-<!-- JUAN -->
-<div class="container">
-	<!-- Existing code... -->
-
-	<!-- Task list 
-	<div class="tasks">
-		{#each tasks.slice().reverse() as task}
-			<div class="task">
-				{task.title}
+<!-- Task list
+	  <div class="border-t pt-4">
+		<h2 class="text-xl font-semibold text-black">Task List</h2>
+		<div class="mt-4">
+		  {#each tasks.slice().reverse() as task}
+			<div class="border rounded p-3 mb-2 bg-white">
+			  <p>{task.title}</p>
 			</div>
-		{/each}
-	</div> -->
-
-	<!-- Existing code... -->
-</div>
-
-<!-- JUAN -->
-
-<style>
-	/* Your existing styles */
-
-	.days,
-	.weekdays {
-		display: grid;
-		grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days of the week */
-		text-align: center;
-	}
-
-	.day,
-	.weekdays div {
-		padding: 10px;
-		min-height: 50px; /* Adjust as needed */
-	}
-
-	.day {
-		background-color: #f0f0f0;
-	}
-
-	.empty {
-		background-color: transparent;
-	}
-
-	.container {
-		max-width: 800px;
-		margin: 30px auto;
-		padding: 20px;
-		background-color: white;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		border-radius: 8px;
-	}
-
-	.calendar-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 10px;
-		background-color: #4a90e2;
-		color: white;
-		border-top-left-radius: 8px;
-		border-top-right-radius: 8px;
-	}
-
-	.calendar-header button {
-		background: none;
-		border: none;
-		color: white;
-		cursor: pointer;
-		font-size: 16px;
-		padding: 5px 10px;
-		border-radius: 4px;
-		transition: background-color 0.3s;
-	}
-
-	.calendar-header button:hover {
-		background-color: rgba(255, 255, 255, 0.2);
-	}
-
-	.weekdays,
-	.days {
-		display: grid;
-		grid-template-columns: repeat(7, 1fr);
-		text-align: center;
-	}
-
-	.weekdays div,
-	.day {
-		padding: 12px;
-		border: 1px solid #eaeaea;
-	}
-
-	.weekdays div {
-		background-color: #f7f7f7;
-		font-weight: bold;
-	}
-
-	.day {
-		background-color: #f0f0f0;
-		cursor: pointer;
-		transition: background-color 0.3s, transform 0.3s;
-	}
-
-	.day:hover {
-		background-color: #e0e0e0;
-		transform: translateY(-2px);
-	}
-
-	.empty {
-		background-color: transparent;
-	}
-
-	.selected {
-		background-color: #4a90e2;
-		color: white;
-		font-weight: bold;
-	}
-</style>
+		  {/each}
+		</div>
+	  </div> -->
