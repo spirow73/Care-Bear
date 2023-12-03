@@ -1,30 +1,29 @@
 <script>
-	import JournalEntry from './JournalEntry.svelte';
-
-	export let journals = [];
+	import JournalEntryFront from './-JournalEntryFront.svelte';
+	// Supongamos que estos son los datos que recibes desde tu backend o store
+	let journals = [
+		{ id: 1, title: 'Viaje a la Montaña', entries: 10 },
+		{ id: 2, title: 'Pensamientos de medianoche', entries: 5 },
+		{ id: 3, title: 'Ideas para el proyecto', entries: 3 }
+	];
 </script>
 
-<!-- Display section for journals -->
 <div class="p-4">
 	<div class="bg-white shadow-md rounded-lg">
 		<div class="p-4 border-b">
-			<h2 class="text-2xl font-semibold text-gray-800">My Journals</h2>
+			<h2 class="text-xl font-semibold text-gray-800">Mis Diarios</h2>
 		</div>
 		<ul>
-			{#each journals.slice().reverse() as journal}
-				<li class="border-b last:border-b-0 hover:bg-gray-100">
-					<!-- Link for each journal with an event to select the journal -->
-					<a href={`/journal/${journal.journal_id}`} class="block p-4">
-						<span class="text-lg font-semibold text-gray-800">{journal.title}</span>
-						<span class="text-sm text-gray-600 block">{journal.description}</span>
-					</a>
-				</li>
-			{/each}
+			{#if journals}
+				{#each journals as journal}
+					<p>Hi</p>
+					<li class="border-b last:border-b-0">
+						<a href={`/journal/${journal.id}`} class="block">
+							<JournalEntryFront entry={journal} />
+						</a>
+					</li>
+				{/each}
+			{/if}
 		</ul>
 	</div>
-
-	<!-- Display selected journal's details -->
-	{#if selectedJournal}
-		<JournalEntry journal={selectedJournal} />
-	{/if}
 </div>
