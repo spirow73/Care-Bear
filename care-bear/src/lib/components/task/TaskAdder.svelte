@@ -95,7 +95,7 @@
 		class="border rounded p-2 mb-2"
 	/>
 	<div class="flex mb-2">
-		{#if formattedDeadline}
+		{#if calendarDate}
 			<p>{formattedDeadline}</p>
 		{:else}
 			<input type="date" bind:value={dateData.date} class="border rounded p-2 mr-2" />
