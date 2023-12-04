@@ -1,6 +1,15 @@
 <script>
+	import { deleteJournalEntryInStore } from '$lib/journalStore.js'; // Asegúrate de implementar esta función
+
 	export let entry;
 	let max_entries = 100;
+
+	async function handleDelete() {
+		if (confirm('Are you sure you want to delete this entry?')) {
+			await deleteJournalEntryInStore(entry.journal_entry_id);
+			// Agrega lógica adicional si necesitas actualizar el UI tras eliminar la entrada
+		}
+	}
 </script>
 
 {#if entry}
@@ -17,10 +26,17 @@
 				{/if}
 			</p>
 		</div>
-		<div class="text-right">
-			<span class="text-sm text-gray-600"
-				>{entry.timestamp ? new Date(entry.timestamp).toLocaleDateString() : ''}</span
+		<div class="flex items-center">
+			<span class="text-sm text-gray-600">
+				{entry.timestamp ? new Date(entry.timestamp).toLocaleDateString() : ''}
+			</span>
+			<button
+				class="ml-4 text-red-500 hover:text-red-700"
+				title="Delete entry"
+				on:click={handleDelete}
 			>
+				🗑️
+			</button>
 		</div>
 	</div>
 {/if}

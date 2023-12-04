@@ -1,30 +1,55 @@
 <script>
-	import JournalEntry from './JournalEntry.svelte';
+	import JournalEntryFront from './JournalEntryFront.svelte';
+	import { removeJournal } from '$lib/journalStore.js';
+	import { fade } from 'svelte/transition'; // Importa la transición
 
-	export let journals = [];
+	export let journals;
+	export let numOfEntries = 3;
+
+	async function handleDelete(journalId) {
+		if (
+			window.confirm(
+				'Are you sure you want to delete this journal? This will remove all associated entries and cannot be undone.'
+			)
+		) {
+			await removeJournal(journalId);
+		}
+	}
 </script>
 
-<!-- Display section for journals -->
-<div class="p-4">
-	<div class="bg-white shadow-md rounded-lg">
-		<div class="p-4 border-b">
-			<h2 class="text-2xl font-semibold text-gray-800">My Journals</h2>
-		</div>
-		<ul>
-			{#each journals.slice().reverse() as journal}
-				<li class="border-b last:border-b-0 hover:bg-gray-100">
-					<!-- Link for each journal with an event to select the journal -->
-					<a href={`/journal/${journal.journal_id}`} class="block p-4">
-						<span class="text-lg font-semibold text-gray-800">{journal.title}</span>
-						<span class="text-sm text-gray-600 block">{journal.description}</span>
+{#if journals.length === 0}
+	<p class="text-gray-500 text-center">No journals found.</p>
+{:else}
+	<div class="space-y-4 p-4">
+		{#each journals.slice().reverse() as journal, i (journal.journal_id)}
+			<div
+				class="bg-white shadow-md rounded-lg overflow-hidden"
+				transition:fade={{ duration: 300 }}
+			>
+				<div class="p-4 border-b flex justify-between items-center">
+					<a href={`/journal/${journal.journal_id}`} class="block">
+						<div>
+							<h1 class="text-2xl font-semibold text-gray-800">{journal.title}</h1>
+							<p class="text-sm text-gray-600">{journal.description}</p>
+							<p class="text-sm text-gray-500">Journal ID: {journal.journal_id}</p>
+						</div>
 					</a>
-				</li>
-			{/each}
-		</ul>
+					<button
+						class="text-red-500 hover:text-red-700"
+						title="Delete journal"
+						on:click={() => handleDelete(journal.journal_id)}>🗑️</button
+					>
+				</div>
+				<ul>
+					{#each journal.journal_entry.slice(0, numOfEntries) as entry}
+						<a href={`/journal/${entry.journal_id}`} class="block">
+							<li class="border-b last:border-b-0">
+								<JournalEntryFront {entry} />
+							</li>
+						</a>
+					{/each}
+				</ul>
+			</div>
+		{/each}
 	</div>
-
-	<!-- Display selected journal's details -->
-	{#if selectedJournal}
-		<JournalEntry journal={selectedJournal} />
-	{/if}
-</div>
+{/if}

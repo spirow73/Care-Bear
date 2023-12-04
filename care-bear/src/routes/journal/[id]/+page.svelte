@@ -1,38 +1,54 @@
-<!--[id].svelte-->
 <script>
 	import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
+	import AddJournalEntry from '$lib/components/journal/AddJournalEntry.svelte';
+	import { onMount } from 'svelte';
+	import { getJournalEntries } from '$lib/journalStore.js';
+	import { slide } from 'svelte/transition';
+
 	export let data;
 
-	// Simulated content
-	let entries = [
-		{
-			id: 1,
-			title: 'Simulated Journal Entry 1',
-			content:
-				'This is a simulated content of the first journal entry. It can be as long as you need to test the display and formatting features of the JournalEntry component.',
-			timestamp: new Date().toISOString()
-		},
-		{
-			id: 2,
-			title: 'Simulated Journal Entry 2',
-			content:
-				'This is a simulated content of the second journal entry. It can be as long as you need to test the display and formatting features of the JournalEntry component.',
-			timestamp: new Date().toISOString()
-		},
-		{
-			id: 3,
-			title: 'Simulated Journal Entry 3',
-			content:
-				'This is a simulated content of the third journal entry. It can be as long as you need to test the display and formatting features of the JournalEntry component.',
-			timestamp: new Date().toISOString()
-		}
-	];
+	let entries = [];
+	let showAddEntryForm = false;
+
+	onMount(async () => {
+		entries = await getJournalEntries(Number(data.id));
+	});
+
+	function toggleAddEntryForm() {
+		showAddEntryForm = !showAddEntryForm;
+	}
 </script>
 
-<!-- Here is the id page -->
-<!-- <h1>{data.id}</h1> -->
-<JournalEntry entry={entries[parseInt(data.id) - 1]} />
-
-{#each entries as entry (entry.id)}
-	<JournalEntry {entry} />
-{/each}
+<div class="my-4">
+	<div class={showAddEntryForm ? 'bg-white py-4' : ''}>
+		{#if showAddEntryForm}
+			<div class="mt-4" transition:slide>
+				<AddJournalEntry journalId={Number(data.id)} />
+				<div class="text-center mt-4">
+					<button
+						class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+						on:click={toggleAddEntryForm}
+					>
+						Hide Add Entry Form
+					</button>
+				</div>
+			</div>
+		{:else}
+			<div class="text-center">
+				<button
+					class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+					on:click={toggleAddEntryForm}
+				>
+					Add Journal Entry
+				</button>
+			</div>
+		{/if}
+	</div>
+</div>
+{#if entries.length === 0}
+	<p class="text-gray-500 text-center">No journals found.</p>
+{:else}
+	{#each entries.slice().reverse() as entry}
+		<JournalEntry {entry} />
+	{/each}
+{/if}
