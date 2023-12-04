@@ -1,5 +1,5 @@
 <script>
-  import { journalEntryStore } from '$lib/journalEntryStore';
+  import { journalEntryStore } from '$lib/-journalEntryStore';
 
   let newEntry = {
     title: '',

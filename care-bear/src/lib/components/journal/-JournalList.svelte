@@ -1,5 +1,5 @@
 <script>
-	import { journalEntryStore } from '$lib/journalEntryStore.js';
+	import { journalEntryStore } from '$lib/-journalEntryStore.js';
 	import { onMount } from 'svelte';
 
 	let journalEntries = [];

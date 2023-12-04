@@ -1,37 +1,50 @@
 <script>
-	let journals = []; // Array to hold journal entries
+	import { updateJournalEntryInStore } from '$lib/journalStore';
+
+	export let entry;
+	export let onSaveContent;
+	export let onCancelEdit;
+
+	let newContent = entry.content;
+
+	async function save() {
+		try {
+			// Actualizar la entrada en la base de datos y en el store
+			await updateJournalEntryInStore(entry.journal_entry_id, { content: newContent });
+
+			// Llamar al callback de onSaveContent para notificar al componente padre
+			onSaveContent();
+		} catch (error) {
+			console.error('Error saving journal entry:', error);
+			// Aquí puedes manejar el error, mostrar un mensaje al usuario, etc.
+		}
+	}
+
+	function cancel() {
+		// Lógica para cancelar la edición
+		onCancelEdit();
+	}
 </script>
 
-<!-- Display the list of journals if no error occurs -->
-<div class="p-4">
-	<div class="bg-white shadow-md rounded-lg">
-		<div class="p-4 border-b">
-			<h2 class="text-xl font-semibold text-gray-800">My Journals</h2>
-		</div>
-		<ul>
-			{#each journals as journal}
-				<li class="border-b last:border-b-0">
-					<a href={`/journal/${journal.id}`} class="block">
-						<span>{journal.title}</span>
-						<span>{journal.timestamp}</span>
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</div>
-</div>
+<div class="p-4 bg-white shadow rounded-lg">
+	<textarea
+		bind:value={newContent}
+		class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+		placeholder="Type your content here..."
+	/>
 
-<!-- If a journal is selected, display its entries -->
-<div class="p-4">
-	<h2>{selectedJournal.title}</h2>
-	<ul>
-		{#each entries as entry}
-			<!-- Iterates through the entries of the selected journal -->
-			<li>
-				<p>{entry.title}</p>
-				<p>{entry.content}</p>
-				<p>{entry.timestamp}</p>
-			</li>
-		{/each}
-	</ul>
+	<div class="flex justify-end space-x-2 mt-4">
+		<button
+			class="btn-cancel px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition duration-300"
+			on:click={cancel}
+		>
+			Cancel
+		</button>
+		<button
+			class="btn-save px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+			on:click={save}
+		>
+			Save Content
+		</button>
+	</div>
 </div>

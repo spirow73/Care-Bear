@@ -1,5 +1,5 @@
 <script>
-  import { journalEntryStore } from '$lib/journalEntryStore';
+  import { journalEntryStore } from '$lib/-journalEntryStore';
   import { onDestroy, onMount } from 'svelte';
 
   export let entryId;

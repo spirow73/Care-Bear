@@ -1,10 +1,11 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import {
 	fetchJournals,
 	fetchJournalById,
 	createJournal,
 	updateJournal,
-	deleteJournal
+	deleteJournal,
+	editJournalEntry
 } from './journalClient';
 
 // Este es el store que mantendrá los datos de tus journals
@@ -65,5 +66,53 @@ export async function getJournal(journalId) {
 		return journal;
 	} catch (error) {
 		console.error('Error fetching a specific journal:', error);
+	}
+}
+
+// Función para obtener todas las entradas de un journal específico por ID
+export async function getJournalEntries(journalId) {
+	let loadedJournals = get(journals);
+
+	// Si el store está vacío, carga los datos antes de intentar acceder a ellos
+	if (loadedJournals.length === 0) {
+		await loadJournals();
+		loadedJournals = get(journals);
+	}
+
+	const journal = loadedJournals.find((j) => j.journal_id === journalId);
+
+	// Devuelve las entradas de ese journal, si existen
+	return journal ? journal.journal_entry : [];
+}
+
+export async function updateJournalEntryInStore(entryId, updatedEntryData) {
+	try {
+		// Primero actualiza la entrada en la base de datos
+		const updatedEntry = await editJournalEntry(entryId, updatedEntryData);
+
+		// Actualiza el store
+		journals.update((currentJournals) => {
+			return currentJournals.map((journal) => {
+				// Comprueba si el journal actual contiene la entrada que estamos actualizando
+				if (journal.journal_entry.some((entry) => entry.journal_entry_id === entryId)) {
+					// Actualiza la entrada específica dentro del journal
+					return {
+						...journal,
+						journal_entry: journal.journal_entry.map((entry) => {
+							if (entry.journal_entry_id === entryId) {
+								return { ...entry, ...updatedEntry };
+							}
+							return entry;
+						})
+					};
+				}
+				return journal;
+			});
+		});
+
+		console.log(get(journals));
+		return updatedEntry;
+	} catch (error) {
+		console.error('Error updating journal entry in store:', error);
 	}
 }
