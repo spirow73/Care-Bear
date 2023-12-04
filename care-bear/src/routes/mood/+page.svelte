@@ -4,6 +4,7 @@
 
 <MoodAdder />
 
+<div class="bg-[url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg)]">
 <div class="pt-9">
 	<h1 class="text-2xl font-bold text-center">Select Activities For Your Mood</h1>
 	<div class="max-w-md mx-auto mt-10 p-6 space-y-4">
@@ -17,4 +18,5 @@
 			<div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md">Breathing Exercise</div>
 		</a>
 	</div>
+</div>
 </div>

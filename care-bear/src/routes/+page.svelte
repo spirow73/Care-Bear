@@ -35,6 +35,7 @@
 		{ description: 'Calm', emoji: '😌' }
 	];
 </script>
+<div class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
 
 <div class="flex flex-col items-center justify-self-start mt-4">
 	<!-- First Image (Bear) -->
@@ -66,6 +67,7 @@
 			
 		</div>
 	</div>
+</div>
 </div>
 
 <style>

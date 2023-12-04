@@ -117,6 +117,10 @@
 			</div>
 		</div>
 	</nav>
-
+	
 	<slot />
+	
 </div>
+<body class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
+</body>
+
