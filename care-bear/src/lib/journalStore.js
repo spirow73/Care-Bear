@@ -5,7 +5,9 @@ import {
 	createJournal,
 	updateJournal,
 	deleteJournal,
-	editJournalEntry
+	editJournalEntry,
+	createJournalEntry,
+	deleteJournalEntry
 } from './journalClient';
 
 // Este es el store que mantendrá los datos de tus journals
@@ -25,8 +27,12 @@ export async function loadJournals() {
 export async function addJournal(newJournalData) {
 	try {
 		const newJournal = await createJournal(newJournalData);
+		// Asegúrate de que newJournal tenga una propiedad journal_entry inicializada
+		const journalWithEntries = { ...newJournal, journal_entry: [] };
+
 		journals.update((currentJournals) => {
-			return [newJournal, ...currentJournals];
+			// Coloca el nuevo journal al final del arreglo
+			return [...currentJournals, journalWithEntries];
 		});
 	} catch (error) {
 		console.error('Error adding a new journal:', error);
@@ -52,7 +58,7 @@ export async function removeJournal(journalId) {
 	try {
 		await deleteJournal(journalId);
 		journals.update((currentJournals) => {
-			return currentJournals.filter((journal) => journal.id !== journalId);
+			return currentJournals.filter((journal) => journal.journal_id !== journalId);
 		});
 	} catch (error) {
 		console.error('Error removing journal:', error);
@@ -114,5 +120,47 @@ export async function updateJournalEntryInStore(entryId, updatedEntryData) {
 		return updatedEntry;
 	} catch (error) {
 		console.error('Error updating journal entry in store:', error);
+	}
+}
+
+export async function addJournalEntry(journalId, userId, newEntryData) {
+	try {
+		const newEntry = await createJournalEntry(journalId, userId, newEntryData);
+		if (newEntry) {
+			journals.update((currentJournals) => {
+				return currentJournals.map((journal) => {
+					if (journal.journal_id === journalId) {
+						return {
+							...journal,
+							journal_entry: [...journal.journal_entry, newEntry]
+						};
+					}
+					return journal;
+				});
+			});
+		}
+	} catch (error) {
+		console.error('Error adding new journal entry:', error);
+		throw error;
+	}
+}
+
+export async function deleteJournalEntryInStore(journalId, entryId) {
+	try {
+		await deleteJournalEntry(journalId, entryId);
+		journals.update((currentJournals) => {
+			return currentJournals.map((journal) => {
+				if (journal.journal_id === journalId) {
+					return {
+						...journal,
+						journal_entry: journal.journal_entry.filter((entry) => entry.entry_id !== entryId)
+					};
+				}
+				return journal;
+			});
+		});
+	} catch (error) {
+		console.error('Error deleting journal entry:', error);
+		throw error;
 	}
 }
