@@ -1,8 +1,7 @@
 <!-- TaskAdder.svelte -->
 <script>
-	import { tasks, loadDbTasks, addDbTask, updateDbTask, removeDbTask } from '$lib/taskStore.js';
+	import { addDbTask, loadDbTasks } from '$lib/taskStore.js';
 	import { onMount } from 'svelte';
-	import Calendar from '../Calendar.svelte';
 
 	onMount(async () => {
 		await loadDbTasks();
@@ -11,7 +10,7 @@
 	export let title = 'Add Task';
 	export let calendarDate;
 
-	$: formattedDeadline = new Date(calendarDate).toLocaleDateString('es-ES', {
+	$: formattedDeadline = new Date(calendarDate).toLocaleDateString('en-EN', {
 		day: 'numeric',
 		month: 'long',
 		year: 'numeric'

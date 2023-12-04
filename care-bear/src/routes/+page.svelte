@@ -1,13 +1,12 @@
 <script>
 	import Mood from '$lib/components/mood/Mood.svelte';
-	import MoodCard from '$lib/components/mood/MoodCard.svelte';
 	import { onMount } from 'svelte';
 	import bear from '../images/bear.png';
 	import off from '../images/off.png';
 	import on from '../images/on.png';
 
-	import { loadDbTasks, tasks } from '$lib/taskStore';
 	import TaskList from '$lib/components/task/TaskList.svelte';
+	import { loadDbTasks, tasks } from '$lib/taskStore';
 
 	onMount(async () => {
 		await loadDbTasks();
@@ -61,7 +60,10 @@
 
 		<div class="flex-1 text-center">
 			<h2 class="text-2xl font-bold mb-4">Last moods</h2>
-			<Mood />
+			<div class="bg-orange-200 rounded-lg">
+				<Mood />
+			</div>
+			
 		</div>
 
 		<!-- Columna para los

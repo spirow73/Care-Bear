@@ -8,7 +8,7 @@
 
 	onMount(async () => {
 		try {
-			moodEntries = await fetchLatestMoodEntries(20);
+			moodEntries = await fetchLatestMoodEntries(3);
 			console.log('Fetched Mood Entries:', moodEntries);
 		} catch (error) {
 			console.error('Error fetching mood entries:', error);

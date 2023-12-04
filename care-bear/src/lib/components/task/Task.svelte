@@ -8,7 +8,7 @@
 	export let deadline;
 	export let isCompleted;
 
-	$: formattedDeadline = new Date(deadline).toLocaleDateString('es-ES', {
+	$: formattedDeadline = new Date(deadline).toLocaleDateString('en-EN', {
 		day: 'numeric',
 		month: 'long',
 		year: 'numeric'
