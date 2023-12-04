@@ -1,13 +1,12 @@
 <script>
 	import Mood from '$lib/components/mood/Mood.svelte';
-	import MoodCard from '$lib/components/mood/MoodCard.svelte';
 	import { onMount } from 'svelte';
 	import bear from '../images/bear.png';
 	import off from '../images/off.png';
 	import on from '../images/on.png';
 
-	import { loadDbTasks, tasks } from '$lib/taskStore';
 	import TaskList from '$lib/components/task/TaskList.svelte';
+	import { loadDbTasks, tasks } from '$lib/taskStore';
 
 	onMount(async () => {
 		await loadDbTasks();
@@ -51,7 +50,7 @@
 	</div>
 </div>
 
-<div class="container mx-auto p-4">
+<div class="container mx-auto p-4 ">
 	<div class="flex flex-col md:flex-row gap-4">
 		<!-- Columna para la lista de tareas -->
 		<div class="flex-1">
@@ -61,16 +60,11 @@
 
 		<div class="flex-1 text-center">
 			<h2 class="text-2xl font-bold mb-4">Last moods</h2>
-			<Mood />
+			<div class="bg-orange-200">
+				<Mood />
+			</div>
+			
 		</div>
-
-		<!-- Columna para los
-		<div class="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {#each moods as mood}
-				<MoodCard mood={mood.description} emoji={mood.emoji} />
-			{/each}
-		</div>
-        -->
 	</div>
 </div>
 

@@ -8,7 +8,7 @@
 
 	onMount(async () => {
 		try {
-			moodEntries = await fetchLatestMoodEntries(20);
+			moodEntries = await fetchLatestMoodEntries(3);
 			console.log('Fetched Mood Entries:', moodEntries);
 		} catch (error) {
 			console.error('Error fetching mood entries:', error);
@@ -20,7 +20,6 @@
 	{#if moodEntries.length > 0}
 		{#each moodEntries as entry (entry.mood_entry_id)}
 			<div>
-				<!-- <p>Date: {entry.timestamp}</p> -->
 				<p>{entry.mood_description}</p>
 			</div>
 		{/each}

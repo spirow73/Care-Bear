@@ -3,7 +3,7 @@
 <script>
 	import Task from './Task.svelte';
 
-	export let title = 'Task List';
+	export let title = '';
 	export let tasks = [];
 	export let limit;
 </script>
