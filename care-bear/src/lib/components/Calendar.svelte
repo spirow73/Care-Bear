@@ -70,7 +70,7 @@
 </script>
 
 <div class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-	<div class="max-w-md w-full space-y-8 border border-gray-300 rounded-lg p-6">
+	<div class="max-w-2xl w-full space-y-8 border border-gray-300 rounded-lg p-6">
 		<div>
 			<!-- Calendar Header -->
 			<div class="flex justify-between items-center">
@@ -114,29 +114,30 @@
 				<div class="text-center font-semibold text-gray-600" role="columnheader">Sat</div>
 			</div>
 
-			<!-- Days -->
-			<div class="grid grid-cols-7 gap-1 mt-1" role="rowgroup">
-				{#each blankDays as _, i}
-					<div class="text-center text-gray-400" role="gridcell" aria-hidden="true" />
-				{/each}
-				{#each daysInMonth as day}
-					<div
-						class="text-center p-2 cursor-pointer hover:bg-orange-100 rounded-full border border-gray-300"
-						on:click={() => openEventModal(day)}
-						role="gridcell"
-						aria-label={day}
-					>
-						{day}
-						<div class="text-xs mt-1 text-gray-500">
-							{displayEvents(
-								new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day)
-									.toISOString()
-									.split('T')[0]
-							)}
-						</div>
-					</div>
-				{/each}
-			</div>
+	<!-- Days -->
+<div class="grid grid-cols-7 gap-1 mt-1" role="rowgroup">
+    {#each blankDays as _, i}
+        <div class="text-center text-gray-400" role="gridcell" aria-hidden="true" />
+    {/each}
+    {#each daysInMonth as day}
+        <div
+            class="text-center p-4 cursor-pointer hover:bg-orange-100 rounded-lg border border-gray-300 w-15"
+            on:click={() => openEventModal(day)}
+            role="gridcell"
+            aria-label={day}
+        >
+            {day}
+            <div class="text-sm mt-2 text-gray-500">
+                {displayEvents(
+                    new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day)
+                        .toISOString()
+                        .split('T')[0]
+                )}
+            </div>
+        </div>
+    {/each}
+</div>
+
 
 			<!-- Event Input -->
 			{#if showEventModal}
