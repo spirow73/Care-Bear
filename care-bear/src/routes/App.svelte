@@ -5,6 +5,8 @@
     import MoodActivitiesPage from "./MoodActivitiesPage.svelte";
     import MoodExcerciseYoga from "./MoodExcerciseYoga.svelte";
     import MoodExerciseMeditate from "./MoodExerciseMeditate.svelte";
+    import './tailwind.css';
+
   
     // Define routes
     const routes = [

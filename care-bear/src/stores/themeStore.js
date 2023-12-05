@@ -1,15 +1,34 @@
-// Import writable store from Svelte
-import { writable } from 'svelte/store';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Create a writable store with a default theme ('light' or 'dark')
-export const theme = writable('light'); // Default to 'light' theme
+// Create a context for the theme
+const ThemeContext = createContext();
 
-// Function to toggle between light and dark themes
-export function toggleTheme() {
-    theme.update(currentTheme => currentTheme === 'light' ? 'dark' : 'light');
-}
+// Theme provider component
+export const ThemeProvider = ({ children }) => {
+    // State to hold the current theme
+    const [theme, setTheme] = useState('light');
 
-// Optional: Function to set a specific theme (light or dark)
-export function setTheme(newTheme) {
-    theme.set(newTheme);
-}
+    // Function to toggle the theme
+    const toggleTheme = () => {
+        setTheme(currentTheme => currentTheme === 'light' ? 'dark' : 'light');
+    };
+
+    // Optionally, you can persist theme preference in localStorage
+    useEffect(() => {
+        const storedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(storedTheme);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    return (
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+            {children}
+        </ThemeContext.Provider>
+    );
+};
+
+// Custom hook to use the theme context
+export const useTheme = () => useContext(ThemeContext);

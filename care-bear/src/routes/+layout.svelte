@@ -120,3 +120,15 @@
 
 	<slot />
 </div>
+
+<style>
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+</style>
