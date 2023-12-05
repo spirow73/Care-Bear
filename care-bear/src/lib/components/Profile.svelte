@@ -1,45 +1,61 @@
 <script>
-	import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
 
-	let userProfile = {};
-	let personalGoals = '';
-	let privacySettings = { shareData: true };
+    let userProfile = { theme: 'light' }; // Default theme
+    let personalGoals = '';
+    let privacySettings = { shareData: true };
 
-	onMount(async () => {
-		const user = supabase.auth.user();
-		if (user) {
-			const { data, error } = await supabase
-				.from('profiles')
-				.select('*')
-				.eq('id', user.id)
-				.single();
+    onMount(async () => {
+        const user = supabase.auth.user();
+        if (user) {
+            const { data, error } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', user.id)
+                .single();
 
-			if (error) console.error('Error fetching profile:', error);
-			else {
-				userProfile = data;
-				personalGoals = data.personalGoals || '';
-				privacySettings.shareData = data.shareData || false;
-			}
-		}
-	});
+            if (error) {
+                console.error('Error fetching profile:', error);
+            } else {
+                userProfile = data;
+                personalGoals = data.personalGoals || '';
+                privacySettings.shareData = data.shareData || false;
+                updateThemeClass();
+            }
+        }
+    });
 
-	async function updateProfile() {
-		// Implement the logic to update the profile in Supabase,
-		// including personal goals and privacy settings
-	}
+    function updateThemeClass() {
+        if (userProfile.theme === 'dark') {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    }
 
-	async function changePassword() {
-		// Logic to handle password change
-	}
+    function toggleDarkMode() {
+        userProfile.theme = userProfile.theme === 'light' ? 'dark' : 'light';
+        updateThemeClass();
+        // Update the user profile in your database if needed
+    }
 
-	async function deleteAccount() {
-		// Logic to handle account deletion
-	}
+    async function updateProfile() {
+        // Implement the logic to update the profile in Supabase,
+        // including personal goals and privacy settings
+    }
 
-	function togglePrivacySetting() {
-		privacySettings.shareData = !privacySettings.shareData;
-		// Update privacy settings in the database
-	}
+    async function changePassword() {
+        // Logic to handle password change
+    }
+
+    async function deleteAccount() {
+        // Logic to handle account deletion
+    }
+
+    function togglePrivacySetting() {
+        privacySettings.shareData = !privacySettings.shareData;
+        // Update privacy settings in the database
+    }
 </script>
 
 <div class="max-w-screen-md mx-auto mt-10 p-6 rounded-lg bg-white shadow-lg dark:bg-gray-800">
@@ -53,7 +69,7 @@
         <!-- Customization Options -->
         <div class="mb-6">
             <label for="theme" class="font-bold mb-2 block dark:text-gray-300">App Theme:</label>
-            <select id="theme" class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+            <select id="theme" class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white" on:change={toggleDarkMode}>
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
             </select>
@@ -92,4 +108,17 @@
             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">Update Profile</button>
         </form>
     {/if}
+
 </div>
+
+<style>
+    /* Regular style */
+    .text-color {
+        @apply text-gray-800;
+    }
+
+    /* Dark mode style */
+    .dark .text-color {
+        @apply text-gray-200;
+    }
+</style>
