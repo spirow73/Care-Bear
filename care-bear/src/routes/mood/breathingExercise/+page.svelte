@@ -44,6 +44,8 @@
 		}
 	];
 </script>
+<div class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
+
 
 <div class="bg-gray-100 font-sans min-h-screen">
 	<!-- Header -->
@@ -67,4 +69,5 @@
 			{/each}
 		</section>
 	</main>
+</div>
 </div>
