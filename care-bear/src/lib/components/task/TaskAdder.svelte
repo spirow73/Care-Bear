@@ -58,10 +58,69 @@
 		};
 
 		toast.success('Task added!',{
-			style:'background: #84B59F'
+			style: 'background: #84B59F'
 		});
 	}
 </script>
+
+<!-- ... (rest of your component) ... -->
+
+<!-- <div class="p-4 mx-auto my-8 border rounded bg-brown-900 shadow-lg">
+
+    <h3 class="text-2xl font-semibold mb-4">{title}</h3>
+
+
+    <div class="mb-4">
+        <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+        <input
+            type="text"
+            placeholder="Title"
+            bind:value={newTask.title}
+            class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 w-full sm:w-2/4"
+        />
+    </div>
+
+
+    <div class="mb-4">
+        <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+        <input
+            type="text"
+            placeholder="Description"
+            bind:value={newTask.description}
+            class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 w-full sm:w-2/4"
+        />
+    </div>
+
+
+    <div class="flex flex-col sm:flex-row mb-4">
+        <div class="mb-2 sm:mr-2 sm:mb-0">
+            <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+            <input
+                type="date"
+                bind:value={dateData.date}
+                class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 w-full sm:w-3/4"
+            />
+        </div>
+        <div class="mb-2">
+            <label for="time" class="block text-sm font-medium text-gray-700 mb-1">Time</label>
+            <input
+                type="time"
+                bind:value={dateData.time}
+                class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 w-full sm:w-3/4"
+            />
+        </div>
+    </div>
+
+  
+    <div class="flex justify-center items-center">
+        <button
+            on:click={addTask}
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+        >
+            Add Task
+        </button>
+    </div>
+</div> -->
 
 <Toaster></Toaster>
 <form
