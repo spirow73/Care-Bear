@@ -112,14 +112,4 @@
 
 </div>
 
-<style>
-    /* Regular style */
-    .text-color {
-        @apply text-gray-800;
-    }
 
-    /* Dark mode style */
-    .dark .text-color {
-        @apply text-gray-200;
-    }
-</style>

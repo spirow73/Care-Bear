@@ -1,8 +1,8 @@
 <script>
-	import { removeJournal } from '$lib/journalStore.js';
-	import { fade } from 'svelte/transition';
 	import JournalEntryFront from './JournalEntryFront.svelte';
- // Importa la transición
+	import { removeJournal } from '$lib/journalStore.js';
+	import { fade } from 'svelte/transition'; // Import the transition
+	import { onMount } from 'svelte';
 
 	export let journals;
 	export let numOfEntries = 3;
@@ -19,7 +19,7 @@
 </script>
 
 {#if journals.length === 0}
-	<p class="text-gray-500 text-center">No journals found.</p>
+	<p class="text-gray-500 text-center dark:text-gray-400">No journals found.</p>
 {:else}
 	<div class="space-y-4 p-4">
 		{#each journals.slice().reverse() as journal, i (journal.journal_id)}

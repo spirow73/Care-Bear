@@ -7,6 +7,11 @@
 		await loadDbTasks();
 		console.log($tasks);
 	});
+
+	function toggleDarkMode() {
+        theme.toggle(); // This will update the theme globally and persist it
+    }
+
 </script>
 <body>
 

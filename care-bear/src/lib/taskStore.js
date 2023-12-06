@@ -32,7 +32,11 @@ export async function addDbTask(task) {
 export async function updateDbTask(task_id, updatedTask) {
 	try {
 		const newTask = await updateTask(task_id, updatedTask);
-		tasks.update((tasks) => tasks.map((task) => (task.task_id === task_id ? newTask : task)));
+		// Asegúrate de que la fecha de plazo (deadline) es un objeto Date
+		newTask.deadline = new Date(newTask.deadline);
+		tasks.update((tasks) =>
+			tasks.map((task) => (task.task_id === task_id ? { ...task, ...newTask } : task))
+		);
 	} catch (error) {
 		console.error('Error updating task:', error);
 	}
