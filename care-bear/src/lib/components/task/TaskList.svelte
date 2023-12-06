@@ -5,7 +5,7 @@
 
 	export let title = '';
 	export let tasks = [];
-	export let limit;
+	export let limit = null;
 </script>
 
 <!-- <div class="p-4  border-black rounded-lg bg-orange-200 m-3 shadow-md"> -->
