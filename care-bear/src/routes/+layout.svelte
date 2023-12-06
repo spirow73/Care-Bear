@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import '../app.css';
-	import home from '../images/home.png';
 	import profile from '../images/profile.png';
 	const animations = {
 		enter: (node) => {
