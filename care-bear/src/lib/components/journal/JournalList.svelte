@@ -1,32 +1,25 @@
 <script>
-<<<<<<< HEAD
-    import JournalEntryFront from './JournalEntryFront.svelte';
-    import { removeJournal } from '$lib/journalStore.js';
-    import { fade } from 'svelte/transition'; // Import the transition
-    import { onMount } from 'svelte';
-
-    export let journals;
-    export let numOfEntries = 3;
-=======
-	import { removeJournal } from '$lib/journalStore.js';
-	import { fade } from 'svelte/transition';
 	import JournalEntryFront from './JournalEntryFront.svelte';
- // Importa la transición
->>>>>>> ded68621fc9fb1e57a12aa60301f8535da0f2eb8
+	import { removeJournal } from '$lib/journalStore.js';
+	import { fade } from 'svelte/transition'; // Import the transition
+	import { onMount } from 'svelte';
 
-    async function handleDelete(journalId) {
-        if (
-            window.confirm(
-                'Are you sure you want to delete this journal? This will remove all associated entries and cannot be undone.'
-            )
-        ) {
-            await removeJournal(journalId);
-        }
-    }
+	export let journals;
+	export let numOfEntries = 3;
+
+	async function handleDelete(journalId) {
+		if (
+			window.confirm(
+				'Are you sure you want to delete this journal? This will remove all associated entries and cannot be undone.'
+			)
+		) {
+			await removeJournal(journalId);
+		}
+	}
 </script>
 
 {#if journals.length === 0}
-    <p class="text-gray-500 text-center dark:text-gray-400">No journals found.</p>
+	<p class="text-gray-500 text-center dark:text-gray-400">No journals found.</p>
 {:else}
 	<div class="space-y-4 p-4">
 		{#each journals.slice().reverse() as journal, i (journal.journal_id)}
