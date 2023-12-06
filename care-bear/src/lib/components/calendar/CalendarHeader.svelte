@@ -3,7 +3,7 @@
 	export let selectedDate;
 </script>
 
-<div class="flex justify-between items-center button-container">
+<div class="flex justify-between items-center button-container mb-10">
 	<button
 		class="bg-orange-200 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
 		on:click={() => changeMonth(-1)}

@@ -1,9 +1,6 @@
 /* Estilos para el calendario */
 .calendar-container {
 	max-width: 2xl;
-	margin: auto;
-	padding: 1rem;
-	background: white;
 	border-radius: 0.5rem;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
@@ -25,6 +22,12 @@
 	border-radius: 0.5rem;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil */
 	transition: background-color 0.3s;
+}
+
+.blank-cell {
+	text-align: center;
+	min-height: 7vh; /* Esto hace que la altura mínima de la celda sea el 20% de la altura del viewport */
+	padding: 1rem;
 }
 
 .day-cell:hover {

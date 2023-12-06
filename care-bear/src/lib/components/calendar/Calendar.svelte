@@ -59,7 +59,7 @@
 	}
 </script>
 
-<div class="calendar-container m-4">
+<div class="calendar-container m-2 rounded p-4">
 	<CalendarHeader {selectedDate} {changeMonth} />
 
 	<div class="weekday-header">
@@ -68,9 +68,11 @@
 		{/each}
 	</div>
 
-	<div class="day-grid mt-4">
+	<div class="day-grid mt-4 pb-6">
 		{#each blankDays as _}
-			<div class="day-cell" />
+			<div
+				class=".blank-cell m-2 mt-4 flex flex-col items-center justify-center h-full relative text-center p-4 rounded-lg w-15"
+			/>
 		{/each}
 		{#each daysInMonth as dayObj}
 			<CalendarDay

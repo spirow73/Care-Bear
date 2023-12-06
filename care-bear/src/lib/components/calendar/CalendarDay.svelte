@@ -9,7 +9,7 @@
 </script>
 
 <div
-	class="day-cell m-2 mt-4 p-4 flex flex-col items-center justify-center h-full cursor-pointer relative"
+	class="day-cell m-2 mt-4 flex flex-col items-center justify-center h-full cursor-pointer relative text-center p-4 hover:bg-orange-100 rounded-lg border border-gray-300 w-15"
 	on:click={handleDayClick}
 	role="gridcell"
 	aria-label={day}
