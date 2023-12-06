@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div class="p-4 bg-white shadow rounded-lg">
+<div class="p-4 bg-orange-200 shadow rounded-lg">
 	<textarea
 		bind:value={newContent}
 		class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"

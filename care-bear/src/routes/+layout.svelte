@@ -85,14 +85,14 @@
 
 			<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mobilenav">
 				<div class="text-sm lg:flex-grow">
-					<!-- <a
+					<a
 						href="/"
 						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
 						use:animations.enter
 						use:animations.leave
 					>
 						Home
-					</a> -->
+					</a>
 
 					<a
 						href="/journal"
@@ -147,8 +147,8 @@
 	
 </div>
 
-<body class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
-</body>
+<!-- <body class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');"> -->
+<!-- </body> -->
 
 
 
