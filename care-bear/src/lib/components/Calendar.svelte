@@ -70,9 +70,9 @@
 	}
 </script>
 
-<div class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-	<div class="max-w-2xl w-full space-y-8 border border-gray-300 rounded-lg p-6">
-		<div>
+<div class="min-h-screen bg-gray-100 dark:bg-gray-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl w-full space-y-8 border border-gray-300 rounded-lg p-6">
+        <div>
 			<!-- Calendar Header -->
 			<div class="flex justify-between items-center button-container">
 				<button

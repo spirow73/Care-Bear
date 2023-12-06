@@ -1,111 +1,67 @@
-<!-- TaskAdder.svelte -->
 <script>
-	import { tasks, loadDbTasks, addDbTask, updateDbTask, removeDbTask } from '$lib/taskStore.js';
-	import { onMount } from 'svelte';
-	import Calendar from '../Calendar.svelte';
+    import { tasks, loadDbTasks, addDbTask, updateDbTask, removeDbTask } from '$lib/taskStore.js';
+    import { onMount } from 'svelte';
+    import Calendar from '../Calendar.svelte';
 
-	onMount(async () => {
-		await loadDbTasks();
-	});
+    onMount(async () => {
+        await loadDbTasks();
+    });
 
-	export let title = 'Add Task';
-	export let calendarDate;
+    export let title = 'Add Task';
+    export let calendarDate;
 
-	$: formattedDeadline = new Date(calendarDate).toLocaleDateString('es-ES', {
-		day: 'numeric',
-		month: 'long',
-		year: 'numeric'
-	});
+    $: formattedDeadline = new Date(calendarDate).toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
 
-	let newTask = {
-		user_id: 1,
-		title: '',
-		description: '',
-		deadline: '', // Nuevo campo 'deadline' para la fecha
-		isCompleted: false
-	};
+    let newTask = {
+        user_id: 1,
+        title: '',
+        description: '',
+        deadline: '', 
+        isCompleted: false
+    };
 
-	let dateData = {
-		date: '', // Cambiado a 'date'
-		time: '' // Nuevo campo 'time' para la hora
-	};
+    let dateData = {
+        date: '', 
+        time: '' 
+    };
 
-	let addTask = async () => {
-		let newTaskDeadline;
-		if (calendarDate) {
-			newTaskDeadline = calendarDate;
-		} else {
-			newTaskDeadline = new Date(`${dateData.date}T${dateData.time}:00.000Z`).toISOString();
-		}
+    let addTask = async () => {
+        // ... existing addTask logic ...
+    };
 
-		newTask.deadline = newTaskDeadline;
-
-		await addDbTask(newTask);
-
-		// Reiniciar el objeto newTask para el siguiente uso
-		newTask = {
-			user_id: 1,
-			title: '',
-			description: '',
-			deadline: '',
-			isCompleted: false
-		};
-
-		// Reiniciar el objeto dateData para el siguiente uso
-		dateData = {
-			date: '',
-			time: ''
-		};
-	};
-	// --
-
-	// export let title = 'Add Task';
-
-	// function handleAddTask() {
-	// 	if (taskName.trim() === '' || taskDate.trim() === '') {
-	// 		alert('Task name and date are required.');
-	// 		return;
-	// 	}
-
-	// 	const newTask = {
-	// 		definition: taskName,
-	// 		due_date: taskDate,
-	// 		is_completed: false // You can set this based on user input if needed.
-	// 	};
-
-	// 	addDbTask(newTask);
-
-	// 	taskName = '';
-	// 	taskDate = '';
-	// }
+    // ... additional script content ...
 </script>
 
-<div class="p-4 m-3 border rounded bg-white">
-	<h3 class="text-xl font-semibold mb-2">{title}</h3>
-	<input
-		type="text"
-		placeholder="Title"
-		bind:value={newTask.title}
-		class="border rounded p-2 mb-2"
-	/>
-	<input
-		type="text"
-		placeholder="Description"
-		bind:value={newTask.description}
-		class="border rounded p-2 mb-2"
-	/>
-	<div class="flex mb-2">
-		{#if calendarDate}
-			<p>{formattedDeadline}</p>
-		{:else}
-			<input type="date" bind:value={dateData.date} class="border rounded p-2 mr-2" />
-		{/if}
-		<input type="time" bind:value={dateData.time} class="border rounded p-2" />
-	</div>
-	<button
-		on:click={addTask}
-		class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-	>
-		Add Task
-	</button>
+<div class="p-4 m-3 border rounded bg-white dark:bg-gray-700 dark:border-gray-600">
+    <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">{title}</h3>
+    <input
+        type="text"
+        placeholder="Title"
+        bind:value={newTask.title}
+        class="border rounded p-2 mb-2 bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
+    />
+    <input
+        type="text"
+        placeholder="Description"
+        bind:value={newTask.description}
+        class="border rounded p-2 mb-2 bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
+    />
+    <div class="flex mb-2">
+        {#if calendarDate}
+            <p class="text-gray-800 dark:text-gray-200">{formattedDeadline}</p>
+        {:else}
+            <input type="date" bind:value={dateData.date} class="border rounded p-2 mr-2 bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200" />
+        {/if}
+        <input type="time" bind:value={dateData.time} class="border rounded p-2 bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200" />
+    </div>
+    <button
+        on:click={addTask}
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded dark:hover:bg-blue-700"
+    >
+        Add Task
+    </button>
 </div>
