@@ -1,4 +1,3 @@
-<!-- TaskAdder.svelte -->
 <script>
 	import { addDbTask, loadDbTasks } from '$lib/taskStore.js';
 	import { onMount } from 'svelte';
