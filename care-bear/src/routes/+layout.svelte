@@ -1,7 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 	import '../app.css';
-
+	import home from '../images/home.png';
+	import profile from '../images/profile.png';
 	const animations = {
 		enter: (node) => {
 			node.animate(
@@ -85,13 +86,14 @@
 
 			<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mobilenav">
 				<div class="text-sm lg:flex-grow">
-					<a
+					<a  
 						href="/"
 						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
 						use:animations.enter
 						use:animations.leave
 					>
-						Home
+					
+				            Home
 					</a>
 
 					<a
@@ -136,7 +138,8 @@
 						use:animations.enter
 						use:animations.leave
 					>
-						Profile
+						<!-- Profile -->
+						<img src="{profile}" alt="circle with a silouet" class="h-6 w-6 ml-2 relative top-1.5" />
 					</a>
 				</div>
 			</div>
