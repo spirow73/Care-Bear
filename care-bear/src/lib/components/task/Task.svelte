@@ -1,7 +1,6 @@
 <!-- Task.svelte -->
 <script>
 	import { removeDbTask } from '$lib/taskStore';
-
 	export let task_id;
 	export let title;
 	export let description;

@@ -2,6 +2,9 @@
 	import JournalEntryFront from './JournalEntryFront.svelte';
 	import { removeJournal } from '$lib/journalStore.js';
 	import { fade } from 'svelte/transition'; // Importa la transición
+	import { onMount } from 'svelte';
+	
+
 
 	export let journals;
 	export let numOfEntries = 3;

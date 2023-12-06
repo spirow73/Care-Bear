@@ -1,34 +1,31 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { writable } from 'svelte/store';
 
-// Create a context for the theme
-const ThemeContext = createContext();
+function createThemeStore() {
+    const isBrowser = typeof window !== 'undefined';
 
-// Theme provider component
-export const ThemeProvider = ({ children }) => {
-    // State to hold the current theme
-    const [theme, setTheme] = useState('light');
+    // Read theme from localStorage or default to 'light'
+    const storedTheme = isBrowser ? localStorage.getItem('theme') || 'light' : 'light';
+    const { subscribe, set } = writable(storedTheme);
 
-    // Function to toggle the theme
-    const toggleTheme = () => {
-        setTheme(currentTheme => currentTheme === 'light' ? 'dark' : 'light');
+    function updateTheme(newTheme) {
+        set(newTheme);
+        if (isBrowser) {
+            localStorage.setItem('theme', newTheme);
+            document.body.classList.toggle('dark', newTheme === 'dark');
+        }
+    }
+
+    // Set initial theme class on body if in browser
+    if (isBrowser) {
+        document.body.classList.toggle('dark', storedTheme === 'dark');
+    }
+
+    return {
+        subscribe,
+        set: updateTheme,
+        toggle: () => updateTheme(storedTheme === 'light' ? 'dark' : 'light')
     };
+}
 
-    // Optionally, you can persist theme preference in localStorage
-    useEffect(() => {
-        const storedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(storedTheme);
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    );
-};
-
-// Custom hook to use the theme context
-export const useTheme = () => useContext(ThemeContext);
+const theme = createThemeStore();
+export default theme;
