@@ -50,3 +50,18 @@ export async function removeDbTask(task_id) {
 		console.error('Error removing task:', error);
 	}
 }
+
+export async function toggleTaskCompletion(task_id, isCompleted) {
+	try {
+		const updatedTask = await updateTask(task_id, { isCompleted: !isCompleted });
+		if (updatedTask) {
+			tasks.update((currentTasks) =>
+				currentTasks.map((task) => (task.task_id === task_id ? { ...task, ...updatedTask } : task))
+			);
+		} else {
+			console.error('No se recibió una tarea actualizada del servidor');
+		}
+	} catch (error) {
+		console.error('Error al alternar la completitud de la tarea:', error);
+	}
+}
