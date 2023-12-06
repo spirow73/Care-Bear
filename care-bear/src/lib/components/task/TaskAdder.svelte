@@ -1,15 +1,16 @@
 <!-- TaskAdder.svelte -->
 <script>
-	import { tasks, loadDbTasks, addDbTask, updateDbTask, removeDbTask } from '$lib/taskStore.js';
+	import { loadDbTasks, addDbTask } from '$lib/taskStore.js';
 	import { onMount } from 'svelte';
-	import Calendar from '../Calendar.svelte';
+
+	import toast, { Toaster } from 'svelte-french-toast';
 
 	onMount(async () => {
 		await loadDbTasks();
 	});
 
 	export let title = 'Add Task';
-	export let calendarDate;
+	export let calendarDate = null;
 
 	$: formattedDeadline = new Date(calendarDate).toLocaleDateString('es-ES', {
 		day: 'numeric',
@@ -56,6 +57,8 @@
 			date: '',
 			time: ''
 		};
+
+		toast.success('Task added!');
 	};
 	// --
 
@@ -80,6 +83,7 @@
 	// }
 </script>
 
+<Toaster />
 <div class="p-4 m-3 border rounded bg-white">
 	<h3 class="text-xl font-semibold mb-2">{title}</h3>
 	<input
