@@ -6,10 +6,10 @@
 	import on from '../images/on.png';
 
 	import TaskList from '$lib/components/task/TaskList.svelte';
-	import { loadDbTasks, tasks } from '$lib/taskStore';
+	import taskStore from '$lib/taskStore.js'; // Importa la tienda completa
 
-	onMount(async () => {
-		await loadDbTasks();
+	onMount(() => {
+		taskStore.loadDbTasks(); // Llama a la función de carga de tareas
 	});
 
 	let isOn = false;
@@ -50,12 +50,12 @@
 	</div>
 </div>
 
-<div class="container mx-auto p-4 ">
+<div class="container mx-auto p-4">
 	<div class="flex flex-col md:flex-row gap-4">
 		<!-- Columna para la lista de tareas -->
 		<div class="flex-1">
 			<h2 class="text-2xl font-bold mb-4 text-center">Your last tasks</h2>
-			<TaskList tasks={$tasks} limit="3" />
+			<TaskList tasks={$taskStore} limit="3" />
 		</div>
 
 		<div class="flex-1 text-center">
@@ -63,7 +63,6 @@
 			<div class="bg-orange-200">
 				<Mood />
 			</div>
-			
 		</div>
 	</div>
 </div>

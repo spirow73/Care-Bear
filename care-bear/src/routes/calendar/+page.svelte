@@ -4,6 +4,6 @@
 </script>
 
 <div class="page-container">
-	<Calendar />
+		<Calendar />
 	<Calender />
 </div>
