@@ -1,6 +1,5 @@
 <script>
 	export let day;
-	export let selectedDate;
 	export let openEventModal;
 	export let eventsForDay; // Este es un array de eventos pasados desde el componente padre
 
@@ -10,30 +9,21 @@
 </script>
 
 <div
-	class="day-cell m-2 mt-4"
+	class="day-cell m-2 mt-4 p-4 flex flex-col items-center justify-center h-full cursor-pointer relative"
 	on:click={handleDayClick}
 	role="gridcell"
 	aria-label={day}
 	tabindex="0"
 >
-	<div class="text-center text-lg">
-		{day}
-	</div>
+	<span class="text-lg font-semibold mb-2">{day}</span>
 	{#if eventsForDay && eventsForDay.length > 0}
-		<div class="notification-container">
-			<span class="notification-mark" />
-		</div>
+		<span class="notification-mark w-1.5 h-1.5 bg-red-500 rounded-full" />
 	{/if}
 </div>
 
 <style>
-	.notification-container {
-		text-align: center;
-	}
-
 	.notification-mark {
 		display: inline-block;
-		margin-top: 5px; /* Ajusta el margen superior para posicionar el punto debajo del número */
 		width: 6px;
 		height: 6px;
 		background-color: red;

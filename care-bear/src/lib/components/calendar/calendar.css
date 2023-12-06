@@ -19,16 +19,22 @@
 
 .day-cell {
 	text-align: center;
+	min-height: 7vh; /* Esto hace que la altura mínima de la celda sea el 20% de la altura del viewport */
 	padding: 1rem;
 	cursor: pointer;
 	border-radius: 0.5rem;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil */
 	transition: background-color 0.3s;
 }
 
 .day-cell:hover {
-	background-color: #f3f4f6;
+	background-color: rgba(
+		255,
+		228,
+		198,
+		0.5
+	); /* Cambia al color de fondo deseado al pasar el ratón */
 }
-
 .day-grid {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr); /* 7 días de la semana */

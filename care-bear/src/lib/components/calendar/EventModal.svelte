@@ -10,7 +10,9 @@
 <div class="modal-container">
 	<div class="modal-content">
 		<TaskAdder calendarDate={currentEventDate} />
-		<TaskList title="Tasks for the Day" tasks={tasksForDay} />
+		{#if tasksForDay.length > 0}
+			<TaskList title="Tasks for the Day" tasks={tasksForDay} />
+		{/if}
 		<button on:click={closeEventModal}>Close</button>
 	</div>
 </div>
