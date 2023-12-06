@@ -1,7 +1,8 @@
 <script>
-	import JournalEntryFront from './JournalEntryFront.svelte';
 	import { removeJournal } from '$lib/journalStore.js';
-	import { fade } from 'svelte/transition'; // Importa la transición
+	import { fade } from 'svelte/transition';
+	import JournalEntryFront from './JournalEntryFront.svelte';
+ // Importa la transición
 
 	export let journals;
 	export let numOfEntries = 3;
@@ -23,7 +24,7 @@
 	<div class="space-y-4 p-4">
 		{#each journals.slice().reverse() as journal, i (journal.journal_id)}
 			<div
-				class="bg-white shadow-md rounded-lg overflow-hidden"
+				class="bg-brown-900 shadow-md rounded-lg overflow-hidden border border-black"
 				transition:fade={{ duration: 300 }}
 			>
 				<div class="p-4 border-b flex justify-between items-center">
@@ -31,7 +32,7 @@
 						<div>
 							<h1 class="text-2xl font-semibold text-gray-800">{journal.title}</h1>
 							<p class="text-sm text-gray-600">{journal.description}</p>
-							<p class="text-sm text-gray-500">Journal ID: {journal.journal_id}</p>
+							<!-- <p class="text-sm text-gray-500">Journal ID: {journal.journal_id}</p> -->
 						</div>
 					</a>
 					<button

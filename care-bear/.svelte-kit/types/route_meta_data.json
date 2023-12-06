@@ -13,8 +13,10 @@
 	"/moodActivities": [],
 	"/mood": [],
 	"/mood/breathingExercise": [],
+	"/mood/history": [],
 	"/mood/meditation": [],
 	"/mood/yoga": [],
 	"/profile": [],
-	"/task": []
+	"/task": [],
+	"/tracker": []
 }

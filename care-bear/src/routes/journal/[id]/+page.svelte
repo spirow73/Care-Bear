@@ -1,8 +1,8 @@
 <script>
-	import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
 	import AddJournalEntry from '$lib/components/journal/AddJournalEntry.svelte';
-	import { onMount } from 'svelte';
+	import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
 	import { getJournalEntries } from '$lib/journalStore.js';
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
 	export let data;
@@ -20,13 +20,13 @@
 </script>
 
 <div class="my-4">
-	<div class={showAddEntryForm ? 'bg-white py-4' : ''}>
+	<div class={showAddEntryForm ? 'bg-brown-900 py-4' : ''}>
 		{#if showAddEntryForm}
 			<div class="mt-4" transition:slide>
 				<AddJournalEntry journalId={Number(data.id)} />
 				<div class="text-center mt-4">
 					<button
-						class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+						class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
 						on:click={toggleAddEntryForm}
 					>
 						Hide Add Entry Form
@@ -36,7 +36,7 @@
 		{:else}
 			<div class="text-center">
 				<button
-					class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+					class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
 					on:click={toggleAddEntryForm}
 				>
 					Add Journal Entry

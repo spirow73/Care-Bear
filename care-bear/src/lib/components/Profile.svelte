@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    import theme from '../../stores/themeStore.js';
 
     let userProfile = { theme: 'light' }; // Default theme
     let personalGoals = '';

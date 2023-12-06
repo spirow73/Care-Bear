@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import TaskAdder from './task/TaskAdder.svelte';
+	import theme from '../../stores/themeStore.js';
 
 	export let tasks = [];
 
@@ -182,4 +183,17 @@
 
 		}
 	}
+
+	.dark .bg-gray-100 {
+        background-color: #1a202c; /* Example dark background color */
+    }
+    .dark .text-gray-600 {
+        color: #cbd5e0; /* Example dark text color */
+    }
+    .dark .border-gray-300 {
+        border-color: #4a5568; /* Example dark border color */
+    }
+    .dark .hover\:bg-orange-100:hover {
+        background-color: #dd6b20; /* Example dark hover background color */
+    }
 </style>

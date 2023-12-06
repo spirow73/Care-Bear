@@ -1,5 +1,13 @@
 <script>
     import Profile from '../../lib/components/Profile.svelte';
-</script>
+    import theme from '../../stores/themeStore.js';
 
-<Profile />
+    function toggleDarkMode() {
+        theme.toggle(); // This will update the theme globally and persist it
+    }
+
+</script>
+<body>
+
+    <Profile />
+</body>

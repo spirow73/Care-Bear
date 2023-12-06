@@ -35,13 +35,13 @@
 		{ description: 'Calm', emoji: '😌' }
 	];
 </script>
-
+<body>
 <div class="flex flex-col items-center justify-self-start mt-4">
 	<!-- First Image (Bear) -->
 	<div class="object-none object-top">
 		<img class="max-w-full max-h-full" src={bear} alt={bear} />
 	</div>
-
+	
 	<!-- Second Image (Off) -->
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -55,21 +55,24 @@
 		<!-- Columna para la lista de tareas -->
 		<div class="flex-1">
 			<h2 class="text-2xl font-bold mb-4 text-center">Your last tasks</h2>
-			<TaskList tasks={$tasks} limit="3" />
+			
+				<TaskList tasks={$tasks} limit="3" />
 		</div>
-
+		
 		<div class="flex-1 text-center">
 			<h2 class="text-2xl font-bold mb-4">Last moods</h2>
-			<div class="bg-orange-200">
+			<div class="bg-brown-900 rounded-full border border-black shadow-md">
 				<Mood />
 			</div>
 			
 		</div>
 	</div>
 </div>
+</body>
 
 <style>
 	div:focus {
 		outline: none; /* Remove the default focus style for better aesthetics */
 	}
+
 </style>
