@@ -1,0 +1,44 @@
+/* Estilos para el calendario */
+.calendar-container {
+	max-width: 2xl;
+	margin: auto;
+	padding: 1rem;
+	background: white;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.weekday-header {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 0.5rem;
+	text-align: center;
+	font-weight: bold;
+	color: gray;
+}
+
+.day-cell {
+	text-align: center;
+	padding: 1rem;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	transition: background-color 0.3s;
+}
+
+.day-cell:hover {
+	background-color: #f3f4f6;
+}
+
+.day-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr); /* 7 días de la semana */
+	gap: 0.5rem;
+}
+
+/* Responsiveness */
+@media (max-width: 640px) {
+	.calendar-container {
+		width: 100%;
+		padding: 0.5rem;
+	}
+}

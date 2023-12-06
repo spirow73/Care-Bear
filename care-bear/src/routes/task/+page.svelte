@@ -1,19 +1,16 @@
 <script>
 	import TaskList from '$lib/components/task/TaskList.svelte';
 	import TaskAdder from '$lib/components/task/TaskAdder.svelte';
-
-	import { loadDbTasks } from '$lib/taskStore.js';
 	import { onMount } from 'svelte';
-	import { tasks } from '$lib/taskStore.js';
+	import taskStore from '$lib/taskStore.js'; // Importa la tienda completa
 
-	onMount(async () => {
-		await loadDbTasks();
-		console.log($tasks);
+	onMount(() => {
+		taskStore.loadDbTasks(); // Llama a la función de carga de tareas
 	});
 </script>
 
 <div>
 	<TaskAdder />
 
-	<TaskList tasks={$tasks} />
+	<TaskList tasks={$taskStore} />
 </div>

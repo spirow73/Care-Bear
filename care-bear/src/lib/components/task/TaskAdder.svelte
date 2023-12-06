@@ -1,8 +1,7 @@
 <!-- TaskAdder.svelte -->
 <script>
-	import { tasks, loadDbTasks, addDbTask, updateDbTask, removeDbTask } from '$lib/taskStore.js';
+	import { loadDbTasks, addDbTask } from '$lib/taskStore.js';
 	import { onMount } from 'svelte';
-	import Calendar from '../Calendar.svelte';
 
 	onMount(async () => {
 		await loadDbTasks();
@@ -57,27 +56,6 @@
 			time: ''
 		};
 	};
-	// --
-
-	// export let title = 'Add Task';
-
-	// function handleAddTask() {
-	// 	if (taskName.trim() === '' || taskDate.trim() === '') {
-	// 		alert('Task name and date are required.');
-	// 		return;
-	// 	}
-
-	// 	const newTask = {
-	// 		definition: taskName,
-	// 		due_date: taskDate,
-	// 		is_completed: false // You can set this based on user input if needed.
-	// 	};
-
-	// 	addDbTask(newTask);
-
-	// 	taskName = '';
-	// 	taskDate = '';
-	// }
 </script>
 
 <div class="p-4 m-3 border rounded bg-white">

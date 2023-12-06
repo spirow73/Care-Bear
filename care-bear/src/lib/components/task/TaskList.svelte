@@ -5,13 +5,13 @@
 
 	export let title = '';
 	export let tasks = [];
-	export let limit;
+	export let limit = undefined;
 </script>
 
 <div class="p-4 border rounded bg-white m-3">
 	<h1 class="text-2xl font-semibold mb-3">{title}</h1>
 
-	{#if limit}
+	{#if limit != undefined}
 		{#each tasks.slice().reverse().slice(0, limit) as task}
 			<Task
 				title={task.title}
