@@ -146,11 +146,11 @@
 	<slot />
 	
 </div>
-<<<<<<< HEAD
+
 <body class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
 </body>
 
-=======
+
 
 <style>
 .light {
@@ -163,4 +163,4 @@
   color: white;
 }
 </style>
->>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
+
