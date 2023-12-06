@@ -1,5 +1,6 @@
 <script>
-	import { deleteJournalEntryInStore } from '$lib/journalStore.js'; // Asegúrate de implementar esta función
+	import { deleteJournalEntryInStore } from '$lib/journalStore.js';
+ // Asegúrate de implementar esta función
 
 	export let entry;
 	let max_entries = 100;
@@ -13,7 +14,7 @@
 </script>
 
 {#if entry}
-	<div class="flex items-center p-4 hover:bg-gray-50 transition-colors cursor-pointer">
+	<div class="flex items-center p-4 hover:bg-orange-200 transition-colors cursor-pointer border border-black">
 		<div class="flex-1">
 			<h3 class="text-lg font-semibold text-gray-900">{entry.title}</h3>
 			<p class="text-gray-500 mt-1">

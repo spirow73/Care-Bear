@@ -8,7 +8,8 @@
 	export let limit = null;
 </script>
 
-<div class="p-4 border rounded bg-white m-3">
+<!-- <div class="p-4  border-black rounded-lg bg-orange-200 m-3 shadow-md"> -->
+	<div>
 	<h1 class="text-2xl font-semibold mb-3">{title}</h1>
 
 	{#if limit}
