@@ -9,7 +9,7 @@
 	}
 </script>
 
-<article class="m-3 p-4 bg-white shadow-lg rounded-lg">
+<article class="m-3 p-4 bg-brown-900 shadow-lg rounded-lg border border-black">
 	<h1 class="text-2xl font-bold text-gray-800">{entry.title}</h1>
 	<p class="text-sm text-gray-600">{new Date(entry.timestamp).toLocaleString()}</p>
 

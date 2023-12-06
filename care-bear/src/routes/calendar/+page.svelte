@@ -1,8 +1,7 @@
 <script>
-	import Calendar from '../../lib/components/Calendar.svelte';
 	import { onMount } from 'svelte';
-	import { tasks, loadDbTasks } from '../../lib/taskStore.js';
-	import theme from '../../stores/themeStore.js';
+	import Calendar from '../../lib/components/Calendar.svelte';
+	import { loadDbTasks, tasks } from '../../lib/taskStore.js';
 
 	onMount(async () => {
 		await loadDbTasks();
@@ -14,5 +13,7 @@
     }
 
 </script>
+<body>
 
-<Calendar tasks={$tasks} />
+	<Calendar tasks={$tasks} />
+</body>

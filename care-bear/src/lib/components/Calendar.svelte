@@ -70,9 +70,9 @@
 	}
 </script>
 
-<div class="min-h-screen bg-gray-100 dark:bg-gray-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-2xl w-full space-y-8 border border-gray-300 rounded-lg p-6">
-        <div>
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+	<div class="max-w-2xl w-full space-y-8 border border-gray-300 rounded-lg p-6">
+		<div>
 			<!-- Calendar Header -->
 			<div class="flex justify-between items-center button-container">
 				<button
@@ -179,21 +179,20 @@
 			font-size: 14px;
 			padding: 8px 12px;
 		}
-		.w-15{
-
+		.w-15 {
 		}
 	}
 
 	.dark .bg-gray-100 {
-        background-color: #1a202c; /* Example dark background color */
-    }
-    .dark .text-gray-600 {
-        color: #cbd5e0; /* Example dark text color */
-    }
-    .dark .border-gray-300 {
-        border-color: #4a5568; /* Example dark border color */
-    }
-    .dark .hover\:bg-orange-100:hover {
-        background-color: #dd6b20; /* Example dark hover background color */
-    }
+		background-color: #1a202c; /* Example dark background color */
+	}
+	.dark .text-gray-600 {
+		color: #cbd5e0; /* Example dark text color */
+	}
+	.dark .border-gray-300 {
+		border-color: #4a5568; /* Example dark border color */
+	}
+	.dark .hover\:bg-orange-100:hover {
+		background-color: #dd6b20; /* Example dark hover background color */
+	}
 </style>
