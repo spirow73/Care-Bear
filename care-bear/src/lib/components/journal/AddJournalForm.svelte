@@ -26,7 +26,7 @@
 	}
 </script>
 
-<form on:submit|preventDefault={handleSubmit} class="p-4 bg-white shadow rounded-lg m-4">
+<form on:submit|preventDefault={handleSubmit} class="p-4 bg-orange-200 shadow rounded-lg m-4">
 	<h2 class="text-2xl font-semibold mb-4">Create a new journal</h2>
 	<div class="mb-4">
 		<label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -52,7 +52,7 @@
 	<div class="flex justify-end">
 		<button
 			type="submit"
-			class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+			class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
 		>
 			Add Journal
 		</button>
