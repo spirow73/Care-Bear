@@ -45,7 +45,8 @@
 		toast.success('Mood added successfully!', {
 			duration: 3000,
 			hasIcon: true,
-			icon: '👍'
+			icon: '👍',
+			style: 'background: #84B59F'
 		});
 	};
 </script>

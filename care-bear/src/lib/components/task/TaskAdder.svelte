@@ -57,7 +57,9 @@
 			time: ''
 		};
 
-		toast.success('Task added!');
+		toast.success('Task added!',{
+			style: 'background: #84B59F'
+		});
 	}
 </script>
 
