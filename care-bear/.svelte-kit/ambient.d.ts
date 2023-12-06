@@ -26,6 +26,7 @@
  * ```
  */
 declare module '$env/static/private' {
+<<<<<<< HEAD
 	export const ACSetupSvcPort: string;
 	export const ACSvcPort: string;
 	export const ALLUSERSPROFILE: string;
@@ -101,21 +102,79 @@ declare module '$env/static/private' {
 	export const SystemDrive: string;
 	export const SystemRoot: string;
 	export const TEMP: string;
+=======
+	export const NVM_INC: string;
+>>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
 	export const TERM_PROGRAM: string;
+	export const NODE: string;
+	export const INIT_CWD: string;
+	export const NVM_CD_FLAGS: string;
+	export const SHELL: string;
+	export const TERM: string;
+	export const npm_config_metrics_registry: string;
+	export const TMPDIR: string;
+	export const npm_config_global_prefix: string;
+	export const Apple_PubSub_Socket_Render: string;
 	export const TERM_PROGRAM_VERSION: string;
+<<<<<<< HEAD
 	export const TMP: string;
 	export const USERDOMAIN: string;
 	export const USERDOMAIN_ROAMINGPROFILE: string;
 	export const USERNAME: string;
 	export const USERPROFILE: string;
+=======
+	export const MallocNanoZone: string;
+	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
+	export const COLOR: string;
+	export const npm_config_noproxy: string;
+	export const npm_config_local_prefix: string;
+	export const USER: string;
+	export const NVM_DIR: string;
+	export const npm_config_globalconfig: string;
+	export const SSH_AUTH_SOCK: string;
+	export const __CF_USER_TEXT_ENCODING: string;
+	export const npm_execpath: string;
+	export const PATH: string;
+	export const npm_package_json: string;
+	export const npm_config_engine_strict: string;
+	export const _: string;
+	export const npm_config_userconfig: string;
+	export const npm_config_init_module: string;
+	export const npm_command: string;
+	export const PWD: string;
+	export const npm_lifecycle_event: string;
+	export const EDITOR: string;
+	export const npm_package_name: string;
+	export const LANG: string;
+	export const XPC_FLAGS: string;
+>>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
+	export const npm_config_node_gyp: string;
+	export const npm_package_version: string;
+	export const XPC_SERVICE_NAME: string;
+	export const HOME: string;
+	export const SHLVL: string;
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
-	export const VSCODE_GIT_ASKPASS_NODE: string;
+	export const npm_config_cache: string;
+	export const LOGNAME: string;
+	export const npm_lifecycle_script: string;
 	export const VSCODE_GIT_IPC_HANDLE: string;
+<<<<<<< HEAD
 	export const VSCODE_INJECTION: string;
 	export const VSCODE_NONCE: string;
 	export const windir: string;
 	export const ZES_ENABLE_SYSMAN: string;
+=======
+	export const NVM_BIN: string;
+	export const npm_config_user_agent: string;
+	export const GIT_ASKPASS: string;
+	export const VSCODE_GIT_ASKPASS_NODE: string;
+	export const DISPLAY: string;
+	export const npm_node_execpath: string;
+	export const npm_config_prefix: string;
+	export const COLORTERM: string;
+	export const NODE_ENV: string;
+>>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
 }
 
 /**
@@ -145,6 +204,7 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+<<<<<<< HEAD
 		ACSetupSvcPort: string;
 		ACSvcPort: string;
 		ALLUSERSPROFILE: string;
@@ -220,21 +280,79 @@ declare module '$env/dynamic/private' {
 		SystemDrive: string;
 		SystemRoot: string;
 		TEMP: string;
+=======
+		NVM_INC: string;
+>>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
 		TERM_PROGRAM: string;
+		NODE: string;
+		INIT_CWD: string;
+		NVM_CD_FLAGS: string;
+		SHELL: string;
+		TERM: string;
+		npm_config_metrics_registry: string;
+		TMPDIR: string;
+		npm_config_global_prefix: string;
+		Apple_PubSub_Socket_Render: string;
 		TERM_PROGRAM_VERSION: string;
+<<<<<<< HEAD
 		TMP: string;
 		USERDOMAIN: string;
 		USERDOMAIN_ROAMINGPROFILE: string;
 		USERNAME: string;
 		USERPROFILE: string;
+=======
+		MallocNanoZone: string;
+		ORIGINAL_XDG_CURRENT_DESKTOP: string;
+		COLOR: string;
+		npm_config_noproxy: string;
+		npm_config_local_prefix: string;
+		USER: string;
+		NVM_DIR: string;
+		npm_config_globalconfig: string;
+		SSH_AUTH_SOCK: string;
+		__CF_USER_TEXT_ENCODING: string;
+		npm_execpath: string;
+		PATH: string;
+		npm_package_json: string;
+		npm_config_engine_strict: string;
+		_: string;
+		npm_config_userconfig: string;
+		npm_config_init_module: string;
+		npm_command: string;
+		PWD: string;
+		npm_lifecycle_event: string;
+		EDITOR: string;
+		npm_package_name: string;
+		LANG: string;
+		XPC_FLAGS: string;
+>>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
+		npm_config_node_gyp: string;
+		npm_package_version: string;
+		XPC_SERVICE_NAME: string;
+		HOME: string;
+		SHLVL: string;
 		VSCODE_GIT_ASKPASS_MAIN: string;
-		VSCODE_GIT_ASKPASS_NODE: string;
+		npm_config_cache: string;
+		LOGNAME: string;
+		npm_lifecycle_script: string;
 		VSCODE_GIT_IPC_HANDLE: string;
+<<<<<<< HEAD
 		VSCODE_INJECTION: string;
 		VSCODE_NONCE: string;
 		windir: string;
 		ZES_ENABLE_SYSMAN: string;
+=======
+		NVM_BIN: string;
+		npm_config_user_agent: string;
+		GIT_ASKPASS: string;
+		VSCODE_GIT_ASKPASS_NODE: string;
+		DISPLAY: string;
+		npm_node_execpath: string;
+		npm_config_prefix: string;
+		COLORTERM: string;
+		NODE_ENV: string;
+>>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}

@@ -70,10 +70,10 @@
 </script>
 
 <div class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-	<div class="max-w-md w-full space-y-8 border border-gray-300 rounded-lg p-6">
+	<div class="max-w-2xl w-full space-y-8 border border-gray-300 rounded-lg p-6">
 		<div>
 			<!-- Calendar Header -->
-			<div class="flex justify-between items-center">
+			<div class="flex justify-between items-center button-container">
 				<button
 					class="bg-orange-200 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
 					on:click={() => changeMonth(-1)}
@@ -121,13 +121,13 @@
 				{/each}
 				{#each daysInMonth as day}
 					<div
-						class="text-center p-2 cursor-pointer hover:bg-orange-100 rounded-full border border-gray-300"
+						class="text-center p-4 cursor-pointer hover:bg-orange-100 rounded-lg border border-gray-300 w-15"
 						on:click={() => openEventModal(day)}
 						role="gridcell"
 						aria-label={day}
 					>
 						{day}
-						<div class="text-xs mt-1 text-gray-500">
+						<div class="text-sm mt-2 text-gray-500">
 							{displayEvents(
 								new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day)
 									.toISOString()
@@ -152,13 +152,34 @@
 </div>
 
 <!-- Task list
-	  <div class="border-t pt-4">
-		<h2 class="text-xl font-semibold text-black">Task List</h2>
-		<div class="mt-4">
-		  {#each tasks.slice().reverse() as task}
+<div class="border-t pt-4">
+	<h2 class="text-xl font-semibold text-black">Task List</h2>
+	<div class="mt-4">
+		{#each tasks.slice().reverse() as task}
 			<div class="border rounded p-3 mb-2 bg-white">
-			  <p>{task.title}</p>
+				<p>{task.title}</p>
 			</div>
-		  {/each}
-		</div>
-	  </div> -->
+		{/each}
+	</div>
+</div>
+-->
+
+<style>
+	/* Media query for screens smaller than 640px (adjust as needed) */
+	@media (max-width: 640px) {
+		/* Adjustments for smaller screens */
+		.grid-cols-7 > div {
+			padding: 8px; /* Adjust padding */
+			font-size: 12px; /* Adjust font size */
+			width: calc(75vw / 7); /* Ensure each cell occupies equal width */
+		}
+		/* Adjust button size */
+		.button-container button {
+			font-size: 14px;
+			padding: 8px 12px;
+		}
+		.w-15{
+
+		}
+	}
+</style>

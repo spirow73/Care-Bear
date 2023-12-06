@@ -1,5 +1,6 @@
 <script>
 	import '../app.css';
+	import { onMount } from 'svelte';
 
 	const animations = {
 		enter: (node) => {
@@ -27,6 +28,30 @@
 			);
 		}
 	};
+
+	let isMenuOpen = false;
+
+	const toggleMenu = () => {
+    isMenuOpen = !isMenuOpen;
+    const mobileNav = document.querySelector('.mobilenav');
+    mobileNav.classList.toggle('hidden');
+  };
+
+  onMount(() => {
+    const menuButton = document.querySelector('.menu-button');
+    const mobileNav = document.querySelector('.mobilenav');
+
+    menuButton.addEventListener('click', () => {
+      toggleMenu();
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggleMenu();
+      });
+    });
+  });
 </script>
 
 <div class="bg-gray-100 min-h-screen">
@@ -45,7 +70,7 @@
 
 			<div class="block lg:hidden">
 				<button
-					class="flex items-center px-3 py-2 border rounded text-black border-black-400 hover:text-white hover:border-white"
+					class=" menu-button flex items-center px-3 py-2 border rounded text-black border-black-400 hover:text-white hover:border-white"
 				>
 					<svg
 						class="fill-current h-3 w-3"
@@ -58,7 +83,7 @@
 				</button>
 			</div>
 
-			<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block">
+			<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mobilenav">
 				<div class="text-sm lg:flex-grow">
 					<a
 						href="/"
@@ -121,6 +146,21 @@
 	<slot />
 	
 </div>
+<<<<<<< HEAD
 <body class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
 </body>
 
+=======
+
+<style>
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+</style>
+>>>>>>> d19a6c52e5d016983472b66a8b754a15b0cc0dec
