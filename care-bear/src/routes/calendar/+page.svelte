@@ -3,7 +3,8 @@
 	import Calender from '$lib/components/Calendar.svelte';
 </script>
 
-<div class="page-container">
+<div class="h-screen grid grid-cols-3">
+	<div class="col-start-2 mt-10">
 		<Calendar />
-	<Calender />
+	</div>
 </div>

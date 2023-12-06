@@ -59,35 +59,32 @@
 	}
 </script>
 
-<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-	<div class="max-w-2xl w-full space-y-8 border border-gray-300 rounded-lg p-6">
-		<CalendarHeader {selectedDate} {changeMonth} />
+<div class="border border-gray-300 p-4 rounded-lg">
+	<CalendarHeader {selectedDate} {changeMonth} />
 
-		<div class="grid grid-cols-7 gap-1 mt-4">
-			{#each weekDays as day}
-				<Weekday {day} />
-			{/each}
-		</div>
-
-		<div class="grid grid-cols-7 gap-1 mt-1" role="rowgroup">
-			{#each blankDays as _}
-				<div class="text-center p-4 w-15" />
-			{/each}
-			{#each daysInMonth as dayObj}
-				<CalendarDay
-					day={dayObj.number}
-					{selectedDate}
-					{openEventModal}
-					eventsForDay={dayObj.events}
-				/>
-			{/each}
-		</div>
-
-		<!-- Aquí puedes agregar el modal de eventos y cualquier otra lógica de UI -->
-		{#if isEventModalOpen}
-			<div transition:fade>
-				<EventModal {closeEventModal} {currentEventDate} tasksForDay={selectedTasks} />
-			</div>
-		{/if}
+	<div class="grid grid-cols-7 gap-1 mt-4">
+		{#each weekDays as day}
+			<Weekday {day} />
+		{/each}
 	</div>
+
+	<div class="grid grid-cols-7 gap-1 mt-1" role="rowgroup">
+		{#each blankDays as _}
+			<div class="text-center p-4 w-15" />
+		{/each}
+		{#each daysInMonth as dayObj}
+			<CalendarDay
+				day={dayObj.number}
+				{selectedDate}
+				{openEventModal}
+				eventsForDay={dayObj.events}
+			/>
+		{/each}
+	</div>
+
+	{#if isEventModalOpen}
+		<div transition:fade>
+			<EventModal {closeEventModal} {currentEventDate} tasksForDay={selectedTasks} />
+		</div>
+	{/if}
 </div>
