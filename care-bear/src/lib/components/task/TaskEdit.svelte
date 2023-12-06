@@ -39,5 +39,9 @@
 			bind:value={editableDeadline}
 		/>
 	</div>
-	<button type="submit" class="mt-4">Save</button>
+	<div class="text-center">
+		<button type="submit" class="mt-4 bg-button-1 hover:bg-button-2 text-white py-2 px-4 rounded-md transition-colors duration-300">
+			Save
+		</button>
+	</div>	
 </form>
