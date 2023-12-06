@@ -1,6 +1,6 @@
 <script>
-	import '../app.css';
 	import { onMount } from 'svelte';
+	import '../app.css';
 
 	const animations = {
 		enter: (node) => {
@@ -54,8 +54,8 @@
   });
 </script>
 
-<div class="bg-gray-100 min-h-screen">
-	<nav class="bg-orange-200 p-6 shadow-md">
+<div class="min-h-screen">
+	<nav class="bg-nav p-6 shadow-md">
 		<div class="container flex flex-wrap items-center justify-between">
 			<div class="flex items-center flex-shrink-0 text-black mr-6">
 				<a
@@ -85,14 +85,14 @@
 
 			<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mobilenav">
 				<div class="text-sm lg:flex-grow">
-					<a
+					<!-- <a
 						href="/"
 						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
 						use:animations.enter
 						use:animations.leave
 					>
 						Home
-					</a>
+					</a> -->
 
 					<a
 						href="/journal"
@@ -156,4 +156,12 @@
   background-color: black;
   color: white;
 }
+		:global(body) {
+	background-image: url('../images/background.png');
+    background-size: cover; /* Adjust the sizing as needed */
+    background-repeat: no-repeat;
+	background-attachment: fixed;
+	height: 100vh;
+    margin: 0;
+  }
 </style>

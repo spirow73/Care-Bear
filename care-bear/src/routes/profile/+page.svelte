@@ -7,5 +7,7 @@
     }
 
 </script>
+<body>
 
-<Profile />
+    <Profile />
+</body>
