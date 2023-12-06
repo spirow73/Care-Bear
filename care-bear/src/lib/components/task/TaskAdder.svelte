@@ -121,6 +121,7 @@
     </div>
 </div> -->
 
+<Toaster></Toaster>
 <form
 	on:submit|preventDefault={addTask}
 	class="p-4 mx-auto my-8 border rounded bg-orange-200 shadow-lg"
