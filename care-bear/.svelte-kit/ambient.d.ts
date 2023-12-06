@@ -26,8 +26,6 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const ACSetupSvcPort: string;
-	export const ACSvcPort: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
 	export const ChocolateyInstall: string;
@@ -41,10 +39,7 @@ declare module '$env/static/private' {
 	export const ComSpec: string;
 	export const DriverData: string;
 	export const EDITOR: string;
-	export const EFC_9620: string;
-	export const EFC_9748: string;
-	export const FPS_BROWSER_APP_PROFILE_STRING: string;
-	export const FPS_BROWSER_USER_PROFILE_STRING: string;
+	export const EFC_12084: string;
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -54,11 +49,6 @@ declare module '$env/static/private' {
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
-	export const INTEL_DEV_REDIST: string;
-	export const LANG: string;
-	export const LOCALAPPDATA: string;
-	export const LOGONSERVER: string;
-	export const MIC_LD_LIBRARY_PATH: string;
 	export const NODE: string;
 	export const NODE_ENV: string;
 	export const NODE_EXE: string;
@@ -73,9 +63,6 @@ declare module '$env/static/private' {
 	export const npm_config_node_gyp: string;
 	export const npm_config_noproxy: string;
 	export const npm_config_npm_version: string;
-	export const npm_config_metrics_registry: string;
-	export const npm_config_node_gyp: string;
-	export const npm_config_noproxy: string;
 	export const npm_config_prefix: string;
 	export const npm_config_userconfig: string;
 	export const npm_config_user_agent: string;
@@ -93,7 +80,6 @@ declare module '$env/static/private' {
 	export const OS: string;
 	export const Path: string;
 	export const PATHEXT: string;
-	export const PhpStorm: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
@@ -105,7 +91,6 @@ declare module '$env/static/private' {
 	export const PSModulePath: string;
 	export const PUBLIC: string;
 	export const R_PROFILE_USER: string;
-	export const RlsSvcPort: string;
 	export const SESSIONNAME: string;
 	export const SystemDrive: string;
 	export const SystemRoot: string;
@@ -125,7 +110,6 @@ declare module '$env/static/private' {
 	export const VSCODE_INJECTION: string;
 	export const VSCODE_NONCE: string;
 	export const windir: string;
-	export const ZES_ENABLE_SYSMAN: string;
 }
 
 /**
@@ -155,8 +139,6 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		ACSetupSvcPort: string;
-		ACSvcPort: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
 		ChocolateyInstall: string;
@@ -170,20 +152,16 @@ declare module '$env/dynamic/private' {
 		ComSpec: string;
 		DriverData: string;
 		EDITOR: string;
-		EFC_9620: string;
-		EFC_9748: string;
-		FPS_BROWSER_APP_PROFILE_STRING: string;
-		FPS_BROWSER_USER_PROFILE_STRING: string;
+		EFC_12084: string;
 		GIT_ASKPASS: string;
 		HOME: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
 		INIT_CWD: string;
-		INTEL_DEV_REDIST: string;
+		JAVA_HOME: string;
 		LANG: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
-		MIC_LD_LIBRARY_PATH: string;
 		NODE: string;
 		NODE_ENV: string;
 		NODE_EXE: string;
@@ -225,7 +203,7 @@ declare module '$env/dynamic/private' {
 		PROMPT: string;
 		PSModulePath: string;
 		PUBLIC: string;
-		RlsSvcPort: string;
+		R_PROFILE_USER: string;
 		SESSIONNAME: string;
 		SystemDrive: string;
 		SystemRoot: string;
@@ -245,7 +223,6 @@ declare module '$env/dynamic/private' {
 		VSCODE_INJECTION: string;
 		VSCODE_NONCE: string;
 		windir: string;
-		ZES_ENABLE_SYSMAN: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
