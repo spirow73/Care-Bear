@@ -45,13 +45,14 @@
 		toast.success('Mood added successfully!', {
 			duration: 3000,
 			hasIcon: true,
-			icon: '👍'
-		});
+			icon: '👍',
+            style: 'background: #84B59F'
+});
 	};
 </script>
 
 <!-- Wide screens -->
-<Toaster />
+<Toaster/>
 <main
 	class="max-w-screen-md mx-auto mt-10 p-6 lg:flex lg:flex-wrap lg:justify-center lg:gap-4 sm:w-full hidden"
 >
@@ -129,3 +130,9 @@
 		</div>
 	{/if}
 </main>
+<style>
+    .background {
+      background-color: #84B59F;
+      color: black,
+    }
+  </style>
