@@ -7,8 +7,6 @@
 	import tired from '../../../images/tired.png';
 	import upset from '../../../images/upset.png';
 
-	import toast, { Toaster } from 'svelte-french-toast';
-
 	const moods = {
 		1: { description: 'Happy', image: happy },
 		2: { description: 'Sad', image: sad },
@@ -19,9 +17,11 @@
 	};
 
 	let selectedMood = '';
+	let selectedMoodId = '';
 	let user = { id: 1 };
 
 	const selectMood = async (moodId) => {
+		selectedMoodId = moodId;
 		selectedMood = moods[moodId].description;
 
 		Object.keys(moods).forEach((key) => {
@@ -36,32 +36,47 @@
 			selectedElement.classList.add('border', 'border-black');
 		}
 	};
-	const confirmMood = async (moodId) => {
+
+	const confirmMood = async () => {
 		if (selectedMood !== '') {
 			const timestamp = new Date().toISOString();
-			await addMoodEntryToDB({ mood: parseInt(moodId), user_id: user.id, timestamp });
+			await addMoodEntryToDB({ mood: parseInt(selectedMoodId), user_id: user.id, timestamp });
 		}
+	};
 
-		toast.success('Mood added successfully!', {
-			duration: 3000,
-			hasIcon: true,
-			icon: '👍',
-			style: 'background: #84B59F'
-		});
+	let showActivities = false;
+	let activityPage = '';
+
+	const toggleActivities = () => {
+		showActivities = !showActivities;
+	};
+
+	const setActivityPage = () => {
+		const lowerCaseSelectedMood = selectedMood.toLowerCase();
+
+		if (lowerCaseSelectedMood === 'happy') {
+			activityPage = './mood/meditation';
+		} else if (lowerCaseSelectedMood === 'sad') {
+			activityPage = './mood/sad';
+		} else if (lowerCaseSelectedMood === 'upset') {
+			activityPage = './mood/upset';
+		} else if (lowerCaseSelectedMood === 'stressed') {
+			activityPage = './mood/breathingExercise';
+		} else if (lowerCaseSelectedMood === 'tired') {
+			activityPage = './mood/Tired';
+		} else if (lowerCaseSelectedMood === 'depressed') {
+			activityPage = './mood/yoga';
+		} else {
+			console.error(`Unexpected mood: ${selectedMood}`);
+			activityPage = '';
+		}
 	};
 </script>
 
 <!-- Wide screens -->
-<Toaster />
-<main
-	class="max-w-screen-md mx-auto mt-10 p-6 lg:flex lg:flex-wrap lg:justify-center lg:gap-4 sm:w-full hidden"
->
-	<h1 class="text-2xl font-bold mb-4 text-center lg:w-full hidden lg:block">
-		How are you feeling today?
-	</h1>
-	<div
-		class="hidden lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 hidden lg:block"
-	/>
+<main class="max-w-screen-md mx-auto mt-10 p-6 lg:flex lg:flex-wrap lg:justify-center lg:gap-4 sm:w-full hidden">
+	<h1 class="text-2xl font-bold mb-4 text-center lg:w-full hidden lg:block">How are you feeling today?</h1>
+	<div class="hidden lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 hidden lg:block"></div>
 	<div class="flex flex-wrap justify-center lg:w-3/4">
 		{#each Object.keys(moods) as moodId}
 			<div
@@ -81,26 +96,33 @@
 		{/each}
 	</div>
 	{#if selectedMood !== ''}
-		<p class="mt-4 text-center lg:w-full hidden lg:block">
-			You selected mood: <b>{selectedMood}</b>
-		</p>
+		<p class="mt-4 text-center lg:w-full hidden lg:block">You selected mood: <b>{selectedMood}</b></p>
 		<div class="flex justify-center lg:w-full hidden lg:block">
 			<button
 				class="mt-2 bg-orange-200 text-black p-2 rounded hover:text-white"
-				on:click={() =>
-					confirmMood(Object.keys(moods).find((key) => moods[key].description === selectedMood))}
-				>Confirm Mood</button
-			>
+				on:click={() => {
+					toggleActivities();
+					setActivityPage();
+					confirmMood();
+				}}
+			>Confirm Mood</button>
 		</div>
+		{#if showActivities}
+			<!-- Show activities for the selected mood -->
+			<div  class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md">
+				<!-- Add your activities content here -->
+				{#if activityPage !== ''}
+					<a href={activityPage}>View Activities for {selectedMood}</a>
+				{/if}
+			</div>
+		{/if}
 	{/if}
 </main>
 
 <!-- Mobile -->
 <main class="max-w-screen-md mx-auto mt-10 p-6 lg:hidden">
 	<h1 class="text-2xl font-bold mb-4 text-center">How are you feeling today?</h1>
-	<div
-		class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center overflow-y-auto max-h-96 lg:hidden"
-	>
+	<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center overflow-y-auto max-h-96 lg:hidden">
 		{#each Object.keys(moods) as moodId}
 			<div
 				id={`mood_${moodId}`}
@@ -123,10 +145,22 @@
 		<div class="flex justify-center lg:hidden">
 			<button
 				class="mt-2 bg-orange-200 text-black p-2 rounded hover:text-white"
-				on:click={() =>
-					confirmMood(Object.keys(moods).find((key) => moods[key].description === selectedMood))}
-				>Confirm Mood</button
-			>
+				on:click={() => {
+					toggleActivities();
+				
+					setActivityPage();
+					confirmMood();
+				}}
+			>Confirm Mood</button>
 		</div>
+		{#if showActivities}
+			<!-- Show activities for the selected mood -->
+			<div class="lg:hidden">
+				<!-- Add your activities content here -->
+				{#if activityPage !== ''}
+					<a href={activityPage} class="text-blue-500 underline">View Activities for {selectedMood}</a>
+				{/if}
+			</div>
+		{/if}
 	{/if}
 </main>
