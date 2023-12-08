@@ -1,5 +1,7 @@
 {
 	"/": [],
+	"/advice": [],
+	"/advice/survey": [],
 	"/auth": [],
 	"/auth/login": [],
 	"/auth/sign-up": [],
@@ -20,7 +22,6 @@
 	"/mood/upset": [],
 	"/mood/yoga": [],
 	"/profile": [],
-	"/survey": [],
 	"/task": [],
 	"/tracker": []
 }
