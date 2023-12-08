@@ -5,7 +5,8 @@
     function toggleDarkMode() {
         theme.toggle(); // This will update the theme globally and persist it
     }
-
 </script>
+<body>
 
-<Profile />
+    <Profile />
+</body>

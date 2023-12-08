@@ -32,7 +32,11 @@ export async function addDbTask(task) {
 export async function updateDbTask(task_id, updatedTask) {
 	try {
 		const newTask = await updateTask(task_id, updatedTask);
-		tasks.update((tasks) => tasks.map((task) => (task.task_id === task_id ? newTask : task)));
+		// Asegúrate de que la fecha de plazo (deadline) es un objeto Date
+		newTask.deadline = new Date(newTask.deadline);
+		tasks.update((tasks) =>
+			tasks.map((task) => (task.task_id === task_id ? { ...task, ...newTask } : task))
+		);
 	} catch (error) {
 		console.error('Error updating task:', error);
 	}
@@ -44,5 +48,20 @@ export async function removeDbTask(task_id) {
 		tasks.update((tasks) => tasks.filter((task) => task.task_id !== task_id));
 	} catch (error) {
 		console.error('Error removing task:', error);
+	}
+}
+
+export async function toggleTaskCompletion(task_id, isCompleted) {
+	try {
+		const updatedTask = await updateTask(task_id, { isCompleted: !isCompleted });
+		if (updatedTask) {
+			tasks.update((currentTasks) =>
+				currentTasks.map((task) => (task.task_id === task_id ? { ...task, ...updatedTask } : task))
+			);
+		} else {
+			console.error('No se recibió una tarea actualizada del servidor');
+		}
+	} catch (error) {
+		console.error('Error al alternar la completitud de la tarea:', error);
 	}
 }
