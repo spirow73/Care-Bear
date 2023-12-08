@@ -1,10 +1,9 @@
 <script>
 	import Calendar from '$lib/components/calendar/Calendar.svelte';
-	import Calender from '$lib/components/Calendar.svelte';
 </script>
 
-<div class="h-screen grid grid-cols-3">
-	<div class="col-start-2 mt-10">
+<div class="h-screen flex items-center justify-center p-4">
+	<div class="w-full max-w-4xl">
 		<Calendar />
 	</div>
 </div>

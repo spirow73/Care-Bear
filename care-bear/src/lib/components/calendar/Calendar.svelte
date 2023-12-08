@@ -62,13 +62,13 @@
 <div class="border border-gray-300 p-4 rounded-lg">
 	<CalendarHeader {selectedDate} {changeMonth} />
 
-	<div class="grid grid-cols-7 gap-1 mt-4">
+	<div class="grid grid-cols-7 gap-1 my-4">
 		{#each weekDays as day}
 			<Weekday {day} />
 		{/each}
 	</div>
 
-	<div class="grid grid-cols-7 gap-1 mt-1" role="rowgroup">
+	<div class="calendar-grid grid grid-cols-7 gap-1 mt-1" role="rowgroup">
 		{#each blankDays as _}
 			<div class="text-center p-4 w-15" />
 		{/each}
@@ -88,3 +88,11 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.calendar-grid {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		grid-auto-rows: minmax(100px, auto); /* Ajusta 100px al tamaño mínimo deseado */
+	}
+</style>

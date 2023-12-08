@@ -8,7 +8,7 @@
 </script>
 
 <div class="modal-container">
-	<div class="modal-content">
+	<div class="modal-content overflow-auto">
 		<TaskAdder calendarDate={currentEventDate} />
 		{#if tasksForDay.length > 0}
 			<TaskList title="Tasks for the Day" tasks={tasksForDay} />
@@ -24,22 +24,27 @@
 
 <style>
 	.modal-container {
-		/* Estilos para el fondo oscurecido detrás del modal */
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.5); /* Set the opacity to 50% */
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
 	.modal-content {
-		/* Estilos para el contenido del modal */
 		background-color: white;
 		padding: 2rem;
-		border-radius: 10px;
+		border-radius: 5px;
+		overflow-y: auto; /* Habilitar scroll */
+	}
+
+	@media (max-width: 600px) {
+		.modal-content {
+			width: 90%;
+		}
 	}
 </style>
