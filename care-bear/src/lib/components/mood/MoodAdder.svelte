@@ -6,6 +6,8 @@
 	import stressed from '../../../images/stressed.png';
 	import tired from '../../../images/tired.png';
 	import upset from '../../../images/upset.png';
+	import theme from '../../../stores/themeStore.js';
+
 
 	const moods = {
 		1: { description: 'Happy', image: happy },
@@ -19,6 +21,9 @@
 	let selectedMood = '';
 	let selectedMoodId = '';
 	let user = { id: 1 };
+
+	    let currentTheme;
+    $: currentTheme = $theme;
 
 	const selectMood = async (moodId) => {
 		selectedMoodId = moodId;
@@ -74,8 +79,8 @@
 </script>
 
 <!-- Wide screens -->
-<main class="max-w-screen-md mx-auto mt-10 p-6 lg:flex lg:flex-wrap lg:justify-center lg:gap-4 sm:w-full hidden">
-	<h1 class="text-2xl font-bold mb-4 text-center lg:w-full hidden lg:block">How are you feeling today?</h1>
+<main class={`max-w-screen-md mx-auto mt-10 p-6 ${currentTheme === 'dark' ? 'bg-gray-800 text-white' : 'lg:flex lg:flex-wrap lg:justify-center lg:gap-4 sm:w-full'}`}>
+    <h1 class="text-2xl font-bold mb-4 text-center">How are you feeling today?</h1>
 	<div class="hidden lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 hidden lg:block"></div>
 	<div class="flex flex-wrap justify-center lg:w-3/4">
 		{#each Object.keys(moods) as moodId}

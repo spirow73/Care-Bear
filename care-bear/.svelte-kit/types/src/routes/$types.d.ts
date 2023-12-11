@@ -12,7 +12,7 @@ type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 export type Snapshot<T = any> = Kit.Snapshot<T>;
 type PageParentData = EnsureDefined<LayoutData>;
-type LayoutRouteId = RouteId | "/" | "/auth" | "/auth/login" | "/auth/sign-up" | "/calendar" | "/journal" | "/journal/[id]" | "/journalv2" | "/journalv3" | "/mood" | "/mood/breathingExercise" | "/mood/history" | "/mood/meditation" | "/mood/sad" | "/mood/Tired" | "/mood/upset" | "/mood/yoga" | "/moodActivities" | "/profile" | "/survey" | "/task" | "/tracker" | null
+type LayoutRouteId = RouteId | "/" | "/advice" | "/advice/survey" | "/auth" | "/auth/login" | "/auth/sign-up" | "/calendar" | "/journal" | "/journal/[id]" | "/journalv2" | "/journalv3" | "/mood" | "/mood/Tired" | "/mood/breathingExercise" | "/mood/history" | "/mood/meditation" | "/mood/sad" | "/mood/upset" | "/mood/yoga" | "/moodActivities" | "/profile" | "/task" | "/tracker" | null
 type LayoutParams = RouteParams & { id?: string }
 type LayoutParentData = EnsureDefined<{}>;
 

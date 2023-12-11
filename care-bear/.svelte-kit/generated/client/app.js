@@ -24,34 +24,36 @@ export const nodes = [
 	() => import('./nodes/20'),
 	() => import('./nodes/21'),
 	() => import('./nodes/22'),
-	() => import('./nodes/23')
+	() => import('./nodes/23'),
+	() => import('./nodes/24')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/auth": [3],
-		"/auth/login": [4],
-		"/auth/sign-up": [5],
-		"/calendar": [6],
-		"/journalv2": [9],
-		"/journalv3": [10],
-		"/journal": [7],
-		"/journal/[id]": [8],
-		"/moodActivities": [19],
-		"/mood": [11],
-		"/mood/Tired": [16],
-		"/mood/breathingExercise": [12],
-		"/mood/history": [13],
-		"/mood/meditation": [14],
-		"/mood/sad": [15],
-		"/mood/upset": [17],
-		"/mood/yoga": [18],
-		"/profile": [20],
-		"/survey": [21],
-		"/task": [22],
-		"/tracker": [23]
+		"/advice": [3],
+		"/advice/survey": [4],
+		"/auth": [5],
+		"/auth/login": [6],
+		"/auth/sign-up": [7],
+		"/calendar": [8],
+		"/journalv2": [11],
+		"/journalv3": [12],
+		"/journal": [9],
+		"/journal/[id]": [10],
+		"/moodActivities": [21],
+		"/mood": [13],
+		"/mood/Tired": [14],
+		"/mood/breathingExercise": [15],
+		"/mood/history": [16],
+		"/mood/meditation": [17],
+		"/mood/sad": [18],
+		"/mood/upset": [19],
+		"/mood/yoga": [20],
+		"/profile": [22],
+		"/task": [23],
+		"/tracker": [24]
 	};
 
 export const hooks = {

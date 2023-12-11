@@ -1,6 +1,7 @@
 <script>
 	import { deleteJournalEntryInStore } from '$lib/journalStore.js';
- // Asegúrate de implementar esta función
+ 	import theme from '../../../stores/themeStore.js';
+
 
 	export let entry;
 	let max_entries = 100;
