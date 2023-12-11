@@ -31,7 +31,7 @@
     }
 </script>
 
-<form on:submit|preventDefault={handleSubmit} class={`p-4 shadow rounded-lg m-4 ${darkModeClass}`}>
+<form on:submit|preventDefault={handleSubmit} class={`p-4  bg-orange-200 shadow rounded-lg m-4 ${darkModeClass}`}>
     <h2 class="text-2xl font-semibold mb-4">Create a new journal</h2>
     <div class="mb-4">
         <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>

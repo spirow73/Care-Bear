@@ -23,9 +23,7 @@ export const nodes = [
 	() => import('./nodes/19'),
 	() => import('./nodes/20'),
 	() => import('./nodes/21'),
-	() => import('./nodes/22'),
-	() => import('./nodes/23'),
-	() => import('./nodes/24')
+	() => import('./nodes/22')
 ];
 
 export const server_loads = [];
@@ -38,22 +36,20 @@ export const dictionary = {
 		"/auth/login": [6],
 		"/auth/sign-up": [7],
 		"/calendar": [8],
-		"/journalv2": [11],
-		"/journalv3": [12],
 		"/journal": [9],
 		"/journal/[id]": [10],
-		"/moodActivities": [21],
-		"/mood": [13],
-		"/mood/Tired": [14],
-		"/mood/breathingExercise": [15],
-		"/mood/history": [16],
-		"/mood/meditation": [17],
-		"/mood/sad": [18],
-		"/mood/upset": [19],
-		"/mood/yoga": [20],
-		"/profile": [22],
-		"/task": [23],
-		"/tracker": [24]
+		"/moodActivities": [19],
+		"/mood": [11],
+		"/mood/Tired": [16],
+		"/mood/breathingExercise": [12],
+		"/mood/history": [13],
+		"/mood/meditation": [14],
+		"/mood/sad": [15],
+		"/mood/upset": [17],
+		"/mood/yoga": [18],
+		"/profile": [20],
+		"/task": [21],
+		"/tracker": [22]
 	};
 
 export const hooks = {

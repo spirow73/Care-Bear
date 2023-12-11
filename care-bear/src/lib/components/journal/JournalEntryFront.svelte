@@ -1,6 +1,5 @@
 <script>
 	import { deleteJournalEntryInStore } from '$lib/journalStore.js';
- 	import theme from '../../../stores/themeStore.js';
 
 
 	export let entry;

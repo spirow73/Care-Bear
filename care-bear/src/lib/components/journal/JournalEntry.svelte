@@ -1,7 +1,7 @@
 <script>
+    import theme from '../../../stores/themeStore.js';
     import JournalEntryDisplay from './journalEntry/JournalEntryDisplay.svelte';
     import JournalEntryEdit from './journalEntry/JournalEntryEdit.svelte';
-    import theme from '../../../stores/themeStore.js';
 
     export let entry;
     let editing = false;

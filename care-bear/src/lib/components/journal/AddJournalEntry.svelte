@@ -1,6 +1,7 @@
 <script>
     import { addJournalEntry } from '$lib/journalStore.js';
-    import theme from '$lib/themeStore.js'; // Import theme store
+    import theme from '../../../stores/themeStore';
+ // Import theme store
 
     export let journalId;
     let title = '';
