@@ -5,7 +5,7 @@
 
 <div class="flex flex-col items-center">
 	<span class={`notification-mark bg-${color}-500 mb-1`} />
-	<p class="text-xs text-gray-500">{count}</p>
+	<!-- <p class="text-xs text-gray-500">{count}</p> -->
 </div>
 
 <style>

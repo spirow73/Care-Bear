@@ -32,8 +32,8 @@
 	tabindex="0"
 >
 	<div class="flex flex-col items-center justify-center p-4 h-full">
-		<span class="text-lg mb-2">{day}</span>
-		<div class="flex items-center justify-center space-x-2">
+		<span class="text-sm sm:text-lg mb-1">{day}</span>
+		<div class="flex items-center justify-center space-x-1">
 			{#if numberOfTasks > 0}
 				{#if completedTasks > 0}
 					<DayTaskIndicator color={'green'} count={completedTasks} />
