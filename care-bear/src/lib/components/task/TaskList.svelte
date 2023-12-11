@@ -1,14 +1,13 @@
 <script>
     import Task from './Task.svelte';
 
-	export let title = '';
-	export let tasks = [];
-	export let limit = null;
+    export let title = '';
+    export let tasks = [];
+    export let limit;
 </script>
 
-<!-- <div class="p-4  border-black rounded-lg bg-orange-200 m-3 shadow-md"> -->
-	<div>
-	<h1 class="text-2xl font-semibold mb-3">{title}</h1>
+<div class='m-4 p-3'>
+    <h1 class="text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100">{title}</h1>
 
     {#if limit}
         {#each tasks.slice().reverse().slice(0, limit) as task}

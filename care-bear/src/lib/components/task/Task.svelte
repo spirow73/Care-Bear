@@ -1,5 +1,5 @@
 <script>
-	import { removeDbTask, toggleTaskCompletion } from '$lib/taskStore';
+	import { removeDbTask } from '$lib/taskStore';
 	import TaskEdit from './TaskEdit.svelte';
 	import TaskView from './TaskView.svelte';
 	export let task_id;
@@ -8,26 +8,16 @@
 	export let deadline;
 	export let isCompleted;
 
-	let isEditing = false;
+    $: formattedDeadline = new Date(deadline).toLocaleDateString('en-EN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
 
-	$: formattedDeadline = new Date(deadline).toLocaleDateString('en-EN', {
-		day: 'numeric',
-		month: 'long',
-		year: 'numeric'
-	});
-
-	function handleDelete() {
-		console.log(task_id);
-		removeDbTask(task_id);
-	}
-
-	function toggleEdit() {
-		isEditing = !isEditing;
-	}
-
-	function handleToggleCompletion() {
-		toggleTaskCompletion(task_id, isCompleted);
-	}
+    function handleDelete() {
+        console.log(task_id);
+        removeDbTask(task_id);
+    }
 </script>
 
 <div class="flex items-center mb-2 bg-brown-900 shadow-md p-4 rounded-lg border border-black">
