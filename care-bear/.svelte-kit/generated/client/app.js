@@ -23,22 +23,21 @@ export const nodes = [
 	() => import('./nodes/19'),
 	() => import('./nodes/20'),
 	() => import('./nodes/21'),
-	() => import('./nodes/22'),
-	() => import('./nodes/23')
+	() => import('./nodes/22')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/auth": [3],
-		"/auth/login": [4],
-		"/auth/sign-up": [5],
-		"/calendar": [6],
-		"/journalv2": [9],
-		"/journalv3": [10],
-		"/journal": [7],
-		"/journal/[id]": [8],
+		"/advice": [3],
+		"/advice/survey": [4],
+		"/auth": [5],
+		"/auth/login": [6],
+		"/auth/sign-up": [7],
+		"/calendar": [8],
+		"/journal": [9],
+		"/journal/[id]": [10],
 		"/moodActivities": [19],
 		"/mood": [11],
 		"/mood/Tired": [16],
@@ -49,9 +48,8 @@ export const dictionary = {
 		"/mood/upset": [17],
 		"/mood/yoga": [18],
 		"/profile": [20],
-		"/survey": [21],
-		"/task": [22],
-		"/tracker": [23]
+		"/task": [21],
+		"/tracker": [22]
 	};
 
 export const hooks = {

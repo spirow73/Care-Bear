@@ -1,8 +1,6 @@
 import { writable } from 'svelte/store';
 import { addMoodEntry, fetchLatestMoodEntries } from './moodClient';
 
-// ... rest of the code
-
 
 
 const mood = writable([]);

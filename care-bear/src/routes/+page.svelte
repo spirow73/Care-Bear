@@ -61,7 +61,7 @@
 		
 		<div class="flex-1 text-center">
 			<h2 class="text-2xl font-bold mb-4">Last moods</h2>
-			<div class="bg-brown-900 rounded-full border border-black shadow-md">
+			<div class="bg-brown-900 rounded-lg border border-black shadow-md">
 				<Mood />
 			</div>
 			
