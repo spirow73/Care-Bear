@@ -12,7 +12,7 @@
 		&lt; Prev
 	</button>
 	<span
-		class="text-xl font-bold text-orange-300"
+		class="text-sm sm:text-lg lg:text-xl font-bold text-orange-300"
 		id="month-year"
 		role="heading"
 		aria-level="2"
