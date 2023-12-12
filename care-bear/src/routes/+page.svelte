@@ -52,22 +52,23 @@
 
 <div class="container mx-auto p-4 ">
 	<div class="flex flex-col md:flex-row gap-4">
-		<!-- Columna para la lista de tareas -->
 		<div class="flex-1">
 			<h2 class="text-2xl font-bold mb-4 text-center">Your last tasks</h2>
-			
+			<div>
 				<TaskList tasks={$tasks} limit="3" />
+			</div>
 		</div>
 		
 		<div class="flex-1 text-center">
 			<h2 class="text-2xl font-bold mb-4">Last moods</h2>
-			<div class="bg-brown-900 rounded-lg border border-black shadow-md">
-				<Mood />
-			</div>
+				<div class="mr-4 mb-4 mt-10">
+					<Mood />
+				</div>
 			
 		</div>
 	</div>
 </div>
+  
 </body>
 
 <style>

@@ -7,6 +7,7 @@
 	export let description;
 	export let deadline;
 	export let isCompleted;
+	
 
 	let isEditing = false;
 
