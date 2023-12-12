@@ -1,18 +1,13 @@
 <script>
-    import { onMount } from 'svelte';
-    import Calendar from '../../lib/components/Calendar.svelte';
-    import { loadDbTasks, tasks } from '../../lib/taskStore.js';
-    import theme from '../../stores/themeStore.js';
-
-    onMount(async () => {
-        await loadDbTasks();
-        console.log($tasks);
-    });
-
-    function toggleDarkMode() {
-        theme.toggle(); // This will update the theme globally and persist it
-    }
+	import Calendar from '$lib/components/calendar/Calendar.svelte';
+	import theme from '../../stores/themeStore.js';
+	$: darkModeClass = $theme === 'dark' ? 'dark' : '';
 </script>
-<body>
-    <Calendar tasks={$tasks} />
-</body>
+
+<div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 h-screen">
+	<div
+		class="w-12/12 sm:w-10/12 lg:w-6/12 border border-gray-300 p-2 sm:p-4 bg-brown-900 rounded-lg overflow-auto"
+	>
+		<Calendar />
+	</div>
+</div>

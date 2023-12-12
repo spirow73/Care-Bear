@@ -6,10 +6,10 @@
 	import on from '../images/on.png';
 
 	import TaskList from '$lib/components/task/TaskList.svelte';
-	import { loadDbTasks, tasks } from '$lib/taskStore';
+	import taskstore from '$lib/taskStore';
 
 	onMount(async () => {
-		await loadDbTasks();
+		await taskstore.loadDbTasks();
 	});
 
 	let isOn = false;
@@ -35,45 +35,43 @@
 		{ description: 'Calm', emoji: '😌' }
 	];
 </script>
-<body>
-<div class="flex flex-col items-center justify-self-start mt-4">
-	<!-- First Image (Bear) -->
-	<div class="object-none object-top">
-		<img class="max-w-full max-h-full" src={bear} alt={bear} />
-	</div>
-	
-	<!-- Second Image (Off) -->
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="object-none object-top mt-4 cursor-pointer" on:click={toggleImage}>
-		<img class="max-w-full max-h-full" src={isOn ? on : off} alt={isOn ? 'On' : 'Off'} />
-	</div>
-</div>
 
-<div class="container mx-auto p-4 ">
-	<div class="flex flex-col md:flex-row gap-4">
-		<div class="flex-1">
-			<h2 class="text-2xl font-bold mb-4 text-center">Your last tasks</h2>
-			<div>
-				<TaskList tasks={$tasks} limit="3" />
-			</div>
+<body>
+	<div class="flex flex-col items-center justify-self-start mt-4">
+		<!-- First Image (Bear) -->
+		<div class="object-none object-top">
+			<img class="max-w-full max-h-full" src={bear} alt={bear} />
 		</div>
-		
-		<div class="flex-1 text-center">
-			<h2 class="text-2xl font-bold mb-4">Last moods</h2>
+
+		<!-- Second Image (Off) -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<div class="object-none object-top mt-4 cursor-pointer" on:click={toggleImage}>
+			<img class="max-w-full max-h-full" src={isOn ? on : off} alt={isOn ? 'On' : 'Off'} />
+		</div>
+	</div>
+
+	<div class="container mx-auto p-4">
+		<div class="flex flex-col md:flex-row gap-4">
+			<div class="flex-1">
+				<h2 class="text-2xl font-bold mb-4 text-center">Your last tasks</h2>
+				<div>
+					<TaskList tasks={$taskstore} limit="3" />
+				</div>
+			</div>
+
+			<div class="flex-1 text-center">
+				<h2 class="text-2xl font-bold mb-4">Last moods</h2>
 				<div class="mr-4 mb-4 mt-10">
 					<Mood />
 				</div>
-			
+			</div>
 		</div>
 	</div>
-</div>
-  
 </body>
 
 <style>
 	div:focus {
 		outline: none; /* Remove the default focus style for better aesthetics */
 	}
-
 </style>
