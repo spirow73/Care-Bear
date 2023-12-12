@@ -1,11 +1,11 @@
 {
 	"/": [],
+	"/advice": [],
+	"/advice/survey": [],
 	"/auth": [],
 	"/auth/login": [],
 	"/auth/sign-up": [],
 	"/calendar": [],
-	"/journalv2": [],
-	"/journalv3": [],
 	"/journal": [],
 	"/journal/[id]": [
 		"src/routes/journal/[id]/+page.js"

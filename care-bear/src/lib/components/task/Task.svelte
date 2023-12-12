@@ -1,7 +1,7 @@
 <script>
-	import TaskView from './TaskView.svelte';
-	import TaskEdit from './TaskEdit.svelte';
 	import { removeDbTask, toggleTaskCompletion } from '$lib/taskStore';
+	import TaskEdit from './TaskEdit.svelte';
+	import TaskView from './TaskView.svelte';
 	export let task_id;
 	export let title;
 	export let description;
@@ -30,23 +30,24 @@
 	}
 </script>
 
-<div class="flex items-center mb-2 bg-brown-900 shadow-md p-4 rounded-full border border-black">
-	<div
-		class="{isCompleted
-			? 'bg-green-500'
-			: 'bg-red-500'} h-6 w-6 rounded-full flex items-center justify-center mr-4"
-		on:click={handleToggleCompletion}
-	/>
+<div class="flex items-center mb-2 bg-brown-900 shadow-md p-4 rounded-lg border border-black">
+	<div class="flex flex-col items-center mr-4 text-xs">
+        <div
+            class="{isCompleted ? 'bg-green-500' : 'bg-red-500'} h-6 w-6 rounded-full flex items-center justify-center"
+            on:click={handleToggleCompletion}
+        />
+        <span><b>{isCompleted ? 'Completed' : 'Pending'}</b></span>
+    </div>
 
-	{#if isEditing}
-		<TaskEdit {title} {description} {deadline} {task_id} closeEdit={toggleEdit} />
-	{:else}
-		<TaskView {title} {description} {formattedDeadline} />
-	{/if}
+    {#if isEditing}
+        <TaskEdit {title} {description} {deadline} {task_id} closeEdit={toggleEdit} />
+    {:else}
+        <TaskView {title} {description} {formattedDeadline} />
+    {/if}
 
-	<button on:click={toggleEdit} class="ml-2">{isEditing ? '❎' : '🖊️'}</button>
+    <button on:click={toggleEdit} class="ml-2">{isEditing ? '❎' : '🖊️'}</button>
 
-	<button on:click={handleDelete} class="text-red-500 hover:text-red-700 ml-auto">
-		<span class="text-red-500">❌</span>
-	</button>
+    <button on:click={handleDelete} class="text-red-500 hover:text-red-700 ml-auto">
+        <span class="text-red-500">❌</span>
+    </button>
 </div>

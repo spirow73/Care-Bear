@@ -1,21 +1,17 @@
 <script>
-	import JournalEntryFront from './JournalEntryFront.svelte';
-	import { removeJournal } from '$lib/journalStore.js';
-	import { fade } from 'svelte/transition'; // Import the transition
-	import { onMount } from 'svelte';
+    import { removeJournal } from '$lib/journalStore.js';
+    import { fade } from 'svelte/transition';
+    import JournalEntryFront from './JournalEntryFront.svelte';
+// Import the transition
+    
+    export let journals;
+    export let numOfEntries = 3;
 
-	export let journals;
-	export let numOfEntries = 3;
-
-	async function handleDelete(journalId) {
-		if (
-			window.confirm(
-				'Are you sure you want to delete this journal? This will remove all associated entries and cannot be undone.'
-			)
-		) {
-			await removeJournal(journalId);
-		}
-	}
+    async function handleDelete(journalId) {
+        if (window.confirm('Are you sure you want to delete this journal? This will remove all associated entries and cannot be undone.')) {
+            await removeJournal(journalId);
+        }
+    }
 </script>
 
 {#if journals.length === 0}
@@ -27,10 +23,10 @@
 				class="bg-brown-900 shadow-md rounded-lg overflow-hidden border border-black"
 				transition:fade={{ duration: 300 }}
 			>
-				<div class="p-4 border-b flex justify-between items-center">
+				<div class="p-4 flex justify-between items-center border-b border-black">
 					<a href={`/journal/${journal.journal_id}`} class="block">
 						<div>
-							<h1 class="text-2xl font-semibold text-gray-800">{journal.title}</h1>
+							<h1 class="text-3xl font-semibold text-gray-800">{journal.title}</h1>
 							<p class="text-sm text-gray-600">{journal.description}</p>
 							<!-- <p class="text-sm text-gray-500">Journal ID: {journal.journal_id}</p> -->
 						</div>

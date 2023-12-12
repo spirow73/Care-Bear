@@ -59,7 +59,7 @@
     }
 </script>
 
-<div class="max-w-screen-md mx-auto mt-10 p-6 rounded-lg bg-white shadow-lg dark:bg-gray-800">
+<div class="max-w-screen-md mx-auto mt-10 p-6 rounded-lg bg-orange-200 shadow-lg dark:bg-gray-800">
     <h1 class="text-2xl font-bold mb-4 text-center dark:text-white">User Profile</h1>
     {#if userProfile}
         <div class="mb-6">
