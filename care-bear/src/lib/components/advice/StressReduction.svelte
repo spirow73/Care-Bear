@@ -1,4 +1,12 @@
 <script>
+import { onMount, setContext } from 'svelte';
+import { page } from '$app/stores';
+
+let stressorType = '';
+  let adviceToShow = null;
+  let relatedAdvice = [];
+  let active = null;
+
     const stressManagementTechniques = [
         {
       title: 'Deep Breathing and Relaxation Techniques',
@@ -61,21 +69,125 @@
       description: `If stress becomes overwhelming or chronic, seek help from a mental health professional. Therapists can provide effective strategies and support tailored to your situation. \n
             - **Recognizing the Need**: Don’t hesitate to seek help if stress feels unmanageable or persists despite your efforts. \n
             - **Therapeutic Support**: Therapists offer a safe space to explore stressors, coping strategies, and provide tools to manage stress effectively.`,
-    }
+    },
+    {
+    stressorType: 'Problem-Focused Coping Preference',
+    title: 'Strategic Planning and Goal Setting',
+    description: 'Break down stressors into manageable tasks. Create a structured plan with clear, achievable goals.'
+  },
+  {
+    stressorType: 'Problem-Focused Coping Preference',
+    title: 'Seeking Expert Advice or Mentorship',
+    description: 'Consult individuals experienced in handling similar stressors for valuable insights and guidance.'
+  },
+  {
+    stressorType: 'Problem-Focused Coping Preference',
+    title: 'Utilizing Problem-Solving Tools and Resources',
+    description: 'Utilize available resources such as books or courses to acquire knowledge and skills for direct problem-solving.'
+  },
+  {
+    stressorType: 'Emotion-Focused Coping Preference',
+    title: 'Mindfulness and Breathing Exercises',
+    description: 'Practice mindfulness techniques like meditation or deep breathing for emotional awareness and self-regulation.'
+  },
+  {
+    stressorType: 'Emotion-Focused Coping Preference',
+    title: 'Journaling for Emotional Expression',
+    description: 'Express emotions through journaling to better understand and manage feelings.'
+  },
+  {
+    stressorType: 'Emotion-Focused Coping Preference',
+    title: 'Therapeutic Self-Care Activities',
+    description: 'Engage in self-care activities like calming baths or nature walks to promote emotional well-being.'
+  },
+  {
+    stressorType: 'Social Support-Centered Coping Style',
+    title: 'Open Communication and Active Listening',
+    description: 'Share stressors openly while actively listening to trusted individuals for mutual support.'
+  },
+  {
+    stressorType: 'Social Support-Centered Coping Style',
+    title: 'Participation in Support Groups or Communities',
+    description: 'Join support groups for guidance, shared experiences, and emotional support.'
+  },
+  {
+    stressorType: 'Social Support-Centered Coping Style',
+    title: 'Building Strong Relationships',
+    description: 'Invest in nurturing relationships to establish a supportive network during stressful times.'
+  },
+  {
+    stressorType: 'Avoidance Coping Style',
+    title: 'Gradual Exposure and Desensitization',
+    description: 'Slowly confront stressors in controlled doses to build tolerance and reduce avoidance behaviors.'
+  },
+  {
+    stressorType: 'Avoidance Coping Style',
+    title: 'Mindful Distraction Techniques',
+    description: 'Engage in hobbies or activities to redirect attention from stressors without avoidance.'
+  },
+  {
+    stressorType: 'Avoidance Coping Style',
+    title: 'Cognitive Behavioral Techniques',
+    description: 'Learn cognitive techniques to challenge avoidance behaviors and modify thought patterns.'
+  },
+  {
+    stressorType: 'Adaptive Coping Style',
+    title: 'Flexibility in Approach and Strategy',
+    description: 'Adapt coping strategies based on stressor assessment—problem-solving or emotion regulation as needed.'
+  },
+  {
+    stressorType: 'Adaptive Coping Style',
+    title: 'Learning from Experience and Adjustment',
+    description: 'Evaluate coping methods based on experiences, embracing new techniques for stress management.'
+  },
+  {
+    stressorType: 'Adaptive Coping Style',
+    title: 'Mindfulness Integration in Coping',
+    description: 'Incorporate mindfulness practices to enhance adaptability in balancing problem-solving and emotion regulation.'
+  },
+  {
+    stressorType: 'Reactive Coping Style',
+    title: 'Immediate Stress Reduction Techniques',
+    description: 'Practice relaxation techniques for immediate stress relief during overwhelming situations.'
+  },
+  {
+    stressorType: 'Reactive Coping Style',
+    title: 'Structured Support Systems and Professional Help',
+    description: 'Seek professional guidance to create structured plans for managing stress and handling intense emotional reactions.'
+  },
+  {
+    stressorType: 'Reactive Coping Style',
+    title: 'Crisis Management Planning',
+    description: 'Develop a crisis management plan with professionals to navigate highly stressful situations effectively.'
+  }
   ];
 
-  function formatDescription(description) {
+ // Function to format description with bold text
+ function formatDescription(description) {
     const boldRegex = /\*\*(.*?)\*\*/g;
     return description.split('\n').map((line) => {
       return line.replace(boldRegex, '<strong>$1</strong>');
     }).join('<br>');
   }
-  
-  let active = null;
 
-  function toggleActive(index) {
-    active === index ? (active = null) : (active = index);
-  }
+  onMount(() => {
+    const params = new URLSearchParams(location.search);
+    stressorType = params.get('stressor') || '';
+
+    // Find advice based on stressor type
+    adviceToShow = stressManagementTechniques.find(advice => advice.stressorType === stressorType);
+
+    if (adviceToShow) {
+      // Filter all advice related to the same stressor type except the displayed one
+      relatedAdvice = stressManagementTechniques.filter(advice => advice.stressorType === stressorType && advice.title !== adviceToShow.title);
+    } else {
+      // If no advice found, display an error message
+      adviceToShow = {
+        title: 'Advice Not Found',
+        description: 'There was an issue finding advice for this stressor type.',
+      };
+    }
+  });
   </script>
   
   <style>
@@ -99,20 +211,45 @@
       @apply font-bold;
     }
   </style>
-  
+
+{#if stressorType} <!-- Conditionally render based on whether stressorType exists -->
   <div class="flex items-center justify-center min-h-screen">
     <div class="max-w-lg p-6 bg-white shadow-lg rounded-lg">
-      <h1 class="text-3xl font-bold mb-8 text-center">Stress Reduction Advice</h1>
-  
-      <div class="space-y-6">
-        {#each stressManagementTechniques as advice, index (advice.title)}
-          <div class="{`card ${active === index && 'active'}`}" on:click={() => toggleActive(index)}>
+      <h1 class="text-3xl font-bold mb-8 text-center">Personalized Advice for {stressorType} </h1>
+      {#if adviceToShow}
+        <div class="card">
+          <h2 class="title">{adviceToShow.title}</h2>
+          <p class="description" style="white-space: pre-line">{@html formatDescription(adviceToShow.description)}</p>
+        </div>
+        {#if relatedAdvice.length > 0}
+          {#each relatedAdvice as related, index (related.title)}
+            <div class="card">
+              <h2 class="title">{related.title}</h2>
+              <p class="description" style="white-space: pre-line">{@html formatDescription(related.description)}</p>
+            </div>
+          {/each}
+        {/if}
+      {:else}
+        <div id="error-message" class="text-red-500">Advice not found</div>
+      {/if}
+    </div>
+  </div>
+{/if}
+
+<div class="flex items-center justify-center min-h-screen">
+  <div class="max-w-lg p-6 bg-white shadow-lg rounded-lg">
+    <h1 class="text-3xl font-bold mb-8 text-center">Stress Reduction Advice</h1>
+    <div class="space-y-6">
+      {#each stressManagementTechniques as advice, index (advice.title)}
+        {#if !advice.stressorType} <!-- This line checks if the advice is not connected to any stressor type -->
+          <div class="card" on:click={() => toggleActive(index)}>
             <h2 class="title">{advice.title}</h2>
             {#if active === index}
               <p class="description" style="white-space: pre-line">{@html formatDescription(advice.description)}</p>
             {/if}
           </div>
-        {/each}
-      </div>
+        {/if}
+      {/each}
     </div>
   </div>
+</div>

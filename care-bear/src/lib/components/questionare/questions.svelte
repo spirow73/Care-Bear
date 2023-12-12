@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation'
 
 	let responses = {};
 	const totalQuestions = 20;
@@ -108,40 +109,50 @@
 
 		// needs to be edited, those are random
 		if (agreeCount >= 16) {
-        stressorType = {
-            title: 'Problem-Focused Coping Preference',
-            explanation: 'Your inclination towards seeking support and structured planning indicates a preference for problem-focused coping strategies. You tend to tackle stressors by directly addressing the problem and seeking practical solutions.'
-        };
-    } else if (agreeCount >= 12 && disagreeCount < 6) {
-        stressorType = {
-            title: 'Mixed Coping Strategies',
-            explanation: 'Your tendency to seek social support and employ structured plans suggests a mixed approach to coping strategies. You may use both problem-focused and emotion-focused coping methods to manage stress.'
-        };
-    } else if (agreeCount >= 8 && disagreeCount < 10) {
-        stressorType = {
-            title: 'Flexible Coping Style',
-            explanation: 'You exhibit a flexible approach to stress, adapting coping strategies based on the situation. Your adaptability allows for a varied use of coping methods in response to stressors.'
-        };
-    } else {
-        stressorType = {
-            title: 'Emotion-Focused Coping Preference',
-            explanation: 'Your reliance on solitude and adaptability suggests a preference for emotion-focused coping strategies. You may prioritize managing emotions over directly addressing stressors.'
-        };
-    }
+            stressorType = {
+                title: 'Problem-Focused Coping Preference',
+                traits: 'Strong inclination towards seeking support from others and meticulous planning during stress.',
+                explanation: 'Tendency to tackle stressors directly by addressing the problem head-on and seeking practical solutions. Support from others and structured planning are primary coping mechanisms.'
+            };
+        } else if (disagreeCount >= 16) {
+            stressorType = {
+                title: 'Emotion-Focused Coping Preference',
+                traits: 'Reliance on solitude and adaptability during stress.',
+                explanation: 'Prioritizing managing emotions over directly addressing stressors. Solitude and adaptability are primary coping mechanisms, emphasizing emotional regulation and internal processing.'
+            };
+        } else if (agreeCount >= 12 && disagreeCount < 6) {
+            stressorType = {
+                title: 'Social Support-Centered Coping Style',
+                traits: 'Preference for seeking support from others and expressing stress openly.',
+                explanation: 'Reliance on social networks for stress relief and expressing stress openly for emotional support and problem-solving.'
+            };
+        } else if (disagreeCount >= 12 && agreeCount < 6) {
+            stressorType = {
+                title: 'Avoidance Coping Style',
+                traits: 'Tendency to retreat inward, seek distractions, and avoid confronting stress directly.',
+                explanation: 'Coping through distraction, avoiding direct confrontation of stressors, and seeking escape or relief from stress.'
+            };
+        } else if (agreeCount >= 8 && disagreeCount < 10) {
+            stressorType = {
+                title: 'Adaptive Coping Style',
+                traits: 'Flexibility in coping strategies, balancing problem-solving and emotional management.',
+                explanation: 'Demonstrates adaptability by using a mix of problem-focused and emotion-focused strategies based on the nature of stressors.'
+            };
+        } else {
+            stressorType = {
+                title: 'Reactive Coping Style',
+                traits: 'Overwhelmed by stress, less structured approach, and heightened emotional responses.',
+                explanation: 'Difficulty in maintaining structured plans, feeling overwhelmed by stress, and displaying heightened emotional reactions.'
+            };
+        }
     displayStressor(stressorType);
 }
 
 	//logic for displaying (messy)
 	function displayStressor(stressor) {
-		const stressorElement = document.getElementById('stressor');
-		stressorElement.innerHTML = `
-      <div class="bg-amber-50 rounded-md shadow-md p-6 max-w-md items-center justify-center">
-        <h2 class="text-2xl font-bold mb-4">${stressor.title}</h2>
-        <p class="text-lg">${stressor.explanation}</p>
-      </div>
-    `;
-		stressorElement.classList.remove('hidden'); // Show stressor info after calculation
-	}
+    const stressorType = encodeURIComponent(stressor.title); // Encode stressor type for URL
+    goto(`/advice?stressor=${stressorType}`) ;
+}
 
 	function showPopup() {
 		const popup = document.getElementById('popup');
