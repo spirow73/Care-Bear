@@ -1,20 +1,32 @@
-import { supabase } from './supabaseClient';
 
 // Fetch all tasks from the database
-export async function fetchTasks() {
-	try {
-		const { data, error } = await supabase.from('task').select('*');
-		if (error) {
-			throw new Error(error.message);
-		}
-		return data.map((task) => ({
-			...task,
-			deadline: new Date(task.deadline)
-		}));
-	} catch (error) {
-		console.error('Error fetching tasks:', error);
-		throw error;
-	}
+import { supabase } from './supabaseClient';
+
+// Fetch tasks with optional filters and sorting
+export async function fetchTasks({ filter = {}, sort = 'deadline', ascending = true } = {}) {
+    try {
+        let query = supabase.from('task').select('*');
+
+        // Apply filtering
+        if (filter.isCompleted !== undefined) {
+            query = query.eq('isCompleted', filter.isCompleted);
+        }
+
+        // Apply sorting
+        query = query.order(sort, { ascending });
+
+        const { data, error } = await query;
+        if (error) {
+            throw new Error(error.message);
+        }
+        return data.map(task => ({
+            ...task,
+            deadline: new Date(task.deadline) // Ensure deadline is a Date object
+        }));
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        throw error;
+    }
 }
 
 export async function fetchLast3Tasks() {
