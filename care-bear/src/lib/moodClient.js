@@ -11,6 +11,7 @@ export async function fetchLatestMoodEntries(limit) {
 		.from('mood_entry')
 		.select(
 			`
+		timestamp,
         mood_entry_id,
         mood:mood(moodref_id, description)
       `
@@ -24,7 +25,8 @@ export async function fetchLatestMoodEntries(limit) {
 	} else {
 		const latestEntries = data.map((entry) => ({
 			mood_entry_id: entry.mood_entry_id,
-			mood_description: entry.mood ? entry.mood.description : 'No moods registered yet'
+			mood_description: entry.mood ? entry.mood.description : 'No moods registered yet',
+			timestamp: entry.timestamp.toString()
 		}));
 
 		return latestEntries;

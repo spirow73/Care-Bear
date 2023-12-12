@@ -1,11 +1,12 @@
 <script>
     import { onMount } from 'svelte';
+    import { fetchTasks } from '../../taskClient';
     import Task from './Task.svelte';
-    import { fetchTasks } from '../../taskClient'; // Import your fetchTasks function
+ // Import your fetchTasks function
 
     export let title = '';
-    let tasks = []; // Now managed within the component
-    let limit; // Optional: Use if you want to limit the number of tasks displayed
+    export let tasks = []; // Now managed within the component
+    export let limit= null; // Optional: Use if you want to limit the number of tasks displayed
 
     let sortOption = 'deadline'; // Default sort option
     let filterOption = 'all'; // Default filter option
@@ -52,7 +53,8 @@
         </select>
     </div>
 
-    {#each tasks as task (task.task_id)}
+    {#if limit}
+    {#each tasks.slice().reverse().slice(0, limit) as task}
         <Task
             title={task.title}
             description={task.description}
@@ -61,4 +63,15 @@
             task_id={task.task_id}
         />
     {/each}
+{:else}
+    {#each tasks.slice().reverse() as task}
+        <Task
+            title={task.title}
+            description={task.description}
+            deadline={task.deadline}
+            isCompleted={task.isCompleted}
+            task_id={task.task_id}
+        />
+    {/each}
+{/if}
 </div>
