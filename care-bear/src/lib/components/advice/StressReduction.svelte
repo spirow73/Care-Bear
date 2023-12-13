@@ -162,6 +162,11 @@ let stressorType = '';
   }
   ];
 
+  function toggleActive(index) {
+    active = active === index ? null : index;
+  }
+
+
  // Function to format description with bold text
  function formatDescription(description) {
     const boldRegex = /\*\*(.*?)\*\*/g;
