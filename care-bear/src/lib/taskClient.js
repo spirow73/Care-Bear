@@ -3,6 +3,7 @@
 import { supabase } from './supabaseClient';
 
 // Fetch tasks with optional filters and sorting
+// Fetch tasks with optional filters and sorting
 export async function fetchTasks({ filter = {}, sort = 'deadline', ascending = true } = {}) {
     try {
         let query = supabase.from('task').select('*');
@@ -13,7 +14,12 @@ export async function fetchTasks({ filter = {}, sort = 'deadline', ascending = t
         }
 
         // Apply sorting
-        query = query.order(sort, { ascending });
+        // Note: Ensure your database has a field like 'created_at' for task creation time
+        if (sort === 'created') {
+            query = query.order('created_at', { ascending });
+        } else {
+            query = query.order(sort, { ascending });
+        }
 
         const { data, error } = await query;
         if (error) {
@@ -28,6 +34,7 @@ export async function fetchTasks({ filter = {}, sort = 'deadline', ascending = t
         throw error;
     }
 }
+
 
 export async function fetchLast3Tasks() {
 	try {

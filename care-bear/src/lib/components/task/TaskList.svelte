@@ -21,6 +21,8 @@
             filter.isCompleted = filterOption === 'completed';
         }
 
+
+        let ascending = true; // Or implement logic to toggle ascending/descending
         fetchTasks({ filter, sort: sortOption })
             .then(fetchedTasks => {
                 tasks = fetchedTasks;
@@ -48,9 +50,9 @@
         </select>
         <select bind:value={sortOption}>
             <option value="deadline">Sort by Deadline</option>
-            <!-- Remove or update 'Sort by Creation Date' based on your actual sort options -->
+            <option value="created">Sort by Creation Date</option>
         </select>
-    </div>
+     </div>
 
     {#each tasks as task (task.task_id)}
         <Task
