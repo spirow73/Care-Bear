@@ -18,34 +18,30 @@
 	});
 
 	// Function to load tasks based on the current filter and sort options
-	function loadTasks() {
-		let filter = {};
-		if (filterOption !== 'all') {
-			filter.isCompleted = filterOption === 'completed';
-		}
+    async function loadTasks() {
+        let filter = {};
+        if (filterOption !== 'all') {
+            filter.isCompleted = filterOption === 'completed';
+        }
 
-		// ???
-		fetchTasks({ filter, sort: sortOption })
-			.then((fetchedTasks) => {
-				tasks = fetchedTasks;
-			})
-			.catch((error) => {
-				console.error('Error fetching tasks:', error);
-			});
-	}
+        try {
+            const fetchedTasks = await fetchTasks({ filter, sort: sortOption });
+            tasks = fetchedTasks;
+        } catch (error) {
+            console.error('Error fetching tasks:', error);
+        }
+    }
 
-	// ???
-	// Watch for changes in filter and sort options and reload tasks
-	$: if (filterOption || sortOption) {
-		loadTasks();
-	}
+    $: if (filterOption || sortOption) {
+        loadTasks(); // Reload tasks on filter or sort option change
+    }
 </script>
-<div>
-{#if showFilters}
-<h1 class="text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100">{title}</h1>
 
-<div class="mb-4 flex flex-wrap gap-2 justify-center">
-        <select bind:value={filterOption} class="bg-pink-100 border border-beige-300 rounded-md py-2 px-4 leading-tight text-center focus:outline-none focus:bg-beige-200 focus:border-beige-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+<div>
+    {#if showFilters}
+        <h1 class="text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100">{title}</h1>
+        <div class="mb-4 flex flex-wrap gap-2 justify-center">
+               <select bind:value={filterOption} class="bg-pink-100 border border-beige-300 rounded-md py-2 px-4 leading-tight text-center focus:outline-none focus:bg-beige-200 focus:border-beige-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <option value="all">All Tasks</option>
             <option value="completed">Completed</option>
             <option value="pending">Pending</option>
@@ -54,9 +50,9 @@
         <select bind:value={sortOption} class="bg-pink-100 border border-beige-300 rounded-md py-2 px-4 leading-tight text-center focus:outline-none focus:bg-beige-200 focus:border-beige-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <option value="deadline">Sort by Deadline</option>
         </select>
-    </div>
+ </div>
     {/if}
-
+  
 
 
 
