@@ -49,6 +49,6 @@
 	</div>
 
 	<div>
-		<TaskList tasks={$taskStore} />
+		<TaskList tasks={$taskStore} showFilters={true} />
 	</div>
 </body>

@@ -41,9 +41,7 @@
 		<!-- First Image (Bear) -->
 		<div class="object-none object-top">
 			<img class="max-w-full max-h-full" src={bear} alt={bear} />
-			<!-- <img class="max-w-full max-h-full" src={bearOff} alt={bearOff}/> -->
 		</div>
-	
 
 		<!-- Second Image (Off) -->
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -54,19 +52,22 @@
 	</div>
 
 	<div class="container mx-auto p-4">
-		<div class="flex flex-col md:flex-row gap-8">
-			<div class="flex-1 mx-4">
+		<div class="flex flex-col md:flex-row gap-4">
+			<div class="flex-1">
 				<h2 class="text-2xl font-bold mb-4 text-center">Your last tasks</h2>
+				<div>
 					<TaskList tasks={$taskstore} limit="3" />
+				</div>
 			</div>
 
-			<div class="flex-1 mx-4">
-				<h2 class="text-2xl font-bold mb-4 text-center">Last moods</h2>
+			<div class="flex-1 text-center">
+				<h2 class="text-2xl font-bold mb-4">Last moods</h2>
+				<div class="mr-4 mb-4 mt-10">
 					<Mood />
+				</div>
 			</div>
 		</div>
 	</div>
-	
 </body>
 
 <style>

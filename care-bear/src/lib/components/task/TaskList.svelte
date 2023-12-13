@@ -5,8 +5,9 @@
 
 
 	export const title = '';
-	export let tasks = []; // Now managed within the component
-	export let limit = null; // Optional: Use if you want to limit the number of tasks displayed
+    export let showFilters = false; // New prop to control filter visibility
+    export let tasks = [];
+    export let limit = null;
 
 	let sortOption = 'deadline'; // Default sort option
 	let filterOption = 'all'; // Default filter option
@@ -39,11 +40,11 @@
 		loadTasks();
 	}
 </script>
-
 <div>
-    <h1 class="text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100">{title}</h1>
+{#if showFilters}
+<h1 class="text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100">{title}</h1>
 
-    <div class="mb-4 flex flex-wrap gap-2 justify-center">
+<div class="mb-4 flex flex-wrap gap-2 justify-center">
         <select bind:value={filterOption} class="bg-pink-100 border border-beige-300 rounded-md py-2 px-4 leading-tight text-center focus:outline-none focus:bg-beige-200 focus:border-beige-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <option value="all">All Tasks</option>
             <option value="completed">Completed</option>
@@ -54,8 +55,7 @@
             <option value="deadline">Sort by Deadline</option>
         </select>
     </div>
-
-
+    {/if}
 
 
 
