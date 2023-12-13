@@ -1,14 +1,14 @@
 <script>
 	import AddJournalForm from '$lib/components/journal/AddJournalForm.svelte';
 	import JournalList from '$lib/components/journal/JournalList.svelte';
-	import { journals, loadJournals } from '$lib/journalStore.js';
+	import journalStore from '$lib/journalStore';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
 	let showAddJournalForm = false;
 
 	onMount(async () => {
-		await loadJournals();
+		await journalStore.loadJournals();
 	});
 
 	function toggleAddJournalForm() {
@@ -48,4 +48,4 @@
 </div>
 
 <!-- Lista de journals -->
-<JournalList journals={$journals} numOfEntries={3} />
+<JournalList journals={$journalStore} numOfEntries={3} />

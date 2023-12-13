@@ -1,18 +1,20 @@
 <script>
 	import AddJournalEntry from '$lib/components/journal/AddJournalEntry.svelte';
 	import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
-	import { getJournalEntries } from '$lib/journalStore.js';
+	import journalStore from '$lib/journalStore';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
+	onMount(async () => {
+		await journalStore.loadJournals();
+	});
+
 	export let data;
 
-	let entries = [];
 	let showAddEntryForm = false;
 
-	onMount(async () => {
-		entries = await getJournalEntries(Number(data.id));
-	});
+	// Usar una asignación reactiva para mantener actualizadas las entradas
+	$: entries = $journalStore.find((j) => j.journal_id === Number(data.id))?.journal_entry || [];
 
 	function toggleAddEntryForm() {
 		showAddEntryForm = !showAddEntryForm;

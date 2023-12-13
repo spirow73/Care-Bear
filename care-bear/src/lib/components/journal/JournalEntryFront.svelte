@@ -1,14 +1,10 @@
 <script>
-	import { deleteJournalEntryInStore } from '$lib/journalStore.js';
-
-
 	export let entry;
 	let max_entries = 100;
 
 	async function handleDelete() {
 		if (confirm('Are you sure you want to delete this entry?')) {
-			await deleteJournalEntryInStore(entry.journal_entry_id);
-			// Agrega lógica adicional si necesitas actualizar el UI tras eliminar la entrada
+			await entry.removeJournalEntry(entry.journal_entry_id);
 		}
 	}
 </script>

@@ -1,6 +1,4 @@
 <script>
-	import { updateJournalEntryInStore } from '$lib/journalStore';
-
 	export let entry;
 	export let onSaveContent;
 	export let onCancelEdit;
@@ -10,7 +8,7 @@
 	async function save() {
 		try {
 			// Actualizar la entrada en la base de datos y en el store
-			await updateJournalEntryInStore(entry.journal_entry_id, { content: newContent });
+			await entry.updateJournalEntry({ content: newContent });
 
 			// Llamar al callback de onSaveContent para notificar al componente padre
 			onSaveContent();
