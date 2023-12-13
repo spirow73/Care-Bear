@@ -9,10 +9,9 @@
 	import theme from '../../../stores/themeStore.js';
 
 
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import MoodAdvisor from './MoodAdviser.svelte';
-	import { onMount } from 'svelte';
 
 let isMobile = false;
 
@@ -146,11 +145,14 @@ onMount(() => {
         <p class="mt-4 text-center lg:hidden">You selected mood: <b>{selectedMood}</b></p>
         <div class="flex justify-center lg:hidden">
             <button
-                class="mt-2 bg-orange-200 text-black p-2 rounded hover:text-white"
+                class="mt-2 bg-button-1 text-white p-2 rounded hover:bg-button-2"
                 on:click={() =>
                     confirmMood(Object.keys(moods).find((key) => moods[key].description === selectedMood))}
                 >Confirm Mood</button
             >
         </div>
+		{#if moodConfirmed}
+		<MoodAdvisor {selectedMood} />
+	  {/if}
     {/if}
 </main>
