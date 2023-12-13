@@ -65,6 +65,17 @@ export function getTasksForMonth(year, month) {
 	return eventsByDay;
 }
 
+export function getTasksForDay(year, month, day) {
+	const tasksForDay = get(tasks).filter((task) => {
+		const taskDate = new Date(task.deadline);
+		return (
+			taskDate.getFullYear() === year && taskDate.getMonth() === month && taskDate.getDate() === day
+		);
+	});
+
+	return tasksForDay;
+}
+
 export async function toggleTaskCompletion(task_id, isCompleted) {
 	try {
 		const updatedTask = await updateTask(task_id, { isCompleted: !isCompleted });
@@ -86,5 +97,6 @@ export default {
 	addDbTask,
 	updateDbTask,
 	removeDbTask,
-	getTasksForMonth
+	getTasksForMonth,
+	getTasksForDay
 };

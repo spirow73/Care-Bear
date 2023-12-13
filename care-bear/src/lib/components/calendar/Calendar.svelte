@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import { getDaysInMonth, getBlankDays } from './Calendar.js';
-
 	import WeekDay from './WeekDay.svelte';
 	import CalendarDay from './CalendarDay.svelte';
 	import CalendarHeader from './CalendarHeader.svelte';
@@ -10,50 +9,31 @@
 	import taskStore from '$lib/taskStore';
 
 	let selectedDate = new Date();
-	let daysInMonth = [];
-	let blankDays = [];
-
-	let currentEventDate; // Variable para almacenar la fecha del evento actual
-
+	const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+	let currentEventDate;
 	let selectedTasks = [];
+	let isEventModalOpen = false;
 
 	onMount(async () => {
 		await taskStore.loadDbTasks();
-		updateCalendar();
 	});
 
-	const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-	let isEventModalOpen = false;
-
-	async function updateCalendar() {
-		let year = selectedDate.getFullYear();
-		let month = selectedDate.getMonth();
-
-		// Obtén los eventos para el mes actual
-		let eventsByDay = taskStore.getTasksForMonth(year, month);
-
-		// Construye un nuevo array para daysInMonth que contenga el número del día y los eventos
-		daysInMonth = getDaysInMonth(year, month).map((day) => {
-			return {
-				number: day,
-				events: eventsByDay[day] || [] // Asegúrate de que siempre haya un array, incluso si es vacío
-			};
-		});
-		blankDays = getBlankDays(year, month);
-	}
+	// Reactivas
+	$: year = selectedDate.getFullYear();
+	$: month = selectedDate.getMonth();
+	$: daysInMonth = getDaysInMonth(year, month).map((day) => ({
+		number: day,
+		events: taskStore.getTasksForDay(year, month, day) || []
+	}));
+	$: blankDays = getBlankDays(year, month);
 
 	function changeMonth(monthChange) {
-		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + monthChange, 1);
-		updateCalendar();
+		selectedDate = new Date(year, month + monthChange, 1);
 	}
 
 	function openEventModal(day, tasksOfDay) {
-		currentEventDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day);
-		console.log(currentEventDate);
-		selectedTasks = tasksOfDay; // Establecer las tareas seleccionadas
-		console.log(selectedTasks);
-
+		currentEventDate = new Date(year, month, day);
+		selectedTasks = tasksOfDay;
 		isEventModalOpen = true;
 	}
 
