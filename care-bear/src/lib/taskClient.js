@@ -17,6 +17,7 @@ export async function fetchTasks() {
 	}
 }
 
+
 export async function fetchLast3Tasks() {
 	try {
 		const { data, error } = await supabase

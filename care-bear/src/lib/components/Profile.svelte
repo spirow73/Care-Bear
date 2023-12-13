@@ -5,6 +5,10 @@
     let userProfile = { theme: 'light' }; // Default theme
     let personalGoals = '';
     let privacySettings = { shareData: true };
+    let reminderSettings = {
+        enableReminders: false,
+        reminderFrequency: 'daily', // 'daily', 'weekly', or 'monthly'
+    };
 
     onMount(async () => {
         const user = supabase.auth.user();
@@ -89,12 +93,28 @@
                 <span class="ml-2">Share data for research purposes</span>
             </label>
         </div>
-
+        <!-- Reminder Settings -->
+        <div class="mb-6">
+            <label class="flex items-center dark:text-gray-300">
+                <input type="checkbox" bind:checked={reminderSettings.enableReminders} on:change={toggleReminders} class="rounded border-gray-300 h-5 w-5 dark:border-gray-600 dark:bg-gray-700" />
+                <span class="ml-2">Enable Reminders</span>
+            </label>
+        
+            <div class="mt-4">
+                <label for="reminderFrequency" class="font-bold mb-2 block dark:text-gray-300">Reminder Frequency:</label>
+                <select id="reminderFrequency" bind:value={reminderSettings.reminderFrequency} on:change={changeReminderFrequency} class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+            </div>
+        </div>
         <!-- Account Management -->
         <div class="flex justify-start space-x-2">
             <button on:click={changePassword} class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">Change Password</button>
             <button on:click={deleteAccount} class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">Delete Account</button>
         </div>
+
 
         <!-- Update Profile Form -->
         <form on:submit|preventDefault={updateProfile} class="mt-6">
