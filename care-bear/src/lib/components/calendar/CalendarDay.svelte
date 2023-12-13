@@ -15,11 +15,9 @@
 		}
 	}
 
-	const countTasks = (isCompleted) =>
-		eventsForDay.filter((event) => event.isCompleted === isCompleted).length;
-
-	$: completedTasks = countTasks(true);
-	$: notCompletedTasks = countTasks(false);
+	// Calcula las tareas de forma reactiva
+	$: completedTasks = eventsForDay.filter((event) => event.isCompleted).length;
+	$: notCompletedTasks = eventsForDay.filter((event) => !event.isCompleted).length;
 	$: numberOfTasks = eventsForDay.length;
 </script>
 
