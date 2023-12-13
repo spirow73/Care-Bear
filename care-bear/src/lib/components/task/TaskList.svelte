@@ -4,7 +4,7 @@
 	import Task from './Task.svelte';
 	// Import your fetchTasks function
 
-	export let title = '';
+	export const title = '';
 	export let tasks = []; // Now managed within the component
 	export let limit = null; // Optional: Use if you want to limit the number of tasks displayed
 
@@ -40,7 +40,7 @@
 	// }
 </script>
 
-<div class="m-4 p-3">
+<div>
 	<!-- <h1 class="text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100">{title}</h1>
 
 	<div class="mb-4">

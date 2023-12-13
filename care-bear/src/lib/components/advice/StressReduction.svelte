@@ -198,6 +198,7 @@ let stressorType = '';
   <style>
     .card {
       @apply border border-gray-300 p-4 rounded-lg;
+      cursor: pointer;
     }
   
     .card.active {
@@ -222,15 +223,19 @@ let stressorType = '';
     <div class="max-w-lg p-6 bg-white shadow-lg rounded-lg">
       <h1 class="text-3xl font-bold mb-8 text-center">Personalized Advice for {stressorType} </h1>
       {#if adviceToShow}
-        <div class="card">
+        <div class="card" on:click={() => toggleActive('personalized')}>
           <h2 class="title">{adviceToShow.title}</h2>
-          <p class="description" style="white-space: pre-line">{@html formatDescription(adviceToShow.description)}</p>
+          {#if active === 'personalized'}
+            <p class="description" style="white-space: pre-line">{@html formatDescription(adviceToShow.description)}</p>
+          {/if}
         </div>
         {#if relatedAdvice.length > 0}
           {#each relatedAdvice as related, index (related.title)}
-            <div class="card">
+            <div class="card" on:click={() => toggleActive(index)}>
               <h2 class="title">{related.title}</h2>
-              <p class="description" style="white-space: pre-line">{@html formatDescription(related.description)}</p>
+              {#if active === index}
+                <p class="description" style="white-space: pre-line">{@html formatDescription(related.description)}</p>
+              {/if}
             </div>
           {/each}
         {/if}

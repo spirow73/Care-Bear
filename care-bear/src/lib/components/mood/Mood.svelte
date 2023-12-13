@@ -47,7 +47,7 @@
   <a href="/mood">
 	{#if moodEntries.length > 0}
 	  {#each moodEntries as entry (entry.mood_entry_id)}
-		<div class="flex items-center mb-2 bg-brown-900 shadow-md p-4 rounded-lg border border-black hover:bg-orange-200">
+		<div class="flex items-center text-center mb-2 bg-brown-900 shadow-md p-4 rounded-lg border border-black hover:bg-orange-200">
 		  <div class="mr-4">
 			<p style="font-size: 25px;">{getEmojiForMood(entry.mood_description)}</p>
 		  </div>
