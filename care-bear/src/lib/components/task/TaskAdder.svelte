@@ -8,7 +8,7 @@
 		await loadDbTasks();
 	});
 
-	export let title = 'Add Task';
+	export const title = 'Add Task';
 	export let calendarDate = null;
 
 	$: formattedDeadline = new Date(calendarDate).toLocaleDateString('en-EN', {
@@ -57,17 +57,14 @@
 			time: ''
 		};
 
-		toast.success('Task added!',{
+		toast.success('Task added!', {
 			style: 'background: #84B59F'
 		});
 	}
 </script>
 
-<Toaster></Toaster>
-<form
-	on:submit|preventDefault={addTask}
-	class="p-4 bg-orange-200 shadow rounded-lg m-4"
->
+<Toaster />
+<form on:submit|preventDefault={addTask} class="p-4 bg-orange-200 shadow rounded-lg m-4">
 	<!-- Heading -->
 	<h3 class="text-2xl font-semibold mb-4">Create a new task</h3>
 
