@@ -1,3 +1,5 @@
 node_modules
 /care-bear/node_modules
 /care-bear/ambient.d.ts
+/care-bear/.svelte-kit/generated/client/app.js
+/care-bear/.svelte-kit/types/route_meta_data.json
