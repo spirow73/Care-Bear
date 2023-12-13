@@ -1,9 +1,9 @@
 <script>
-	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation'
+ import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 
-	let responses = {};
-	const totalQuestions = 20;
+    const responses = {};
+    const totalQuestions = 20;
 	const questions = [
 		{
 			id: 'q1',
