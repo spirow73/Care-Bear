@@ -43,19 +43,16 @@ export const dictionary = {
 		"/journal/[id]": [10],
 		"/moodActivities": [22],
 		"/mood": [11],
-		"/mood/Tired": [12],
-		"/mood/breathingExercise": [13],
-		"/mood/depressed": [14],
-		"/mood/happy": [15],
-		"/mood/history": [16],
-		"/mood/meditation": [17],
-		"/mood/sad": [18],
-		"/mood/stressed": [19],
-		"/mood/upset": [20],
-		"/mood/yoga": [21],
-		"/profile": [23],
-		"/task": [24],
-		"/tracker": [25]
+		"/mood/Tired": [16],
+		"/mood/breathingExercise": [12],
+		"/mood/history": [13],
+		"/mood/meditation": [14],
+		"/mood/sad": [15],
+		"/mood/upset": [17],
+		"/mood/yoga": [18],
+		"/profile": [20],
+		"/task": [21],
+		"/tracker": [22]
 	};
 
 export const hooks = {
