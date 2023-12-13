@@ -28,12 +28,13 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5); /* Set the opacity to 50% */
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5); /* Opacidad del 50% */
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding: 20px; /* Margen alrededor del modal */
 	}
 
 	.modal-content {
@@ -41,11 +42,14 @@
 		padding: 2rem;
 		border-radius: 5px;
 		overflow-y: auto; /* Habilitar scroll */
+		max-width: 100%; /* Ancho máximo del 100% */
+		max-height: 100%; /* Altura máxima del 100% */
+		box-sizing: border-box; /* Incluir padding en el ancho/altura total */
 	}
 
 	@media (max-width: 600px) {
 		.modal-content {
-			width: 90%;
+			width: 90%; /* Ajustar el ancho en pantallas pequeñas */
 		}
 	}
 </style>

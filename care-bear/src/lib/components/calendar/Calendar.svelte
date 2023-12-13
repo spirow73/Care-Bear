@@ -18,7 +18,6 @@
 		await taskStore.loadDbTasks();
 	});
 
-	// Reactivas
 	$: year = selectedDate.getFullYear();
 	$: month = selectedDate.getMonth();
 	$: daysInMonth = getDaysInMonth(year, month).map((day) => ({
