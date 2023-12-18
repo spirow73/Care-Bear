@@ -10,17 +10,17 @@
 	const setActivityPage = () => {
 	  const lowerCaseSelectedMood = selectedMood ? selectedMood.toLowerCase() : '';
 	  if (lowerCaseSelectedMood === 'happy') {
-		activityPage = './mood/meditation';
+		activityPage = './mood/happy';
 	  } else if (lowerCaseSelectedMood === 'sad') {
 		activityPage = './mood/sad';
 	  } else if (lowerCaseSelectedMood === 'upset') {
 		activityPage = './mood/upset';
 	  } else if (lowerCaseSelectedMood === 'stressed') {
-		activityPage = './mood/breathingExercise';
+		activityPage = './mood/stressed';
 	  } else if (lowerCaseSelectedMood === 'tired') {
 		activityPage = './mood/Tired';
 	  } else if (lowerCaseSelectedMood === 'depressed') {
-		activityPage = './mood/yoga';
+		activityPage = './mood/depressed';
 	  } else {
 		activityPage = '';
 	  }
