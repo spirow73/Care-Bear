@@ -2,13 +2,26 @@
     import { onMount } from 'svelte';
     import theme from '../../stores/themeStore.js';
 
-    let userProfile = { theme: 'light' }; // Default theme
+    let userProfile = { name: '', email: '', avatarUrl: '/default-avatar.png' };
+    let icons = [
+        { name: 'Elephant', path: 'src/images/elephant.png' },
+        { name: 'Bee', path: 'src/images/bee.png' },
+        { name: 'Whale', path: 'src/images/whale.png' },
+        { name: 'Cat', path: 'src/images/cat.png' },
+        // Add more icon objects here
+    ];
     let personalGoals = '';
     let privacySettings = { shareData: true };
     let reminderSettings = {
         enableReminders: false,
         reminderFrequency: 'daily', // 'daily', 'weekly', or 'monthly'
     };
+
+        // Function to handle icon selection
+        function handleIconSelect(event) {
+        const selectedIcon = icons.find(icon => icon.name === event.target.value);
+        userProfile.avatarUrl = selectedIcon.path;
+    }
 
     onMount(async () => {
         const user = supabase.auth.user();
@@ -63,12 +76,33 @@
     }
 </script>
 
-<div class="max-w-screen-md mx-auto mt-10 p-6 rounded-lg bg-orange-200 shadow-lg dark:bg-gray-800">
-    <h1 class="text-2xl font-bold mb-4 text-center dark:text-white">User Profile</h1>
-    {#if userProfile}
+
+
+
+<div class="max-w-screen-md mx-auto mt-10 rounded-lg bg-orange-200 dark:bg-gray-800 shadow-lg">
+    <div class="p-6">
+        <div class="flex items-center space-x-6 mb-6">
+            <img src={userProfile.avatarUrl} alt="User Avatar" class="h-16 w-16 rounded-full object-cover" />
+            {#if userProfile.name && userProfile.email}
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{userProfile.name}</h1>
+                <p class="text-sm text-gray-600 dark:text-gray-300">{userProfile.email}</p>
+            </div>
+        {/if}
+        
+            
+  
+        </div>
+
+
+             <!-- Icon Selection Dropdown -->
         <div class="mb-6">
-            <p class="font-bold dark:text-gray-300">Name: {userProfile.name}</p>
-            <p class="font-bold dark:text-gray-300">Email: {userProfile.email}</p>
+            <label for="icon-select" class="font-bold mb-2 block dark:text-gray-300">Choose an Icon:</label>
+            <select id="icon-select" on:change={handleIconSelect} class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+                {#each icons as icon}
+                    <option value={icon.name}>{icon.name}</option>
+                {/each}
+            </select>
         </div>
 
         <!-- Customization Options -->
@@ -128,7 +162,8 @@
             </div>
             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">Update Profile</button>
         </form>
-    {/if}
+    
+    </div>
 
 </div>
 
