@@ -9,8 +9,11 @@
 	let darkModeClass = '';
 	$: darkModeClass = $theme === 'dark' ? 'dark' : '';
 
+	let isFormValid = false;
+	$: isFormValid = title.trim() !== '' && description.trim() !== '';
+
 	async function handleSubmit() {
-		if (title.trim() === '') {
+		if (title.trim() === ''|| description.trim() === '') {
 			alert('Please enter a title for the journal.');
 			return;
 		}
@@ -62,8 +65,8 @@
 
 	<div class="flex justify-end">
 		<button
-			type="submit"
-			class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
+			type="submit" disabled={!isFormValid}
+			class={`px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300 ${!isFormValid ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-button-1 text-white hover:bg-button-2'}`}
 		>
 			Add Journal
 		</button>
