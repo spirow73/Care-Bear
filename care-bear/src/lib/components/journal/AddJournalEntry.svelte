@@ -49,7 +49,7 @@
 		class={`w-full p-2 border border-gray-300 rounded-md ${darkModeClass}:bg-gray-700 ${darkModeClass}:border-gray-600 ${darkModeClass}:text-gray-100`}
 		placeholder="Content"
 	/>
-	<div class="flex justify-end"></div>
+	<div class="flex justify-end">
 	<button
 	type ='submit' disabled={!isFormValid}
 		class={`mt-4 px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300 ${darkModeClass}:bg-button-1-dark ${darkModeClass}:hover:bg-button-2-dark ${!isFormValid ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-button-1 text-white hover:bg-button-2'}`}
@@ -58,4 +58,4 @@
 		Add Entry
 	</button>
 </div>
-
+</div>

@@ -4,10 +4,10 @@
 	import TaskList from '$lib/components/task/TaskList.svelte';
 	import taskstore from '$lib/taskStore';
 	import { onMount } from 'svelte';
-	import bear from '../images/bear.png';
-	import bearOff from '../images/bearOff.png';
-	import off from '../images/off.png';
-	import on from '../images/on.png';
+	import bear from '$lib/components/images/bear.png';
+	import bearOff from '$lib/components/images/bearOff.png';
+	import off from '$lib/components/images/off.png';
+	import on from '$lib/components/images/on.png';
 
 	onMount(async () => {
 		await taskstore.loadDbTasks();

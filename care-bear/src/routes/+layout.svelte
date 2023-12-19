@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import '../app.css';
-	import profile from '../images/profile.png';
+	import profile from '$lib/components/images/profile.png';
 	const animations = {
 		enter: (node) => {
 			node.animate(
@@ -165,7 +165,7 @@
   color: white;
 }
 		:global(body) {
-	background-image: url('../images/background.png');
+	background-image: url('$lib/components/images/background.png');
     background-size: cover; /* Adjust the sizing as needed */
     background-repeat: no-repeat;
 	background-attachment: fixed;
