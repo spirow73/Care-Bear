@@ -1,14 +1,30 @@
 <script>
     import { onMount } from 'svelte';
-    import theme from '../../stores/themeStore.js';
+    //import theme from '/../../stores/themeStore.js';
 
-    let userProfile = { theme: 'light' }; // Default theme
-    let personalGoals = '';
+    
+    let userProfile = { name: '', email: '', avatarUrl: '/src/images.elephant.png' };
+    let icons = [
+        { name: 'Elephant', path: 'src/images/elephant.png' },
+        { name: 'Bee', path: 'src/images/bee.png' },
+        { name: 'Whale', path: 'src/images/whale.png' },
+        { name: 'Cat', path: 'src/images/cat.png' },
+        // Add more icon objects here
+    ];
+
+  let personalGoals = '';
     let privacySettings = { shareData: true };
     let reminderSettings = {
         enableReminders: false,
         reminderFrequency: 'daily', // 'daily', 'weekly', or 'monthly'
     };
+    let updateStatus = '';
+    // Function to handle icon selection
+    function handleIconSelect(event) {
+        const selectedIcon = icons.find(icon => icon.name === event.target.value);
+        userProfile.avatarUrl = selectedIcon.path;
+    }
+  
 
     onMount(async () => {
         const user = supabase.auth.user();
@@ -63,13 +79,25 @@
     }
 </script>
 
-<div class="max-w-screen-md mx-auto mt-10 p-6 rounded-lg bg-orange-200 shadow-lg dark:bg-gray-800">
-    <h1 class="text-2xl font-bold mb-4 text-center dark:text-white">User Profile</h1>
-    {#if userProfile}
-        <div class="mb-6">
-            <p class="font-bold dark:text-gray-300">Name: {userProfile.name}</p>
-            <p class="font-bold dark:text-gray-300">Email: {userProfile.email}</p>
+<div class="max-w-screen-md mx-auto mt-10 rounded-lg bg-orange-200 dark:bg-gray-800 shadow-lg">
+    <div class="p-6">
+        <div class="flex items-center space-x-6 mb-6">
+            <img src={userProfile.avatarUrl} alt="User Avatar" class="h-16 w-16 rounded-full object-cover" />
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{userProfile.name}</h1>
+                <p class="text-sm text-gray-600 dark:text-gray-300">{userProfile.email}</p>
+            </div>
         </div>
+
+                <!-- Icon Selection Dropdown -->
+                <div class="mb-6">
+                    <label for="icon-select" class="font-bold mb-2 block dark:text-gray-300">Choose an Icon:</label>
+                    <select id="icon-select" on:change={handleIconSelect} class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+                        {#each icons as icon}
+                            <option value={icon.name}>{icon.name}</option>
+                        {/each}
+                    </select>
+                </div>
 
         <!-- Customization Options -->
         <div class="mb-6">
@@ -96,11 +124,11 @@
         <!-- Reminder Settings -->
         <div class="mb-6">
             <label class="flex items-center dark:text-gray-300">
-                <input type="checkbox" bind:checked={reminderSettings.enableReminders} on:change={toggleReminders} class="rounded border-gray-300 h-5 w-5 dark:border-gray-600 dark:bg-gray-700" />
+                <input type="checkbox" bind:checked={reminderSettings.enableReminders} class="rounded border-gray-300 h-5 w-5 dark:border-gray-600 dark:bg-gray-700" />
                 <span class="ml-2">Enable Reminders</span>
             </label>
-        
-            <div class="mt-4">
+            {#if reminderSettings.enableReminders}
+                <div class="mt-4">
                 <label for="reminderFrequency" class="font-bold mb-2 block dark:text-gray-300">Reminder Frequency:</label>
                 <select id="reminderFrequency" bind:value={reminderSettings.reminderFrequency} on:change={changeReminderFrequency} class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white">
                     <option value="daily">Daily</option>
@@ -108,7 +136,16 @@
                     <option value="monthly">Monthly</option>
                 </select>
             </div>
+            {/if}
         </div>
+
+            <!-- Profile Update Status Message -->
+    {#if updateStatus}
+    <div class="my-4 p-3 bg-green-200 text-green-800 rounded">
+        {updateStatus}
+    </div>
+{/if}
+        
         <!-- Account Management -->
         <div class="flex justify-start space-x-2">
             <button on:click={changePassword} class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">Change Password</button>
@@ -128,7 +165,7 @@
             </div>
             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">Update Profile</button>
         </form>
-    {/if}
+    </div>
 
 </div>
 

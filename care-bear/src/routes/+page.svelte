@@ -1,13 +1,13 @@
 <script>
-	import Mood from '$lib/components/mood/Mood.svelte';
-	import { onMount } from 'svelte';
-	import bear from '../images/bear.png';
-	import off from '../images/off.png';
-	import on from '../images/on.png';
-
 	import SpeechToText from '$lib/components/Speech_To_Text.svelte';
+	import Mood from '$lib/components/mood/Mood.svelte';
 	import TaskList from '$lib/components/task/TaskList.svelte';
 	import taskstore from '$lib/taskStore';
+	import { onMount } from 'svelte';
+	import bear from '../images/bear.png';
+	import bearOff from '../images/bearOff.png';
+	import off from '../images/off.png';
+	import on from '../images/on.png';
 
 	onMount(async () => {
 		await taskstore.loadDbTasks();
@@ -39,18 +39,22 @@
 
 <body>
 	<div class="flex flex-col items-center justify-self-start mt-4">
-		<!-- First Image (Bear) -->
-		<div class="object-none object-top">
+		<!-- Bear Image -->
+		{#if isOn}
+		  <div class="object-none object-top">
 			<img class="max-w-full max-h-full" src={bear} alt={bear} />
-		</div>
-
-		<!-- Second Image (Off) -->
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		  </div>
+		{:else}
+		  <div class="object-none object-top">
+			<img class="max-w-full max-h-full" src={bearOff} alt={bearOff} />
+		  </div>
+		{/if}
+	
+		<!-- On/Off Button -->
 		<div class="object-none object-top mt-4 cursor-pointer" on:click={toggleImage}>
-			<img class="max-w-full max-h-full" src={isOn ? on : off} alt={isOn ? 'On' : 'Off'} />
+		  <img class="max-w-full max-h-full" src={isOn ? on : off} alt={isOn ? 'On' : 'Off'} />
 		</div>
-	</div>
+	  </div>
 
 	<SpeechToText/>
 
