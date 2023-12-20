@@ -46,9 +46,9 @@
         <TaskView {title} {description} {formattedDeadline} />
     {/if}
 
-    <button on:click={toggleEdit} class="ml-2">{isEditing ? '❎' : '🖊️'}</button>
+    <button on:click={toggleEdit} class="ml-2">{isEditing ? '❌' : '🖊️'}</button>
 
     <button on:click={handleDelete} class="text-red-500 hover:text-red-700 ml-auto">
-        <span class="text-red-500">❌</span>
+        <span class="text-red-500">🗑️</span>
     </button>
 </div>

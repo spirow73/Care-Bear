@@ -5,43 +5,38 @@
 	export let description;
 	export let deadline;
 	export let closeEdit;
-
-	// Convertir deadline a un formato adecuado para el input tipo 'date'
+  
+	// Convert deadline to an appropriate format for the 'date' input
 	$: editableDeadline = deadline ? new Date(deadline).toISOString().split('T')[0] : '';
-
+  
 	async function handleSave() {
-		// Convertir la fecha de nuevo a un formato adecuado para el backend si es necesario
-		const updatedDeadline = new Date(editableDeadline);
-		await updateDbTask(task_id, { title, description, deadline: updatedDeadline });
-		// Aquí podrías incluir lógica adicional después de guardar, como cerrar el modo de edición
-		closeEdit();
+	  // Convert the date back to an appropriate format for the backend if needed
+	  const updatedDeadline = new Date(editableDeadline);
+	  await updateDbTask(task_id, { title, description, deadline: updatedDeadline });
+	  // Additional logic after saving, such as closing the edit mode
+	  closeEdit();
 	}
-</script>
-
-<form on:submit|preventDefault={handleSave}>
-	<div class="flex items-center">
-		<h2 class="text-xl font-semibold mr-2">Title:</h2>
-		<input
-			class="flex-1 border-b-2 border-gray-300 p-1 bg-transparent"
-			type="text"
-			bind:value={title}
-		/>
-	</div>
-	<div class="flex items-center mt-2">
-		<h2 class="text-xl font-semibold mr-2">Description:</h2>
-		<textarea class="flex-1 border-b-2 border-gray-300 bg-transparent" bind:value={description} />
-	</div>
-	<div class="flex items-center mt-2">
-		<h2 class="text-xl font-semibold mr-2">Deadline:</h2>
-		<input
-			class="border-b-2 border-gray-300 p-1 bg-transparent"
-			type="date"
-			bind:value={editableDeadline}
-		/>
-	</div>
-	<div class="text-center">
-		<button type="submit" class="mt-4 bg-button-1 hover:bg-button-2 text-white py-2 px-4 rounded-md transition-colors duration-300">
-			Save
+  </script>
+ <form on:submit|preventDefault={handleSave} class="mt-4">
+	  <legend class="text-lg font-semibold mb-2">Task Details</legend>
+	  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+		<div>
+		  <label for="taskTitle" class="block text-gray-800 font-semibold mb-2">Title:</label>
+		  <input id="taskTitle" class="w-full border-b-2 border-gray-300 p-1 bg-transparent focus:outline-none focus:border-purple-300" type="text" bind:value={title} />
+		</div>
+		<div>
+		  <label for="taskDeadline" class="block text-gray-800 font-semibold mb-2">Deadline:</label>
+		  <input id="taskDeadline" class="w-full border-b-2 border-gray-300 p-1 bg-transparent focus:outline-none focus:border-purple-300" type="date" bind:value={editableDeadline} />
+		</div>
+		<div class="col-span-2">
+			<label for="taskDescription" class="block text-gray-800 font-semibold mb-2">Description:</label>
+			<textarea id="taskDescription" class="w-full h-9 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-purple-300 resize-none" bind:value={description}></textarea>
+		</div>
+	  </div>
+	  <div class="text-center mt-4">
+		<button type="submit" class="bg-button-1 hover:bg-buton-2 text-white py-2 px-4 rounded-md transition duration-300 focus:outline-none focus:ring focus:border-purple-300">
+		  Save
 		</button>
-	</div>	
-</form>
+	  </div>
+  </form>
+  
