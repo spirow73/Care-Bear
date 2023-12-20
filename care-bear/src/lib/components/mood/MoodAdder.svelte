@@ -1,11 +1,11 @@
 <script>
-	import { addMoodEntryToDB } from '$lib/moodStore';
 	import depressed from '$lib/components/images/depressed.png';
 	import happy from '$lib/components/images/happy.png';
 	import sad from '$lib/components/images/sad.png';
 	import stressed from '$lib/components/images/stressed.png';
 	import tired from '$lib/components/images/tired.png';
 	import upset from '$lib/components/images/upset.png';
+	import { addMoodEntryToDB } from '$lib/moodStore';
 	import theme from '../../../stores/themeStore.js';
 
 
