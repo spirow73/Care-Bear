@@ -1,8 +1,8 @@
 
-import root from '../root.svelte';
 import { set_building } from '__sveltekit/environment';
 import { set_assets } from '__sveltekit/paths';
 import { set_private_env, set_public_env } from '../../../node_modules/@sveltejs/kit/src/runtime/shared-server.js';
+import root from '../root.svelte';
 
 export const options = {
 	app_template_contains_nonce: false,
@@ -28,3 +28,4 @@ export function get_hooks() {
 }
 
 export { set_assets, set_building, set_private_env, set_public_env };
+

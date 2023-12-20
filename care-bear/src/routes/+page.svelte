@@ -1,13 +1,13 @@
 <script>
 	import SpeechToText from '$lib/components/Speech_To_Text.svelte';
-	import Mood from '$lib/components/mood/Mood.svelte';
-	import TaskList from '$lib/components/task/TaskList.svelte';
-	import taskstore from '$lib/taskStore';
-	import { onMount } from 'svelte';
 	import bear from '$lib/components/images/bear.png';
 	import bearOff from '$lib/components/images/bearOff.png';
 	import off from '$lib/components/images/off.png';
 	import on from '$lib/components/images/on.png';
+	import Mood from '$lib/components/mood/Mood.svelte';
+	import TaskList from '$lib/components/task/TaskList.svelte';
+	import taskstore from '$lib/taskStore';
+	import { onMount } from 'svelte';
 
 	onMount(async () => {
 		await taskstore.loadDbTasks();
