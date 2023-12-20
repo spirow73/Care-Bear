@@ -28,18 +28,15 @@
 declare module '$env/static/private' {
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
-	export const BASE_URL: string;
 	export const ChocolateyInstall: string;
 	export const ChocolateyLastPathUpdate: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
-	export const CHROME_RESTART: string;
 	export const COLOR: string;
 	export const COLORTERM: string;
 	export const CommonProgramFiles: string;
 	export const CommonProgramW6432: string;
 	export const COMPUTERNAME: string;
 	export const ComSpec: string;
-	export const DEV: string;
 	export const DriverData: string;
 	export const EDITOR: string;
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
@@ -49,11 +46,11 @@ declare module '$env/static/private' {
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
 	export const INIT_CWD: string;
+	export const JAVA_HOME: string;
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
 	export const LOCAL_GIT_DIRECTORY: string;
 	export const LOGONSERVER: string;
-	export const MODE: string;
 	export const NODE: string;
 	export const NODE_ENV: string;
 	export const NODE_EXE: string;
@@ -92,7 +89,6 @@ declare module '$env/static/private' {
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
 	export const PROCESSOR_REVISION: string;
-	export const PROD: string;
 	export const ProgramData: string;
 	export const ProgramFiles: string;
 	export const ProgramW6432: string;
@@ -105,20 +101,16 @@ declare module '$env/static/private' {
 	export const TEMP: string;
 	export const TERM_PROGRAM: string;
 	export const TERM_PROGRAM_VERSION: string;
-	export const TEST: string;
 	export const TMP: string;
 	export const USERDOMAIN: string;
 	export const USERDOMAIN_ROAMINGPROFILE: string;
 	export const USERNAME: string;
 	export const USERPROFILE: string;
 	export const VBOX_MSI_INSTALL_PATH: string;
-	export const VITEST: string;
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
 	export const VSCODE_GIT_IPC_HANDLE: string;
-	export const VSCODE_INJECTION: string;
-	export const VSCODE_NONCE: string;
 	export const windir: string;
 }
 
@@ -151,18 +143,15 @@ declare module '$env/dynamic/private' {
 	export const env: {
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
-		BASE_URL: string;
 		ChocolateyInstall: string;
 		ChocolateyLastPathUpdate: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
-		CHROME_RESTART: string;
 		COLOR: string;
 		COLORTERM: string;
 		CommonProgramFiles: string;
 		CommonProgramW6432: string;
 		COMPUTERNAME: string;
 		ComSpec: string;
-		DEV: string;
 		DriverData: string;
 		EDITOR: string;
 		FPS_BROWSER_APP_PROFILE_STRING: string;
@@ -172,11 +161,11 @@ declare module '$env/dynamic/private' {
 		HOMEDRIVE: string;
 		HOMEPATH: string;
 		INIT_CWD: string;
+		JAVA_HOME: string;
 		LANG: string;
 		LOCALAPPDATA: string;
 		LOCAL_GIT_DIRECTORY: string;
 		LOGONSERVER: string;
-		MODE: string;
 		NODE: string;
 		NODE_ENV: string;
 		NODE_EXE: string;
@@ -215,7 +204,6 @@ declare module '$env/dynamic/private' {
 		PROCESSOR_IDENTIFIER: string;
 		PROCESSOR_LEVEL: string;
 		PROCESSOR_REVISION: string;
-		PROD: string;
 		ProgramData: string;
 		ProgramFiles: string;
 		ProgramW6432: string;
@@ -228,20 +216,16 @@ declare module '$env/dynamic/private' {
 		TEMP: string;
 		TERM_PROGRAM: string;
 		TERM_PROGRAM_VERSION: string;
-		TEST: string;
 		TMP: string;
 		USERDOMAIN: string;
 		USERDOMAIN_ROAMINGPROFILE: string;
 		USERNAME: string;
 		USERPROFILE: string;
 		VBOX_MSI_INSTALL_PATH: string;
-		VITEST: string;
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		VSCODE_GIT_ASKPASS_MAIN: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
 		VSCODE_GIT_IPC_HANDLE: string;
-		VSCODE_INJECTION: string;
-		VSCODE_NONCE: string;
 		windir: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;

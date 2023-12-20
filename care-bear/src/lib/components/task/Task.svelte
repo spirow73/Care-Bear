@@ -1,20 +1,28 @@
 <!-- Task.svelte -->
 <script>
-	import { deleteTaskFromDb } from '$lib/taskStore';
+	import { removeDbTask } from '$lib/taskStore';
 
-	export let definition;
-	export let due_date;
+	export let task_id;
+	export let title;
+	export let description;
+	export let deadline;
 	export let isCompleted;
-	export let id;
+
+	$: formattedDeadline = new Date(deadline).toLocaleDateString('en-EN', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric'
+	});
 
 	function handleDelete() {
-		deleteTaskFromDb(id);
+		console.log(task_id);
+		removeDbTask(task_id);
 	}
 </script>
 
 <div class="border rounded p-4 mb-2">
 	<div class="flex justify-between">
-		<h2 class="text-xl font-semibold">{definition}</h2>
+		<h2 class="text-xl font-semibold">{title}</h2>
 		<button on:click={handleDelete} class="text-red-500 hover:text-red-700">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +40,8 @@
 			</svg>
 		</button>
 	</div>
-	<p class="text-gray-600">{due_date}</p>
+	<p class="text-gray-600">{formattedDeadline}</p>
+	<p class="text-gray-600">{description}</p>
 	<p class={isCompleted ? 'text-green-600' : 'text-red-600'}>
 		{isCompleted ? 'Completed' : 'Pending'}
 	</p>
