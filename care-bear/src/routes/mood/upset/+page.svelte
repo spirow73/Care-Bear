@@ -3,6 +3,7 @@
 <script>
 	let upsetExercise = [
     {
+        mood: 'Upset',
         title: 'Read Uplifting Quotes or Literature:',
         description: [
             'Explore literature or quotes that inspire and uplift you. Words of wisdom can provide comfort and perspective.',
@@ -13,6 +14,7 @@
         ]
     },
     {
+        mood: 'Upset',
         title: 'Mindful Walking:',
         description: [
             'Take a slow and mindful walk, paying attention to each step. Focus on your surroundings, the sensation of your feet on the ground, and the rhythm of your breath.',
@@ -23,6 +25,7 @@
         ]
     },
     {
+        mood: 'Upset',
         title: 'Watch a Comforting Movie or TV Show:',
         description: [
             'Choose a movie or TV show that brings you comfort or makes you laugh. Entertainment can be a great distraction and mood lifter.',
@@ -33,6 +36,7 @@
         ]
     },
     {
+        mood: 'Upset',
         title: 'Listen to Soothing Music:',
         description: [
             'Choose calming music or instrumental tracks. Allow the music to create a peaceful atmosphere and soothe your emotions.',
@@ -43,6 +47,7 @@
         ]
     },
     {
+        mood: 'Upset',
         title: 'Reach Out to a Friend:',
         description: [
             'Connect with a trusted friend or family member. Share your feelings and allow them to provide support and perspective.',
@@ -53,6 +58,7 @@
         ]
     },
     {
+        mood: 'Upset',
         title: 'Cuddle with a Pet:',
         description: [
             'Spend time with a pet if you have one. The companionship and unconditional love of animals can be comforting during difficult times.',
@@ -63,6 +69,7 @@
         ]
     },
     {
+        mood: 'Upset',
         title: 'Journaling:',
         description: [
             'Write down your thoughts and emotions in a journal. Expressing your feelings on paper can help you gain clarity and release pent-up emotions.',
@@ -77,31 +84,39 @@
 ];
 
 
+let selectedTitle = null;
+
+const toggleDescription = (title) => {
+  selectedTitle = selectedTitle === title ? null : title;
+};
 </script>
+
 <div class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
-
-
 <div class="bg-gray-100 font-sans min-h-screen">
-	<!-- Header -->
-	<header class="bg-orange-200 text-black text-center py-4">
-		<h1 class="text-4xl font-bold">Upset</h1>
-		<p class="text-lg">Find calmness and inner peace</p>
-	</header>
+  <!-- Header -->
+  <header class="bg-orange-200 text-black text-center py-4">
+    <h1 class="text-4xl font-bold">Upset</h1>
+    <p class="text-lg">Find calmness and inner peace</p>
+  </header>
 
-	<!-- Main Content -->
-	<main class="container mx-auto my-8">
-		<!-- Breathing Techniques -->
-		<section>
-			<h2 class="text-2xl font-bold mb-4">Relax the mind and body</h2>
-			{#each upsetExercise as { title, description }}
-				<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-					<h3 class="text-xl font-bold mb-2">{title}</h3>
-					{#each description as step}
-						<p class="text-gray-700 mb-2">{step}</p>
-					{/each}
-				</div>
-			{/each}
-		</section>
-	</main>
+  <!-- Main Content -->
+  <main class="container mx-auto my-8">
+    <!-- Breathing Techniques -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4"> Techniques To Help Out Your Mood</h2>
+      {#each upsetExercise as { title, description }}
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+            {title}
+          </h3>
+          {#if selectedTitle === title}
+            {#each description as step}
+              <p class="text-gray-700 mb-2">{step}</p>
+            {/each}
+          {/if}
+        </div>
+      {/each}
+    </section>
+  </main>
 </div>
 </div>

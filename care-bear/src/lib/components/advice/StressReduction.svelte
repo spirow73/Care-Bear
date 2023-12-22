@@ -208,7 +208,7 @@
       .title {
         @apply font-bold text-xl mb-2;
       }
-    
+  
       .description {
         @apply font-normal;
       }

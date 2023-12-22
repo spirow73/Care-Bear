@@ -3,6 +3,7 @@
 <script>
 	let sadExercise = [
     {
+        mood: 'Sad',
         title: 'Brisk Walking or Jogging:',
         description: [
             'Take a brisk walk or go for a jog in a nearby park or nature trail. The combination of fresh air, sunlight, and physical movement can help release endorphins, the body\'s natural mood lifters.',
@@ -13,6 +14,7 @@
         ]
     },
     {
+        mood: 'Sad',
         title: 'Dance:',
         description: [
             'Put on your favorite music and dance to your heart\'s content. Dancing is a fun and effective way to boost your mood and increase energy levels.',
@@ -23,6 +25,7 @@
         ]
     },
     {
+        mood: 'Sad',
         title: 'Group Exercise Classes',
         description: [
             'Join a group exercise class at your local gym or community center. The social atmosphere and group energy can be motivating and energizing.',
@@ -33,6 +36,7 @@
         ]
     },
     {
+        mood: 'Sad',
         title: 'Play Sports',
         description: [
             'Engage in a friendly game of basketball, tennis, or soccer with friends or family. The competitive nature of sports can be energizing and fun.',
@@ -43,6 +47,7 @@
         ]
     },
     {
+        mood: 'Sad',
         title: 'Outdoor Activities',
         description: [
             'Spend time outdoors engaging in activities like gardening, hiking, or biking. The combination of fresh air and physical activity can boost energy levels and improve mood.',
@@ -53,6 +58,7 @@
         ]
     },
     {
+        mood: 'Sad',
         title: 'Hiking',
         description: [
             'Explore a local hiking trail or nature park. The combination of fresh air, sunlight, and physical activity can boost energy levels and improve mood.',
@@ -63,6 +69,7 @@
         ]
     },
     {
+        mood: 'Sad',
         title: 'Swimming',
         description: [
             'Go for a swim at your local pool or beach. Swimming is a low-impact exercise that can boost energy levels and improve mood.',
@@ -76,31 +83,39 @@
 ];
 
 
+let selectedTitle = null;
+
+const toggleDescription = (title) => {
+  selectedTitle = selectedTitle === title ? null : title;
+};
 </script>
+
 <div class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
-
-
 <div class="bg-gray-100 font-sans min-h-screen">
-	<!-- Header -->
-	<header class="bg-orange-200 text-black text-center py-4">
-		<h1 class="text-4xl font-bold">Sad</h1>
-		<p class="text-lg">Find calmness and inner peace</p>
-	</header>
+  <!-- Header -->
+  <header class="bg-orange-200 text-black text-center py-4">
+    <h1 class="text-4xl font-bold">Sad</h1>
+    <p class="text-lg">Find calmness and inner peace</p>
+  </header>
 
-	<!-- Main Content -->
-	<main class="container mx-auto my-8">
-		<!-- Breathing Techniques -->
-		<section>
-			<h2 class="text-2xl font-bold mb-4">Relax the mind and body</h2>
-			{#each sadExercise as { title, description }}
-				<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-					<h3 class="text-xl font-bold mb-2">{title}</h3>
-					{#each description as step}
-						<p class="text-gray-700 mb-2">{step}</p>
-					{/each}
-				</div>
-			{/each}
-		</section>
-	</main>
+  <!-- Main Content -->
+  <main class="container mx-auto my-8">
+    <!-- Breathing Techniques -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4"> Techniques To Help Out Your Mood</h2>
+      {#each sadExercise as { title, description }}
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+            {title}
+          </h3>
+          {#if selectedTitle === title}
+            {#each description as step}
+              <p class="text-gray-700 mb-2">{step}</p>
+            {/each}
+          {/if}
+        </div>
+      {/each}
+    </section>
+  </main>
 </div>
 </div>

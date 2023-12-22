@@ -15,6 +15,9 @@
 
 let isMobile = false;
 
+
+
+
 onMount(() => {
 	const mobileMediaQuery = window.matchMedia('(max-width: 767px)');
 	isMobile = mobileMediaQuery.matches;
@@ -80,9 +83,9 @@ onMount(() => {
 <!-- Wide screens -->
 <Toaster/>
 <main class={`hidden lg:block max-w-screen-md mx-auto mt-10 p-6 ${currentTheme === 'dark' ? 'bg-gray-800 text-white' : 'lg:flex lg:flex-wrap lg:justify-center lg:gap-4 sm:w-full'}`}>
-    <h1 class="text-2xl font-bold mb-4 text-center">How are you feeling today?</h1>
-	<div class="hidden lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 hidden lg:block"></div>
-	<div class="flex flex-wrap justify-center lg:w-3/4">
+    <h1 class="text-2xl font-bold mb-4 text-center mx-auto lg:mr-4">How are you feeling today?</h1>
+    <div class="hidden lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 hidden lg:block"></div>
+    <div class="flex flex-wrap justify-center lg:w-3/4">
 		{#each Object.keys(moods) as moodId}
 			<div
 				id={`mood_${moodId}`}

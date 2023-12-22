@@ -36,10 +36,11 @@
 				</div>
 			</div>
 		{:else}
-			<div class="text-center">
+			<div class="text-center ">
 				<button
 					class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
 					on:click={toggleAddEntryForm}
+					
 				>
 					Add Journal Entry
 				</button>

@@ -41,7 +41,7 @@
   
   {#if showDefaultActivities && !activityPage}
 	<div class="pt-9">
-	  <h1 class="text-2xl font-bold text-center">Select Activities For Your Mood</h1>
+	  <h1 class="text-2xl font-bold text-center">Mood Activities</h1>
 	  <div class="max-w-md mx-auto mt-10 p-6 space-y-4">
 		<a href="./mood/yoga" class="block text-black-200 hover:text-white">
 		  <div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md shadow-md">Yoga</div>
@@ -52,9 +52,7 @@
 		<a href="./mood/breathingExercise" class="block text-black-200 hover:text-white">
 		  <div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md">Breathing Exercise</div>
 		</a>
-		<a href="./mood/history" class="block text-black-200 hover:text-white">
-		  <div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md">History</div>
-		</a>
+	
 	  </div>
 	</div>
   {:else if selectedMood && activityPage}
@@ -62,7 +60,7 @@
 	  <h1 class="text-2xl font-bold text-center">See activities to improve your current mood</h1>
 	  <div class="max-w-md mx-auto mt-10 p-6 space-y-4">
 		<a href={activityPage} class="block text-black-200 hover:text-white">
-		  <div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md text-center shadow-md">{selectedMood}</div>
+		  <div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md text-center shadow-md">Exercises to help  your current Mood "{selectedMood}"</div>
 		</a>
 	  </div>
 	</div>

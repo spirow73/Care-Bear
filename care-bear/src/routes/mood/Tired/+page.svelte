@@ -2,7 +2,24 @@
 
 <script>
 	let tiredExercise = [
+
+  {
+			name: 'Wall Sit',
+			infor:
+				'A wall sit is a simple but effective static exercise that primarily targets the muscles in your lower body, especially the quadriceps, hamstrings, and glutes.',
+			videoUrl: 'https://www.youtube.com/embed/n6ZfqLbtF5M?si=YHKkfjpOvLMc5z_I'
+		},
     {
+			name: 'Balance Exercise',
+			infor:
+				'Work on your balance with exercises like standing on one leg or heel-to-toe walking',
+        
+
+			videoUrl: 'https://www.youtube.com/embed/k-xtL7NO0fw?si=ft7fzu-qvDHI8kN0'
+		},
+    {
+      
+        mood: 'Tired',
         title: 'Yoga',
         description: [
             'Practice gentle yoga poses or a short yoga sequence to improve flexibility, release tension, and increase energy flow.',
@@ -13,6 +30,7 @@
         ]
     },
     {
+        mood: 'Tired',
         title: 'Reading',
         description: [
             'Choose a book in a genre that captivates your interest, providing an escape from daily stressors.',
@@ -23,6 +41,7 @@
         ]
     },
     {
+        mood: 'Tired',
         title: 'Take a Shower or Bath',
         description: [
             'Adjust water temperature to your preference, opting for a warm bath to relax muscles or a cool shower for a refreshing sensation.',
@@ -33,6 +52,7 @@
         ]
     },
     {
+        mood: 'Tired',
         title: 'Visualization',
         description: [
             'Find a quiet space and sit or lie down in a comfortable position to minimize distractions.',
@@ -43,6 +63,7 @@
         ]
     },
     {
+        mood: 'Tired',
         title: 'Play with a Pet',
         description: [
             'Engage in interactive games with your pet, such as fetch or hide-and-seek, to promote physical activity for both of you.',
@@ -53,6 +74,7 @@
         ]
     },
     {
+        mood: 'Tired',
         title: 'Powerful Sniff',
         description: [
             'Experiment with a variety of essential oils to discover scents that invigorate and uplift your mood.',
@@ -63,6 +85,7 @@
         ]
     },
     {
+        mood: 'Tired',
         title: 'Expressive Writing',
         description: [
             'Allocate dedicated time for expressive writing, allowing yourself the freedom to explore thoughts and emotions without judgment.',
@@ -75,31 +98,62 @@
     // Add more activities with descriptions as needed
 ];
 
-</script>
-<div class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
+let selectedTitle = null;
 
+const toggleDescription = (title) => {
+  selectedTitle = selectedTitle === title ? null : title;
+};
+</script>
 
 <div class="bg-gray-100 font-sans min-h-screen">
-	<!-- Header -->
-	<header class="bg-orange-200 text-black text-center py-4">
-		<h1 class="text-4xl font-bold">Tired</h1>
-		<p class="text-lg">Find calmness and inner peace</p>
-	</header>
+<!-- Header -->
+<header class="bg-orange-200 text-black text-center py-8">
+  <h1 class="text-4xl font-bold">TIRED </h1>
+  <p class="text-lg">Reduce stress and find inner peace</p>
+</header>
 
-	<!-- Main Content -->
-	<main class="container mx-auto my-8">
-		<!-- Breathing Techniques -->
-		<section>
-			<h2 class="text-2xl font-bold mb-4">Relax the mind and body</h2>
-			{#each tiredExercise as { title, description }}
-				<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-					<h3 class="text-xl font-bold mb-2">{title}</h3>
-					{#each description as step}
-						<p class="text-gray-700 mb-2">{step}</p>
-					{/each}
-				</div>
-			{/each}
-		</section>
-	</main>
+<!-- Main Content -->
+<main class="container mx-auto my-5">
+  <!-- Yoga Activities List -->
+  <section class="grid gap-5 md:grid-cols-2">
+    {#each tiredExercise.slice(0, 2) as { name, infor, videoUrl }}
+      <div class="bg-white rounded-lg overflow-hidden shadow-md">
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe src={videoUrl} frameborder="0" allowfullscreen class="w-full h-full" />
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">{name}</h3>
+          <p class="text-gray-700">{infor}</p>
+        </div>
+      </div>
+    {/each}
+  </section>
+
+  <!-- Tired Techniques -->
+  <section class="mt-14">
+    <h2 class="text-2xl font-bold mb-4">Techniques To Help Out Your Mood</h2>
+    {#each tiredExercise.slice(2) as { title, description }}
+      <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+          {title}
+        </h3>
+        {#if selectedTitle === title}
+          {#each description as step}
+            <p class="text-gray-700 mb-2">{step}</p>
+          {/each}
+        {/if}
+      </div>
+    {/each}
+  </section>
+</main>
+</div>
+
+<div class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
+<div class="bg-gray-100 font-sans min-h-screen">
+
+  <!-- Main Content -->
+  <main class="container mx-auto my-8">
+    <!-- Additional content for the "Tired" section -->
+  </main>
 </div>
 </div>
