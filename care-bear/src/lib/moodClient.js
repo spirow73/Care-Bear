@@ -30,8 +30,9 @@ export async function fetchLatestMoodEntries(date, limit) {
 		  mood:mood(moodref_id, description)
 		`
 	  )
-	  .gte('timestamp', formatDateForSupabase(new Date(date)))
-	  .lt('timestamp', formatDateForSupabase(new Date(date.getTime() + 24 * 60 * 60 * 1000)))
+	  .gte('timestamp', formatDateForSupabase(new Date(date || new Date())))
+	  .lt('timestamp', formatDateForSupabase(new Date((date || new Date()).getTime() + 24 * 60 * 60 * 1000)))
+	  
 	  
 
 	  .order('mood_entry_id', { ascending: false })
@@ -50,9 +51,6 @@ export async function fetchLatestMoodEntries(date, limit) {
 	  return latestEntries;
 	}
   }
-  
-  
-  
 
 export async function addMoodEntry({ mood, user_id, timestamp }) {
 	const newMoodEntry = {
