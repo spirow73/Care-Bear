@@ -8,7 +8,20 @@
   
 	onMount(async () => {
 	  try {
-		moodEntries = await fetchLatestMoodEntries(3);
+		const today = new Date();
+		const yesterday = new Date(today);
+		yesterday.setDate(yesterday.getDate() - 1);
+		const dayBeforeYesterday = new Date(yesterday);
+		dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 1);
+  
+		// Fetch 3 entries for today, 3 for yesterday, and 3 for the day before
+		const todayEntries = await fetchLatestMoodEntries(today, 3);
+		const yesterdayEntries = await fetchLatestMoodEntries(yesterday, 3);
+		const dayBeforeYesterdayEntries = await fetchLatestMoodEntries(dayBeforeYesterday, 3);
+  
+		// Concatenate the entries
+		moodEntries = [todayEntries, yesterdayEntries, dayBeforeYesterdayEntries];
+  
 		console.log('Fetched Mood Entries:', moodEntries);
 	  } catch (error) {
 		console.error('Error fetching mood entries:', error);
@@ -28,41 +41,45 @@
   
 	  return emojiMap[mood] || '❓'; // Default emoji if the mood is not recognized
 	}
-
+  
 	function formatTimestamp(timestamp) {
-    const parsedDate = new Date(Date.parse(timestamp));
-    if (isNaN(parsedDate.getTime())) {
-      return 'Invalid Date';
-    }
-    const options = {
-      weekday: 'long', // Displays the full name of the day of the week (e.g., Monday)
-      day: 'numeric',
-	  month:'long',
-      hour: 'numeric',
-    };
-    return parsedDate.toLocaleString('en-EN', options);
-  }
+	  const options = {
+		weekday: 'long', // Displays the full name of the day of the week (e.g., Monday)
+		day: 'numeric',
+		month: 'long',
+	  };
+  
+	  try {
+		const formattedDate = new Date(timestamp).toLocaleString('en-EN', options);
+		return formattedDate;
+	  } catch (error) {
+		console.error('Error formatting timestamp:', error);
+		return 'Invalid Date';
+	  }
+	}
   </script>
   
   <a href="/mood">
 	{#if moodEntries.length > 0}
-	  {#each moodEntries as entry (entry.mood_entry_id)}
-		<div class="flex items-center text-center mb-2 bg-brown-900 shadow-md p-4 rounded-lg border border-black hover:bg-orange-200">
-		  <div class="mr-4">
-			<p style="font-size: 25px;">{getEmojiForMood(entry.mood_description)}</p>
-		  </div>
-		  <div class="flex-1">
-			<p>{entry.mood_description}</p>
-			<p>Registered last: {formatTimestamp(entry.timestamp)}</p>
-		  </div>
-		  <div class="ml-auto">
-
-			<span>🔗</span>
-		  </div>
+	  {#each moodEntries as dayEntries}
+	  <p class="mb-2 text-xl">{formatTimestamp(dayEntries[0].timestamp)}</p>
+		<div class="flex justify-between">
+		  {#each dayEntries as entry (entry.mood_entry_id)}
+			<div class="flex items-center text-center mb-2 bg-brown-900 shadow-md p-4 rounded-lg border border-black hover:bg-orange-200" style="width: 200px;">
+			  <div class="mr-4">
+				<p style="font-size: 25px;">{getEmojiForMood(entry.mood_description)}</p>
+			  </div>
+			  <div class="flex-1">
+				<p>{entry.mood_description}</p>
+			  </div>
+			</div>
+		  {/each}
 		</div>
 	  {/each}
 	{:else}
 	  <p>No moods registered.</p>
 	{/if}
   </a>
+  
+  
   

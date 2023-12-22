@@ -5,6 +5,8 @@
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import taskStore from '$lib/taskStore.js';
+	import up from '$lib/components/images/up.png';
+	import down from '$lib/components/images/down.png';
 
 	onMount(async () => {
 		await taskStore.loadDbTasks();
@@ -22,31 +24,26 @@
 		<!-- Container for the button and the form with a white background when the form is visible -->
 		<div class={showAddTaskForm ? 'bg-brown-900 py-4' : ''}>
 			{#if showAddTaskForm}
+			<div transition:slide>
+				<TaskAdder />
+			</div>
 				<!-- Apply sliding transition to the form -->
-				<div class="mt-4" transition:slide>
-					<TaskAdder />
-
-					<div class="text-center">
-						<button
-							class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
-							on:click={toggleAddTaskForm}
-						>
-							{showAddTaskForm ? 'Hide Add Task Form' : 'Add Task'}
-						</button>
-					</div>
-				</div>
+						<div class="mt-4 flex flex-col items-center">
+							<span class="block mb-2 text-black text-center text-lg"><b>Close</b></span>
+							<button class="mx-auto w-6 h-6" on:click={toggleAddTaskForm}>
+								<img src={up} alt="Up Button Image" />
+							</button>
+						</div>
 			{:else}
-				<div class="text-center">
-					<button
-						class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
-						on:click={toggleAddTaskForm}
-					>
-						{showAddTaskForm ? 'Hide Add Task Form' : 'Add Task'}
-					</button>
-				</div>
+			<div class="flex flex-col items-center">
+				<span class="block mb-2 text-black text-center  text-lg"><b>Add task</b></span>
+				<button class="mx-auto w-6 h-6" on:click={toggleAddTaskForm}>
+					<img src={down} alt="Down Button Image">
+				</button>
+			</div>
 			{/if}
 		</div>
-	</div>
+
 
 	<div>
 		<TaskList tasks={$taskStore} showFilters={true} />

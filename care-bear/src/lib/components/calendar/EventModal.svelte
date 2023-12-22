@@ -10,15 +10,17 @@
 
 <div class="modal-container">
 	<div class="modal-content overflow-auto">
-		<TaskAdder calendarDate={currentEventDate} />
-		{#if tasksForDay.length > 0}
+		<div class="task-layout">
 			<div class="task-list-container">
-				<TaskList title="Tasks for the Day" tasks={tasksForDay} />
+				{#if tasksForDay.length > 0}
+					<TaskList title="Tasks for the Day" tasks={tasksForDay} />
+				{/if}
 			</div>
-		{/if}
+			<TaskAdder calendarDate={currentEventDate} />
+		</div>
 		<button
 			on:click={closeEventModal}
-			class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+			class="mt-4 bg-button-1 hover:bg-button-2 text-white font-bold py-2 px-4 rounded"
 		>
 			Close
 		</button>
@@ -40,7 +42,9 @@
 	}
 
 	.modal-content {
-		background-color: white;
+		background-image:url('$lib/components/images/background.png') ;
+		background-repeat: no-repeat;
+		background-size: cover;
 		padding: 2rem;
 		border-radius: 5px;
 		overflow-y: auto; /* Enable scroll */
@@ -49,14 +53,23 @@
 		box-sizing: border-box; /* Include padding in total width/height */
 	}
 
+	.task-layout {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+
 	.task-list-container {
-		max-height: 300px;
+		max-height: 450px;
 		overflow-y: auto;
+		flex: 1;
+		margin-right: 5px; /* Adjust spacing between Task List and Task Adder */
 	}
 
 	@media (max-width: 600px) {
 		.modal-content {
-			width: 90%; /* Adjust width on small screens */
+			width: 100%; /* Adjust width on small screens */
 		}
 	}
 </style>

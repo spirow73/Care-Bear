@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-    import { fetchTasks } from '../../taskClient';
+	import { fetchTasks } from '../../taskClient';
 	import Task from './Task.svelte';
 
 
