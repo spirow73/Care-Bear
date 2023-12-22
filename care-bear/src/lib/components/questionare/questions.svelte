@@ -1,9 +1,9 @@
 <script>
- import { onMount } from 'svelte';
-    import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
-    const responses = {};
-    const totalQuestions = 20;
+	const responses = {};
+	const totalQuestions = 20;
 	const questions = [
 		{
 			id: 'q1',
@@ -91,68 +91,92 @@
 		responses[`q${i}`] = '';
 	}
 
-	const handleSubmit = () => {
-		console.log(responses);
-		calculateStressor();
+	const handleSubmit = (event) => {
+		// event.preventDefault();
+		// const answeredQuestions = Object.values(responses).filter(response => response !== '').length;
+		// if (answeredQuestions < totalQuestions) {
+        //     // If not all questions are answered, display an error message or take appropriate action
+        //     showErrorMessage(); // You can define this function to show an error message
+        // } else {
+        //     // Proceed with handling the submission
+            console.log(responses);
+            calculateStressor();
+        // }
 	};
+
+	function showErrorMessage() {
+        // Define how you want to display the error message, for example:
+        alert('Please answer all questions before submitting.');
+    }
+
 
 	//logic for stressors calc
 	function calculateStressor() {
-    let stressorType = '';
-    const agreeCount = Object.values(responses).filter(
-        (response) => response === 'Agree' || response === 'Strongly Agree'
-    ).length;
+		let stressorType = '';
+		const agreeCount = Object.values(responses).filter(
+			(response) => response === 'Agree' || response === 'Strongly Agree'
+		).length;
 
-    const disagreeCount = Object.values(responses).filter(
-        (response) => response === 'Disagree' || response === 'Strongly Disagree'
-    ).length;
+		const disagreeCount = Object.values(responses).filter(
+			(response) => response === 'Disagree' || response === 'Strongly Disagree'
+		).length;
 
 		// needs to be edited, those are random
 		if (agreeCount >= 16) {
-            stressorType = {
-                title: 'Problem-Focused Coping Preference',
-                traits: 'Strong inclination towards seeking support from others and meticulous planning during stress.',
-                explanation: 'Tendency to tackle stressors directly by addressing the problem head-on and seeking practical solutions. Support from others and structured planning are primary coping mechanisms.'
-            };
-        } else if (disagreeCount >= 16) {
-            stressorType = {
-                title: 'Emotion-Focused Coping Preference',
-                traits: 'Reliance on solitude and adaptability during stress.',
-                explanation: 'Prioritizing managing emotions over directly addressing stressors. Solitude and adaptability are primary coping mechanisms, emphasizing emotional regulation and internal processing.'
-            };
-        } else if (agreeCount >= 12 && disagreeCount < 6) {
-            stressorType = {
-                title: 'Social Support-Centered Coping Style',
-                traits: 'Preference for seeking support from others and expressing stress openly.',
-                explanation: 'Reliance on social networks for stress relief and expressing stress openly for emotional support and problem-solving.'
-            };
-        } else if (disagreeCount >= 12 && agreeCount < 6) {
-            stressorType = {
-                title: 'Avoidance Coping Style',
-                traits: 'Tendency to retreat inward, seek distractions, and avoid confronting stress directly.',
-                explanation: 'Coping through distraction, avoiding direct confrontation of stressors, and seeking escape or relief from stress.'
-            };
-        } else if (agreeCount >= 8 && disagreeCount < 10) {
-            stressorType = {
-                title: 'Adaptive Coping Style',
-                traits: 'Flexibility in coping strategies, balancing problem-solving and emotional management.',
-                explanation: 'Demonstrates adaptability by using a mix of problem-focused and emotion-focused strategies based on the nature of stressors.'
-            };
-        } else {
-            stressorType = {
-                title: 'Reactive Coping Style',
-                traits: 'Overwhelmed by stress, less structured approach, and heightened emotional responses.',
-                explanation: 'Difficulty in maintaining structured plans, feeling overwhelmed by stress, and displaying heightened emotional reactions.'
-            };
-        }
-    displayStressor(stressorType);
-}
+			stressorType = {
+				title: 'Problem-Focused Coping Preference',
+				traits:
+					'Strong inclination towards seeking support from others and meticulous planning during stress.',
+				explanation:
+					'Tendency to tackle stressors directly by addressing the problem head-on and seeking practical solutions. Support from others and structured planning are primary coping mechanisms.'
+			};
+		} else if (disagreeCount >= 16) {
+			stressorType = {
+				title: 'Emotion-Focused Coping Preference',
+				traits: 'Reliance on solitude and adaptability during stress.',
+				explanation:
+					'Prioritizing managing emotions over directly addressing stressors. Solitude and adaptability are primary coping mechanisms, emphasizing emotional regulation and internal processing.'
+			};
+		} else if (agreeCount >= 12 && disagreeCount < 6) {
+			stressorType = {
+				title: 'Social Support-Centered Coping Style',
+				traits: 'Preference for seeking support from others and expressing stress openly.',
+				explanation:
+					'Reliance on social networks for stress relief and expressing stress openly for emotional support and problem-solving.'
+			};
+		} else if (disagreeCount >= 12 && agreeCount < 6) {
+			stressorType = {
+				title: 'Avoidance Coping Style',
+				traits:
+					'Tendency to retreat inward, seek distractions, and avoid confronting stress directly.',
+				explanation:
+					'Coping through distraction, avoiding direct confrontation of stressors, and seeking escape or relief from stress.'
+			};
+		} else if (agreeCount >= 8 && disagreeCount < 10) {
+			stressorType = {
+				title: 'Adaptive Coping Style',
+				traits:
+					'Flexibility in coping strategies, balancing problem-solving and emotional management.',
+				explanation:
+					'Demonstrates adaptability by using a mix of problem-focused and emotion-focused strategies based on the nature of stressors.'
+			};
+		} else {
+			stressorType = {
+				title: 'Reactive Coping Style',
+				traits:
+					'Overwhelmed by stress, less structured approach, and heightened emotional responses.',
+				explanation:
+					'Difficulty in maintaining structured plans, feeling overwhelmed by stress, and displaying heightened emotional reactions.'
+			};
+		}
+		displayStressor(stressorType);
+	}
 
 	//logic for displaying (messy)
 	function displayStressor(stressor) {
-    const stressorType = encodeURIComponent(stressor.title); // Encode stressor type for URL
-    goto(`/advice?stressor=${stressorType}`) ;
-}
+		const stressorType = encodeURIComponent(stressor.title); // Encode stressor type for URL
+		goto(`/advice?stressor=${stressorType}`);
+	}
 
 	function showPopup() {
 		const popup = document.getElementById('popup');
@@ -167,76 +191,75 @@
 		const popup = document.getElementById('popup');
 		popup.classList.add('hidden');
 	}
+
+	const answerColors = {
+        'Strongly Agree': '#2ecc71',
+        'Agree': '#00b894',
+        'Neutral': '#FFFfff',
+        'Disagree': '#e74c3c',
+        'Strongly Disagree': '#c0392b'
+    };
 </script>
 
-<!-- 
-popup explainging what the survey is for
- -->
+<style>
+    
+    .pastel-bg {
+        background-color: rgb(222, 246, 222);; /* Replace with your preferred pastel color */
+    }
+</style>
 
-<div
-	class="popup fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-50 hidden"
-	id="popup"
->
-	<div class="popup-content bg-amber-50 p-8 rounded shadow-md max-w-xl">
-		<p class="mb-4">Welcome!</p>
-		<p class="mb-4">
-			Thank you for taking this survey. It is made to help our users to find what their stressor is
-			and based on that personalize some advice that could help them lesser their levels of stress.
-		</p>
-		<p class="mb-4">
-			Please note that your responses should primarily lean towards "agreement" or "disagreement."
-			While "neutral" is an option, we encourage you to use it sparingly, reserving it for
-			situations where you truly cannot lean toward either agreement or disagreement. Your input is
-			valuable, so try to provide a clear stance whenever possible.
-		</p>
-		<p class="mb-4">
-			Your thoughtful responses help us gather accurate insights that we will use to help you. Let's
-			get started!
-		</p>
-		<div class="response-buttons flex justify-between">
-			<button
-				id="agree-btn"
-				class="bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-				on:click={closePopup}>Understood</button
-			>
-		</div>
-	</div>
+<!-- Popup explaining the survey -->
+<div class="popup fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-50 hidden pastel-bg" id="popup">
+    <div class="popup-content bg-white p-8 rounded shadow-md max-w-xl">
+        <!-- Instructions -->
+        <p class="mb-4">
+            Welcome! Thank you for taking this survey. It aims to help our users find their stressors for personalized advice.
+        </p>
+        <p class="mb-4">
+            Please lean towards "agreement" or "disagreement." Reserve "neutral" for when you truly cannot choose.
+        </p>
+        <p class="mb-4">
+            Your thoughtful responses provide valuable insights. Let's get started!
+        </p>
+        <!-- Close button -->
+        <div class="text-center">
+            <button class="bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" on:click={closePopup}>Understood</button>
+        </div>
+    </div>
 </div>
-
 <!-- Form for questions -->
-<form class="max-w-md mx-auto p-6 bg-amber-50 rounded shadow-md" on:submit|preventDefault={handleSubmit}>
-	<!-- Loop through questions -->
-	{#each questions as question}
-	  <div class="border-2 border-rose-200 rounded p-4 mb-4">
-		<label class="block mb-4" for="{question.id}">Question {question.id.substr(1)}: {question.text}</label>
-		<div class="grid grid-cols-5 gap-4">
-		  <!-- Loop through answers -->
-		  {#each ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'Strongly Disagree'] as answer}
-			<label class="block mb-2 font-semibold" for="{question.id}">
-			  <input
-				class="mr-2 appearance-none border-2 rounded-full w-4 h-4 checked:bg-transparent checked:border-transparent"
-				type="radio"
-				bind:group={responses[question.id]}
-				value={answer}
-				style="
-				  background-color: {answer === 'Strongly Agree' ? '#2ecc71' : answer === 'Agree' ? '#00b894' : answer === 'Neutral' ? '#dfe6e9' : answer === 'Disagree' ? '#e74c3c' : '#c0392b'};
-				  border-color: {answer === 'Strongly Agree' ? '#27ae60' : answer === 'Agree' ? '#00a896' : answer === 'Neutral' ? '#bdc3c7' : answer === 'Disagree' ? '#c0392b' : '#96281b'};
-				  background: {responses[question.id] === answer ? (answer === 'Strongly Agree' ? '#27ae60' : answer === 'Agree' ? '#00a896' : answer === 'Neutral' ? '#bdc3c7' : answer === 'Disagree' ? '#c0392b' : '#96281b') : 'transparent'};
-				"
-			  /> {answer}
-			</label>
-		  {/each}
-		</div>
-	  </div>
-	{/each}
-  
-	<button
-		class="mt-4 bg-button-1 hover:bg-button-2 text-white font-bold py-2 px-4 rounded"
-		type="submit">Submit</button
-	>
+<form class="max-w-3xl mx-auto p-6 bg-white rounded shadow-md " on:submit|preventDefault={handleSubmit}>
+    <!-- Loop through questions -->
+    {#each questions as question}
+    <div class="border-2 border-gray-300 rounded p-4 mb-4 pastel-bg">
+        <label class="block mb-4 font-semibold" for={question.id}>
+            Question {question.id.substr(1)}: {question.text}
+        </label>
+        <div class="grid grid-cols-5 gap-4">
+            <!-- Loop through answers -->
+            {#each ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'Strongly Disagree'] as answer}
+            <label class="block mb-2" for={question.id}>
+                <input
+                    class="mr-2 appearance-none border-2 rounded-full w-4 h-4 checked:bg-transparent checked:border-transparent"
+                    type="radio"
+                    bind:group={responses[question.id]}
+                    value={answer}
+                    style="
+                        background-color: {answerColors[answer]};
+                        border-color: {answerColors[answer]};
+                        background: {responses[question.id] === answer ? answerColors[answer] : 'transparent'};
+                    "
+                />
+                {answer}
+            </label>
+            {/each}
+        </div>
+    </div>
+    {/each}
 
-  </form>  
-	<!-- not sure if we want 30Qs, i have them just in case, to add them is easy -->	
+    <button class="mt-4 bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
+</form>
+<!-- not sure if we want 30Qs, i have them just in case, to add them is easy -->
 
 <!-- Displays the final stressor -->
 <div class="mt-6 text-center hidden flex items-center justify-center" id="stressor">...</div>
