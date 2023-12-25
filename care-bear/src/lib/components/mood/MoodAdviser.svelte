@@ -57,7 +57,6 @@
 	</div>
   {:else if selectedMood && activityPage}
 	<div class="pt-9">
-	  <h1 class="text-2xl font-bold text-center">See activities to improve your current mood</h1>
 	  <div class="max-w-md mx-auto mt-10 p-6 space-y-4">
 		<a href={activityPage} class="block text-black-200 hover:text-white">
 		  <div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md text-center shadow-md">Exercises to help  your current Mood "{selectedMood}"</div>
