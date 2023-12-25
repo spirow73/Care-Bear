@@ -10,7 +10,7 @@
 </script>
 
 {#if entry}
-	<div class="flex items-center p-4 hover:bg-orange-200 transition-colors cursor-pointer">
+	<div class="flex items-center p-4 hover:bg-fuchsia-200 transition-colors cursor-pointer">
 		<div class="flex-1">
 			<h3 class="text-lg font-semibold text-gray-900 text-base">{entry.title}</h3>
 			<p class="text-gray-500 mt-1 text-sm">

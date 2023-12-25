@@ -9,7 +9,7 @@ module.exports = {
           'brown-900' : '#FFE5D4',
           'nav' : '#EFC7C2',
           'button-1' : '#985F6F',
-          'button-2': '#4E4C67'
+          'button-2': '#4E4C67',
               },
     },
   },

@@ -36,24 +36,12 @@
 			</button>
 		</div>
 		{:else}
-<<<<<<< HEAD
-			<div class="text-center ">
-				<button
-					class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
-					on:click={toggleAddEntryForm}
-					
-				>
-					Add Journal Entry
-				</button>
-			</div>
-=======
 		<div class="flex flex-col items-center">
 			<span class="block mb-2 text-black text-center  text-lg"><b>Add Journal Entry</b></span>
 			<button class="mx-auto w-6 h-6" on:click={toggleAddEntryForm}>
 				<img src={down} alt="Down Button Image">
 			</button>
 		</div>
->>>>>>> 89db2c9e71b18fdbbe44b390eba848162aeb2717
 		{/if}
 	</div>
 </div>

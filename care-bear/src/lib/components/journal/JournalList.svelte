@@ -22,7 +22,7 @@
 	<div class="space-y-4 p-4">
 		{#each journals.slice().reverse() as journal, i (journal.journal_id)}
 			<div
-				class="bg-orange-100 shadow-md rounded-lg overflow-hidden"
+				class="bg-fuchsia-100 shadow-md rounded-lg overflow-hidden"
 				transition:fade={{ duration: 300 }}
 			>
 				<div

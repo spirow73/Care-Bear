@@ -5,7 +5,7 @@
 
 <div class="mt-6">
 	<div
-		class="relative p-4 bg-orange-200 shadow-lg rounded-lg mb-6 transition-all hover:shadow-xl bg-gray-50"
+		class="relative p-4 bg-fuchsia-100 shadow-lg rounded-lg mb-6 transition-all hover:shadow-xl"
 	>
 		{#if entry.content}
 			<div class="text-gray-800 whitespace-pre-line">{entry.content}</div>

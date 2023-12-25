@@ -5,6 +5,16 @@
 	import stressed from '$lib/components/images/stressed.png';
 	import tired from '$lib/components/images/tired.png';
 	import upset from '$lib/components/images/upset.png';
+	import excited from '$lib/components/images/excited.png';
+	import calm from '$lib/components/images/calm.png';
+	import content from '$lib/components/images/content.png';
+	import confused from '$lib/components/images/confused.png';
+	import neutral from '$lib/components/images/neutral.png';
+	import frustrated from '$lib/components/images/frustrated.png';
+	import anxious from '$lib/components/images/anxious.png';
+	import energetic from '$lib/components/images/energetic.png';
+	import lonely from '$lib/components/images/lonely.png';
+	import loved from '$lib/components/images/loved.png';
 	import { addMoodEntryToDB } from '$lib/moodStore';
 	import theme from '../../../stores/themeStore.js';
 
@@ -35,7 +45,17 @@ onMount(() => {
 		3: { description: 'Stressed', image: stressed },
 		4: { description: 'Depressed', image: depressed },
 		5: { description: 'Tired', image: tired },
-		6: { description: 'Upset', image: upset }
+		6: { description: 'Upset', image: upset },
+		7:{ description: 'Calm', image: calm },
+		8:{ description: 'Content', image: content },
+		9:{ description: 'Anxious', image: anxious },
+		10:{ description: 'Frustrated', image: frustrated },
+		11:{ description: 'Confused', image: confused },
+		12:{ description: 'Energetic', image: energetic },
+		13:{ description: 'Excited', image: excited },
+		14:{ description: 'Lonely', image: lonely },
+		15:{ description: 'Loved', image: loved },
+		16:{ description: 'Neutral', image: neutral },
 	};
 
 	const dispatch = createEventDispatcher();
@@ -90,7 +110,7 @@ onMount(() => {
 			<div
 				id={`mood_${moodId}`}
 				class={`w-full sm:w-1/2 md:w-1/3 lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 shadow-md ${
-					selectedMood === moodId ? 'border border-red' : 'bg-orange-200'
+					selectedMood === moodId ? 'border border-red' : ' bg-fuchsia-100'
 				}`}
 				on:click={() => selectMood(moodId)}
 			>

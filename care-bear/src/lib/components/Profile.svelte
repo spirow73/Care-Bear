@@ -79,7 +79,7 @@
     }
 </script>
 
-<div class="max-w-screen-md mx-auto mt-10 rounded-lg bg-orange-200 dark:bg-gray-800 shadow-lg">
+<div class="max-w-screen-md mx-auto mt-10 rounded-lg bg-fuchsia-100 dark:bg-gray-800 shadow-lg">
     <div class="p-6">
         <div class="flex items-center space-x-6 mb-6">
             <img src={userProfile.avatarUrl} alt="User Avatar" class="h-16 w-16 rounded-full object-cover" />

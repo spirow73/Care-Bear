@@ -64,7 +64,7 @@
 </script>
 
 <Toaster />
-<form on:submit|preventDefault={addTask} class="p-4 bg-orange-200 shadow rounded-lg m-4">
+<form on:submit|preventDefault={addTask} class="p-4 bg-fuchsia-100 shadow rounded-lg m-4">
 	<!-- Heading -->
 	<h3 class="text-2xl font-semibold mb-4">Create a new task</h3>
 

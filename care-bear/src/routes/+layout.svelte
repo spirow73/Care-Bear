@@ -55,7 +55,7 @@
 </script>
 
 <div class="min-h-screen">
-	<nav class="bg-nav p-6 shadow-md">
+	<nav class="cotton-candy p-6 shadow-md">
 		<div class="container flex flex-wrap items-center justify-between">
 			<div class="flex items-center flex-shrink-0 text-black mr-6">
 				<a
@@ -163,7 +163,11 @@
 .dark {
   background-color: black;
   color: white;
+
 }
+.cotton-candy {
+			background: linear-gradient(95deg, rgb(249, 196, 232), rgb(229, 215, 255), rgb(171, 219, 254));
+		}
 		:global(body) {
 	background-image: url('$lib/components/images/background.png');
     background-size: cover; /* Adjust the sizing as needed */
