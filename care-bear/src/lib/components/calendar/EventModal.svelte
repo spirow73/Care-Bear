@@ -2,28 +2,70 @@
 	import TaskAdder from '$lib/components/task/TaskAdder.svelte';
 	import TaskList from '$lib/components/task/TaskList.svelte';
 
+	import { onMount, onDestroy } from 'svelte';
+
 	export let closeEventModal;
 	export let currentEventDate;
-	export let tasksForDay = []; // Add this to receive tasks for the day
-	console.log(tasksForDay);
+	export let tasksForDay = [];
+
+	// Function to handle the "Esc" key press
+	function handleKeydown(event) {
+		if (event.key === 'Escape') {
+			closeEventModal();
+		}
+	}
+
+	// Add event listener on mount
+	onMount(() => {
+		window.addEventListener('keydown', handleKeydown);
+	});
+
+	// Clean up the event listener on destroy
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
+	});
 </script>
 
 <div class="modal-container">
-	<div class="modal-content overflow-auto">
-		<div class="task-layout">
-			<div class="task-list-container">
+	<div class="modal-content overflow-auto relative">
+		<!-- Close Button at the very top right corner of the modal content with a red circle -->
+		<button
+			on:click={closeEventModal}
+			class="absolute top-0 right-0 m-2 text-2xl rounded-full bg-red-500 hover:bg-red-700 p-1 text-white"
+			aria-label="Close"
+		>
+			<svg
+				class="h-6 w-6"
+				fill="none"
+				stroke="currentColor"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M6 18L18 6M6 6l12 12"
+				/>
+			</svg>
+		</button>
+
+		<div class="task-layout" style="display: flex; flex-direction: row; gap: 1rem;">
+			<div class="task-list-container" style="flex: 1;">
 				{#if tasksForDay.length > 0}
 					<TaskList title="Tasks for the Day" tasks={tasksForDay} />
 				{/if}
 			</div>
-			<TaskAdder calendarDate={currentEventDate} />
+			<div style="flex: 1;">
+				<TaskAdder calendarDate={currentEventDate} />
+				<button
+					on:click={closeEventModal}
+					class="mt-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition duration-300"
+				>
+					OK
+				</button>
+			</div>
 		</div>
-		<button
-			on:click={closeEventModal}
-			class="mt-4 bg-button-1 hover:bg-button-2 text-white font-bold py-2 px-4 rounded"
-		>
-			Close
-		</button>
 	</div>
 </div>
 
@@ -42,7 +84,7 @@
 	}
 
 	.modal-content {
-		background-image:url('$lib/components/images/background.png') ;
+		background-image: url('$lib/components/images/background.png');
 		background-repeat: no-repeat;
 		background-size: cover;
 		padding: 2rem;
@@ -65,6 +107,16 @@
 		overflow-y: auto;
 		flex: 1;
 		margin-right: 5px; /* Adjust spacing between Task List and Task Adder */
+	}
+
+	.task-layout {
+		display: flex; /* This will ensure that the child elements are flex items */
+		flex-direction: column; /* Stack children vertically */
+		height: 100%; /* Make the task-layout take full height of its parent */
+	}
+
+	.task-list-container {
+		overflow-y: auto; /* Add scroll to the task list if it overflows */
 	}
 
 	@media (max-width: 600px) {

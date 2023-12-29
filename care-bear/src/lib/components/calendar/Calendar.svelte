@@ -13,7 +13,7 @@
 
 	let selectedDate = new Date();
 	const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-	let currentEventDate;
+	let currentEventDate = null;
 	let selectedTasks = [];
 	let isEventModalOpen = false;
 
@@ -78,10 +78,3 @@
 		{/if}
 	</div>
 {/if}
-
-<!-- <button
-	type="submit"
-	class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
->
-	Add Task
-</button> -->

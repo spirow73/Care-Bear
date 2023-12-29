@@ -64,7 +64,7 @@
 </script>
 
 <Toaster />
-<form on:submit|preventDefault={addTask} class="p-4 bg-fuchsia-100 shadow rounded-lg m-4">
+<form on:submit|preventDefault={addTask} class="p-4 bg-fuchsia-100 shadow rounded-lg">
 	<!-- Heading -->
 	<h3 class="text-2xl font-semibold mb-4">Create a new task</h3>
 
@@ -93,24 +93,45 @@
 	</div>
 
 	<!-- Date and Time Inputs -->
-	<div class="flex flex-col sm:flex-row mb-4">
-		<div class="mb-2 sm:mr-2 sm:mb-0">
-			<label for="date" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
-			<input
-				type="date"
-				bind:value={dateData.date}
-				class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-			/>
+	{#if calendarDate === null}
+		<!-- Date and Time Inputs -->
+		<div class="flex flex-col sm:flex-row mb-4">
+			<div class="mb-2 sm:mr-2 sm:mb-0">
+				<label for="date" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+				<input
+					type="date"
+					bind:value={dateData.date}
+					class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+				/>
+			</div>
+			<div class="mb-2">
+				<label for="time" class="block text-sm font-medium text-gray-700 mb-1">Time</label>
+				<input
+					type="time"
+					bind:value={dateData.time}
+					class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+				/>
+			</div>
 		</div>
-		<div class="mb-2">
-			<label for="time" class="block text-sm font-medium text-gray-700 mb-1">Time</label>
-			<input
-				type="time"
-				bind:value={dateData.time}
-				class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-			/>
+	{:else}
+		<!-- Display the selected date and time -->
+		<div class="flex flex-col sm:flex-row mb-4">
+			<div class="mb-2 sm:mr-2 sm:mb-0">
+				<label class="block text-sm font-medium text-gray-700 mb-1">Deadline</label>
+				<p class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+					{formattedDeadline}
+				</p>
+			</div>
+			<div class="mb-2">
+				<label for="time" class="block text-sm font-medium text-gray-700 mb-1">Time</label>
+				<input
+					type="time"
+					bind:value={dateData.time}
+					class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+				/>
+			</div>
 		</div>
-	</div>
+	{/if}
 
 	<!-- Button -->
 	<div class="flex justify-end">
