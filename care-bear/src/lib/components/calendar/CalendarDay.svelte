@@ -22,7 +22,7 @@
 </script>
 
 <div
-	class="relative cursor-pointer hover:bg-orange-100 rounded-lg border border-gray-400"
+	class="relative cursor-pointer hover:bg-fuchsia-100 rounded-lg border border-gray-500"
 	on:click={handleDayClick}
 	on:keydown={handleDayKeyDown}
 	role="gridcell"

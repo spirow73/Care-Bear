@@ -54,7 +54,7 @@
 {#if $taskStore.isLoading}
 	<p>Loading tasks</p>
 {:else}
-	<div>
+	<div class="mt-2">
 		<CalendarHeader {selectedDate} {changeMonth} />
 		<div class="grid grid-cols-7 gap-1 my-2">
 			{#each weekDays as day}
@@ -78,3 +78,10 @@
 		{/if}
 	</div>
 {/if}
+
+<!-- <button
+	type="submit"
+	class="px-4 py-2 bg-button-1 text-white rounded hover:bg-button-2 transition duration-300"
+>
+	Add Task
+</button> -->
