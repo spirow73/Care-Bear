@@ -131,6 +131,14 @@
 						Calendar
 					</a>
 					<a
+					href="/advice"
+					class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+					use:animations.enter
+					use:animations.leave
+				>
+					Advice
+				</a>
+					<a
 						href="/profile"
 						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
 						use:animations.enter

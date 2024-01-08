@@ -69,162 +69,6 @@
 			title: 'Professional Help',
 			description: `If stress becomes overwhelming or chronic, seek help from a mental health professional. Therapists can provide effective strategies and support tailored to your situation. \n
               - **Recognizing the Need**: Don’t hesitate to seek help if stress feels unmanageable or persists despite your efforts. \n
-<<<<<<< HEAD
-              - **Therapeutic Support**: Therapists offer a safe space to explore stressors, coping strategies, and provide tools to manage stress effectively.`,
-      },
-      {
-      stressorType: 'Problem-Focused Coping Preference',
-      title: 'Strategic Planning and Goal Setting',
-      description: 'Break down stressors into manageable tasks. Create a structured plan with clear, achievable goals.'
-    },
-    {
-      stressorType: 'Problem-Focused Coping Preference',
-      title: 'Seeking Expert Advice or Mentorship',
-      description: 'Consult individuals experienced in handling similar stressors for valuable insights and guidance.'
-    },
-    {
-      stressorType: 'Problem-Focused Coping Preference',
-      title: 'Utilizing Problem-Solving Tools and Resources',
-      description: 'Utilize available resources such as books or courses to acquire knowledge and skills for direct problem-solving.'
-    },
-    {
-      stressorType: 'Emotion-Focused Coping Preference',
-      title: 'Mindfulness and Breathing Exercises',
-      description: 'Practice mindfulness techniques like meditation or deep breathing for emotional awareness and self-regulation.'
-    },
-    {
-      stressorType: 'Emotion-Focused Coping Preference',
-      title: 'Journaling for Emotional Expression',
-      description: 'Express emotions through journaling to better understand and manage feelings.'
-    },
-    {
-      stressorType: 'Emotion-Focused Coping Preference',
-      title: 'Therapeutic Self-Care Activities',
-      description: 'Engage in self-care activities like calming baths or nature walks to promote emotional well-being.'
-    },
-    {
-      stressorType: 'Social Support-Centered Coping Style',
-      title: 'Open Communication and Active Listening',
-      description: 'Share stressors openly while actively listening to trusted individuals for mutual support.'
-    },
-    {
-      stressorType: 'Social Support-Centered Coping Style',
-      title: 'Participation in Support Groups or Communities',
-      description: 'Join support groups for guidance, shared experiences, and emotional support.'
-    },
-    {
-      stressorType: 'Social Support-Centered Coping Style',
-      title: 'Building Strong Relationships',
-      description: 'Invest in nurturing relationships to establish a supportive network during stressful times.'
-    },
-    {
-      stressorType: 'Avoidance Coping Style',
-      title: 'Gradual Exposure and Desensitization',
-      description: 'Slowly confront stressors in controlled doses to build tolerance and reduce avoidance behaviors.'
-    },
-    {
-      stressorType: 'Avoidance Coping Style',
-      title: 'Mindful Distraction Techniques',
-      description: 'Engage in hobbies or activities to redirect attention from stressors without avoidance.'
-    },
-    {
-      stressorType: 'Avoidance Coping Style',
-      title: 'Cognitive Behavioral Techniques',
-      description: 'Learn cognitive techniques to challenge avoidance behaviors and modify thought patterns.'
-    },
-    {
-      stressorType: 'Adaptive Coping Style',
-      title: 'Flexibility in Approach and Strategy',
-      description: 'Adapt coping strategies based on stressor assessment—problem-solving or emotion regulation as needed.'
-    },
-    {
-      stressorType: 'Adaptive Coping Style',
-      title: 'Learning from Experience and Adjustment',
-      description: 'Evaluate coping methods based on experiences, embracing new techniques for stress management.'
-    },
-    {
-      stressorType: 'Adaptive Coping Style',
-      title: 'Mindfulness Integration in Coping',
-      description: 'Incorporate mindfulness practices to enhance adaptability in balancing problem-solving and emotion regulation.'
-    },
-    {
-      stressorType: 'Reactive Coping Style',
-      title: 'Immediate Stress Reduction Techniques',
-      description: 'Practice relaxation techniques for immediate stress relief during overwhelming situations.'
-    },
-    {
-      stressorType: 'Reactive Coping Style',
-      title: 'Structured Support Systems and Professional Help',
-      description: 'Seek professional guidance to create structured plans for managing stress and handling intense emotional reactions.'
-    },
-    {
-      stressorType: 'Reactive Coping Style',
-      title: 'Crisis Management Planning',
-      description: 'Develop a crisis management plan with professionals to navigate highly stressful situations effectively.'
-    }
-    ];
-  
-    // Function to toggle active card
-    function toggleActive(index) {
-      active = active === index ? null : index;
-    }
-  
-    // Function to format description with bold text
-    function formatDescription(description) {
-      const boldRegex = /\*\*(.*?)\*\*/g;
-      return description.split('\n').map((line) => {
-        return line.replace(boldRegex, '<strong>$1</strong>');
-      }).join('<br>');
-    }
-  
-    onMount(() => {
-      const params = new URLSearchParams(location.search);
-      stressorType = params.get('stressor') || '';
-  
-      // Find advice based on stressor type
-      adviceToShow = stressManagementTechniques.find(advice => advice.stressorType === stressorType);
-  
-      if (adviceToShow) {
-        // Filter related advice based on stressor type
-        relatedAdvice = stressManagementTechniques.filter(advice => advice.stressorType === stressorType && advice.title !== adviceToShow.title);
-      } else {
-        // If no advice found, display an error message
-        adviceToShow = {
-          title: 'Advice Not Found',
-          description: 'There was an issue finding advice for this stressor type.',
-        };
-      }
-    });
-    </script>
-    
-    <style>
-      .card {
-        @apply border border-gray-300 p-4 rounded-lg;
-        cursor:pointer;
-      }
-    
-      .card.active {
-        @apply bg-blue-100; 
-      }
-    
-      .title {
-        @apply font-bold text-xl mb-2;
-      }
-  
-      .description {
-        @apply font-normal;
-      }
-    
-      .list-item {
-        @apply font-bold;
-      }
-    </style>
-  
-  <!-- Template for personalized advice -->
-  <div class="flex items-center justify-center min-h-screen">
-    <div class="max-w-lg p-6 bg-white shadow-lg rounded-lg">
-      <h1 class="text-3xl font-bold mb-8 text-center">Personalized Advice for {stressorType} </h1>
-=======
               - **Therapeutic Support**: Therapists offer a safe space to explore stressors, coping strategies, and provide tools to manage stress effectively.`
 		},
 		{
@@ -405,14 +249,13 @@
   <!-- Personalized Advice Section -->
  
     {#if showPersonalizedAdvice}
-     <div class="max-w-3xl w-full p-6 bg-white shadow-lg rounded-lg mr-8">
+     <div class="max-w-3xl w-full p-6 bg-orange-100 shadow-lg rounded-lg mr-8">
     <div class="space-y-6">
       <h1 class="text-3xl font-bold mb-8 text-center">
         Personalized Advice for {stressorType}
       </h1>
->>>>>>> 89db2c9e71b18fdbbe44b390eba848162aeb2717
       {#if adviceToShow}
-      <div class="card bg-custom-green mb-4 hover:bg-custom-light" on:click={() => toggleActive('personalized')} tabindex="0">
+      <div class="card bg-fuchsia-100 mb-4 hover:bg-fuchsia-200" on:click={() => toggleActive('personalized')} tabindex="0">
         <h2 class="title cursor-pointer">{adviceToShow.title}</h2>
         {#if active === 'personalized'}
         <p class="description whitespace-pre-line text-gray-700 mt-2">
@@ -422,7 +265,7 @@
       </div>
       {#if relatedAdvice.length > 0}
       {#each relatedAdvice as related, index (related.title)}
-      <div class="card bg-custom-green mb-4 hover:bg-custom-light" on:click={() => toggleActive(index)} tabindex="0">
+      <div class="card bg-fuchsia-100 mb-4 hover:bg-fuchsia-200" on:click={() => toggleActive(index)} tabindex="0">
         <h2 class="title cursor-pointer">{related.title}</h2>
         {#if active === index}
         <p class="description whitespace-pre-line text-gray-700 mt-2">
@@ -441,14 +284,14 @@
   
 
   <!-- Stress Reduction Advice Section -->
-  <div class="max-w-3xl w-full p-6 bg-white shadow-lg rounded-lg">
+  <div class="max-w-3xl w-full p-6 bg-orange-100 shadow-lg rounded-lg">
     <div class="space-y-6">
       <h1 class="text-3xl font-bold mb-8 text-center">
         Stress Reduction Advice
       </h1>
       {#each stressManagementTechniques as advice, index (advice.title)}
       {#if !advice.stressorType}
-      <div class="card bg-custom-green hover:bg-custom-light mb-4 " on:click={() => toggleActive(index)} tabindex="0">
+      <div class="card bg-fuchsia-100 hover:bg-fuchsia-200 mb-4 " on:click={() => toggleActive(index)} tabindex="0">
         <h2 class="title cursor-pointer">{advice.title}</h2>
         {#if active === index}
         <p class="description whitespace-pre-line text-gray-700 mt-2">
@@ -499,13 +342,6 @@
 		box-shadow: 0 0 0 3px rgba(48, 3, 65, 0.5); /* Custom focus style */
 	}
 
-  .bg-custom-green {
-    background-color: rgb(222, 246, 222);
-  }
-
-  .card:hover {
-  background-color: rgb(176, 247, 176);
-}
   /* Adjusting layout for small screens */
   @media (max-width: 640px) {
     .sm\:flex {

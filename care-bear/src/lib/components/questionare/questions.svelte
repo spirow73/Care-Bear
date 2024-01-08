@@ -204,7 +204,7 @@
 <style>
     
     .pastel-bg {
-        background-color: rgb(222, 246, 222);; /* Replace with your preferred pastel color */
+        background-color: rgb(253, 224, 250)
     }
 </style>
 
@@ -228,7 +228,7 @@
     </div>
 </div>
 <!-- Form for questions -->
-<form class="max-w-3xl mx-auto p-6 bg-white rounded shadow-md " on:submit|preventDefault={handleSubmit}>
+<form class="max-w-3xl mx-auto p-6 bg-orange-50 rounded shadow-md " on:submit|preventDefault={handleSubmit}>
     <!-- Loop through questions -->
     {#each questions as question}
     <div class="border-2 border-gray-300 rounded p-4 mb-4 pastel-bg">
