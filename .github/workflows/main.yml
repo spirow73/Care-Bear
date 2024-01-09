@@ -31,6 +31,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
+          cd ..
           docker build . -t my-svelte-app
 
       - name: Notify on Failure
