@@ -32,7 +32,6 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.38.4",
-		"darkreader": "^4.9.73",
 		"svelte-french-toast": "^1.2.0"
 	}
 }
