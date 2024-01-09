@@ -27,7 +27,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           cd care-bear
-          npx jest
+          npm run test
 
       - name: Build the Docker image
         run: |
