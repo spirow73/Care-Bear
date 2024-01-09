@@ -29,13 +29,16 @@ jobs:
           cd care-bear
           npx jest
 
+      - name: Build the Docker image
+        run: |
+          docker build . -t my-svelte-app
 
       - name: Notify on Failure
         if: failure()
         uses: actions/github-script@v5
         with:
           script: |
-            const issue_body = Build failed on ${context.ref};
+            const issue_body = `Build failed on ${context.ref}`;
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
