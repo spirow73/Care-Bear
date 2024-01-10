@@ -24,28 +24,28 @@
 		<!-- Container for the button and the form with a white background when the form is visible -->
 		<div class={showAddTaskForm ? 'bg-brown-900 py-4' : ''}>
 			{#if showAddTaskForm}
-			<div transition:slide>
-				<TaskAdder />
-			</div>
+				<div transition:slide>
+					<TaskAdder />
+				</div>
 				<!-- Apply sliding transition to the form -->
-						<div class="mt-4 flex flex-col items-center">
-							<span class="block mb-2 text-black text-center text-lg"><b>Close</b></span>
-							<button class="mx-auto w-6 h-6" on:click={toggleAddTaskForm}>
-								<img src={up} alt="Up Button Image" />
-							</button>
-						</div>
+				<div class="mt-4 flex flex-col items-center">
+					<span class="block mb-2 text-black text-center text-lg"><b>Close</b></span>
+					<button class="mx-auto w-6 h-6" on:click={toggleAddTaskForm}>
+						<img src={up} alt="Up Button Image" />
+					</button>
+				</div>
 			{:else}
-			<div class="flex flex-col items-center">
-				<span class="block mb-2 text-black text-center  text-lg"><b>Add task</b></span>
-				<button class="mx-auto w-6 h-6" on:click={toggleAddTaskForm}>
-					<img src={down} alt="Down Button Image">
-				</button>
-			</div>
+				<div class="flex flex-col items-center">
+					<span class="block mb-2 text-black text-center text-lg"><b>Add task</b></span>
+					<button class="mx-auto w-6 h-6" on:click={toggleAddTaskForm}>
+						<img src={down} alt="Down Button Image" />
+					</button>
+				</div>
 			{/if}
 		</div>
 
-
-	<div>
-		<TaskList tasks={$taskStore} showFilters={true} />
-	</div>
-</body>
+		<div class="m-3">
+			<TaskList tasks={$taskStore} showFilters={true} />
+		</div>
+	</div></body
+>
