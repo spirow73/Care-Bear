@@ -47,19 +47,3 @@ jobs:
               body: issue_body
             })
 
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Super-Linter
-        uses: super-linter/super-linter@v5.7.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: MyDefaultBranch
-          DISABLE_ERRORS: true
-          #OUTPUT_FOLDER: Reports
-          OUTPUT_DETAILS: detailed
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_POWERSHELL: false
