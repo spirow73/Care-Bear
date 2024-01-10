@@ -2,7 +2,13 @@
     function requestNotificationPermission() {
         if ("Notification" in window) {
             Notification.requestPermission().then(permission => {
-                // Handle the permission response
+                if (permission === "granted") {
+                    console.log("Notification permission granted.");
+                    // Additional logic when permission is granted
+                } else {
+                    console.log("Notification permission denied.");
+                    // Handle the case where the user denies permission
+                }
             });
         }
     }

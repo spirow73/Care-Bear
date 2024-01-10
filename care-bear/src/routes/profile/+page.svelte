@@ -1,8 +1,13 @@
 <script>
     import Profile from '../../lib/components/Profile.svelte';
-
 </script>
-<body>
 
+<svelte:head>
+    <title>User Profile</title>
+</svelte:head>
+
+<body>
     <Profile />
+
+
 </body>

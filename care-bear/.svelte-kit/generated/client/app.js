@@ -33,14 +33,12 @@ export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/advice": [3],
-		"/advice/survey": [4],
-		"/auth": [5],
-		"/auth/login": [6],
-		"/auth/sign-up": [7],
+		"/advice": [6],
+		"/advice/survey": [7],
 		"/calendar": [8],
 		"/journal": [9],
 		"/journal/[id]": [10],
+		"/(auth)/login": [3],
 		"/moodActivities": [22],
 		"/mood": [11],
 		"/mood/Tired": [19],
@@ -54,8 +52,10 @@ export const dictionary = {
 		"/mood/upset": [20],
 		"/mood/yoga": [21],
 		"/profile": [23],
+		"/(auth)/register": [4],
 		"/task": [24],
-		"/tracker": [25]
+		"/tracker": [25],
+		"/(auth)/welcome": [5]
 	};
 
 export const hooks = {

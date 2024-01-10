@@ -2,14 +2,12 @@
 	"/": [],
 	"/advice": [],
 	"/advice/survey": [],
-	"/auth": [],
-	"/auth/login": [],
-	"/auth/sign-up": [],
 	"/calendar": [],
 	"/journal": [],
 	"/journal/[id]": [
 		"src/routes/journal/[id]/+page.js"
 	],
+	"/(auth)/login": [],
 	"/moodActivities": [],
 	"/mood": [],
 	"/mood/Tired": [],
@@ -23,6 +21,8 @@
 	"/mood/upset": [],
 	"/mood/yoga": [],
 	"/profile": [],
+	"/(auth)/register": [],
 	"/task": [],
-	"/tracker": []
+	"/tracker": [],
+	"/(auth)/welcome": []
 }

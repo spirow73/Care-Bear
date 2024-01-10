@@ -1,69 +1,82 @@
 <script>
     import { onMount } from 'svelte';
-    //import theme from '/../../stores/themeStore.js';
+    import { reminderEnabled } from '../reminderStore.js';
+    import { shareData } from '../shareData.js';
+    import { checkForUpcomingReminders } from '../taskStore.js'
+    import { supabase } from '../supabaseClient.js';
+    import * as ProfileInfo from '../profileInfo.js';
 
     
-    let userProfile = { name: '', email: '', avatarUrl: '/src/images.elephant.png' };
+    $: if ($reminderEnabled) {
+    // Enable reminder checks
+    checkForUpcomingReminders();
+} else {
+    // Disable reminders or clear any set intervals if applicable
+}
+ 
+
+    let personalGoals = '';
+    let userProfile = { name: '', email: '', avatarUrl: '/src/lib/components/images/elephant.png' };
     let icons = [
-        { name: 'Elephant', path: 'src/images/elephant.png' },
-        { name: 'Bee', path: 'src/images/bee.png' },
-        { name: 'Whale', path: 'src/images/whale.png' },
-        { name: 'Cat', path: 'src/images/cat.png' },
+        { name: 'Elephant', path: 'src/lib/components/images/elephant.png' },
+        { name: 'Bee', path: 'src/lib/components/images/bee.png' },
+        { name: 'Whale', path: 'src/lib/components/images/whale.png' },
+        { name: 'Cat', path: 'src/lib/components/images/cat.png' },
+        { name: 'Koala', path: 'src/lib/components/images/koala.png' },
+        { name: 'Chameleon', path: 'src/lib/components/images/chameleon.png' },
+        { name: 'Turtle', path: 'src/lib/components/images/turtle.png' },
+        { name: 'Fox', path: 'src/lib/components/images/fox.png' },
         // Add more icon objects here
     ];
+      // Initialize privacySettings object
+  let privacySettings = {
+    shareData: false // Set a default value
+  };
 
-  let personalGoals = '';
-    let privacySettings = { shareData: true };
-    let reminderSettings = {
-        enableReminders: false,
-        reminderFrequency: 'daily', // 'daily', 'weekly', or 'monthly'
-    };
+
     let updateStatus = '';
     // Function to handle icon selection
     function handleIconSelect(event) {
         const selectedIcon = icons.find(icon => icon.name === event.target.value);
         userProfile.avatarUrl = selectedIcon.path;
     }
-  
-
+    
+    
+    
     onMount(async () => {
         const user = supabase.auth.user();
         if (user) {
-            const { data, error } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', user.id)
-                .single();
-
-            if (error) {
-                console.error('Error fetching profile:', error);
-            } else {
-                userProfile = data;
-                personalGoals = data.personalGoals || '';
-                privacySettings.shareData = data.shareData || false;
-                updateThemeClass();
+            const profile = await ProfileInfo.fetchUserProfile(supabase, user.id);
+            if (profile) {
+                userProfile = profile;
+                // Other initialization code...
             }
         }
+            // Load reminder settings from local storage
+    const storedReminderSetting = localStorage.getItem('enableReminders');
+    if (storedReminderSetting !== null) {
+        reminderSettings.enableReminders = storedReminderSetting === 'true';
+    }
     });
 
-    function updateThemeClass() {
-        if (userProfile.theme === 'dark') {
-            document.body.classList.add('dark');
+    async function updateProfile(name, email) {
+    const user = supabase.auth.user()
+
+    if (user) {
+        const { data, error } = await supabase
+            .from('user')
+            .update({ username, email })
+            .eq('id', user.id)
+
+        if (error) {
+            console.error('Error updating profile:', error);
         } else {
-            document.body.classList.remove('dark');
+            // Profile updated successfully
         }
     }
+}
 
-    function toggleDarkMode() {
-        userProfile.theme = userProfile.theme === 'light' ? 'dark' : 'light';
-        updateThemeClass();
-        // Update the user profile in your database if needed
-    }
 
-    async function updateProfile() {
-        // Implement the logic to update the profile in Supabase,
-        // including personal goals and privacy settings
-    }
 
     async function changePassword() {
         // Logic to handle password change
@@ -99,15 +112,6 @@
                     </select>
                 </div>
 
-        <!-- Customization Options -->
-        <div class="mb-6">
-            <label for="theme" class="font-bold mb-2 block dark:text-gray-300">App Theme:</label>
-            <select id="theme" class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white" on:change={toggleDarkMode}>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-            </select>
-        </div>
-
         <!-- Personal Goals -->
         <div class="mb-6">
             <label for="personalGoals" class="font-bold mb-2 block dark:text-gray-300">Personal Goals:</label>
@@ -117,26 +121,16 @@
         <!-- Privacy Settings -->
         <div class="mb-6">
             <label class="flex items-center dark:text-gray-300">
-                <input type="checkbox" bind:checked={privacySettings.shareData} on:change={togglePrivacySetting} class="rounded border-gray-300 h-5 w-5 dark:border-gray-600 dark:bg-gray-700" />
+                <input type="checkbox" bind:checked={$shareData}>
                 <span class="ml-2">Share data for research purposes</span>
             </label>
         </div>
         <!-- Reminder Settings -->
         <div class="mb-6">
             <label class="flex items-center dark:text-gray-300">
-                <input type="checkbox" bind:checked={reminderSettings.enableReminders} class="rounded border-gray-300 h-5 w-5 dark:border-gray-600 dark:bg-gray-700" />
+                <input type="checkbox" bind:checked={$reminderEnabled}>
                 <span class="ml-2">Enable Reminders</span>
             </label>
-            {#if reminderSettings.enableReminders}
-                <div class="mt-4">
-                <label for="reminderFrequency" class="font-bold mb-2 block dark:text-gray-300">Reminder Frequency:</label>
-                <select id="reminderFrequency" bind:value={reminderSettings.reminderFrequency} on:change={changeReminderFrequency} class="rounded-md border-gray-300 border p-2 w-full dark:border-gray-600 dark:bg-gray-700 dark:text-white">
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                </select>
-            </div>
-            {/if}
         </div>
 
             <!-- Profile Update Status Message -->
@@ -145,12 +139,6 @@
         {updateStatus}
     </div>
 {/if}
-        
-        <!-- Account Management -->
-        <div class="flex justify-start space-x-2">
-            <button on:click={changePassword} class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">Change Password</button>
-            <button on:click={deleteAccount} class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">Delete Account</button>
-        </div>
 
 
         <!-- Update Profile Form -->
@@ -165,6 +153,12 @@
             </div>
             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">Update Profile</button>
         </form>
+ <br>
+                <!-- Account Management -->
+                <div class="flex justify-start space-x-2">
+                    <button on:click={changePassword} class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">Change Password</button>
+                    <button on:click={deleteAccount} class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">Delete Account</button>
+                </div>
     </div>
 
 </div>

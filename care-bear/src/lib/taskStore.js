@@ -4,6 +4,7 @@ import { fetchTasks, createTask, updateTask, deleteTask } from './taskClient';
 
 const tasks = writable([]);
 
+
 export async function loadDbTasks() {
 	try {
 		tasks.set(await fetchTasks());
@@ -90,6 +91,46 @@ export async function toggleTaskCompletion(task_id, isCompleted) {
 		console.error('Error al alternar la completitud de la tarea:', error);
 	}
 }
+
+// Function to check for tasks nearing their deadline
+export function checkForUpcomingTasks() {
+    const currentTime = new Date();
+    const upcomingTasks = get(tasks).filter(task => {
+        const deadline = new Date(task.deadline);
+        const timeDiff = deadline - currentTime;
+        // Check if the task is within one hour
+        return timeDiff > 0 && timeDiff <= 3600000; // 3600000 ms = 1 hour
+    });
+
+    upcomingTasks.forEach(task => {
+        // Trigger notification for each upcoming task
+        triggerNotification(task);
+    });
+}
+
+
+export function checkForUpcomingReminders() {
+    const currentTime = new Date();
+    const oneHour = 60 * 60 * 1000; // One hour in milliseconds
+
+    const upcomingTasks = get(tasks).filter(task => {
+        const deadline = new Date(task.deadline);
+        return deadline - currentTime <= oneHour && deadline > currentTime;
+    });
+
+    upcomingTasks.forEach(task => {
+        triggerReminder(task);
+    });
+}
+
+function triggerReminder(task) {
+    if (Notification.permission === "granted") {
+        new Notification(`Reminder: Task '${task.title}' is due in less than one hour.`);
+    }
+}
+
+// Regularly check for reminders
+setInterval(checkForUpcomingReminders, 5 * 60 * 1000); // Check every 5 minutes
 
 export default {
 	subscribe: tasks.subscribe,

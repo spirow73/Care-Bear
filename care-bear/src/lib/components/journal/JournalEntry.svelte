@@ -13,7 +13,7 @@
     }
 </script>
 
-<article class={`m-3 p-4 bg-brown-900 shadow-lg rounded-lg border border-black ${darkModeClass}`}>
+<article class={`m-3 p-4 bg-fuchsia-200 shadow-lg rounded-lg border border-black ${darkModeClass}`}>
     <h1 class={`text-2xl font-bold text-gray-800 ${darkModeClass}:text-gray-200`}>{entry.title}</h1>
     <p class={`text-sm text-gray-600 ${darkModeClass}:text-gray-400`}>{new Date(entry.timestamp).toLocaleString()}</p>
 

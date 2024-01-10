@@ -24,6 +24,8 @@
 		});
 	};
 
+	
+
 	// Lista de moods con sus emojis correspondientes
 	const moods = [
 		{ description: 'Happy', emoji: '😊' },

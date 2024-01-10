@@ -21,7 +21,7 @@
 <!-- Contenedor principal -->
 <div class="my-4">
 	<!-- Contenedor del botón y el formulario con un fondo blanco cuando el formulario es visible -->
-	<div class={showAddJournalForm ? 'bg-brown-900 py-4' : ''}>
+	<div class={showAddJournalForm ? 'bg-fuchsia-200 py-4' : ''}>
 		{#if showAddJournalForm}
 		<div transition:slide ><AddJournalForm /></div>
 		<div class="mt-4 flex flex-col items-center">
