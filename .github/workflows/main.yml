@@ -59,7 +59,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: MyDefaultBranch
           DISABLE_ERRORS: true
-          OUTPUT_FOLDER: Reports
+          #OUTPUT_FOLDER: Reports
           OUTPUT_DETAILS: detailed
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_POWERSHELL: false
