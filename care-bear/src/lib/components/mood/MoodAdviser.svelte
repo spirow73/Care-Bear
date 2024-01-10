@@ -21,6 +21,27 @@
 		activityPage = './mood/Tired';
 	  } else if (lowerCaseSelectedMood === 'depressed') {
 		activityPage = './mood/depressed';
+	} else if (lowerCaseSelectedMood === 'calm') {
+		activityPage = './mood/calm';
+	} else if (lowerCaseSelectedMood === 'content') {
+		activityPage = './mood/content';
+	} else if (lowerCaseSelectedMood === 'anxious') {
+		activityPage = './mood/anxious';
+	} else if (lowerCaseSelectedMood === 'frustrated') {
+		activityPage = './mood/frustrated';
+	} else if (lowerCaseSelectedMood === 'confused') {
+		activityPage = './mood/confused';
+	} else if (lowerCaseSelectedMood === 'energetic') {
+		activityPage = './mood/energetic';
+	} else if (lowerCaseSelectedMood === 'excited') {
+		activityPage = './mood/excited';
+	} else if (lowerCaseSelectedMood === 'lonely') {
+		activityPage = './mood/lonely';
+	} else if (lowerCaseSelectedMood === 'loved') {
+		activityPage = './mood/loved';
+	} else if (lowerCaseSelectedMood === 'neutral') {
+		activityPage = './mood/neutral';
+
 	  } else {
 		activityPage = '';
 	  }

@@ -12,7 +12,7 @@ type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 export type Snapshot<T = any> = Kit.Snapshot<T>;
 type PageParentData = EnsureDefined<LayoutData>;
-type LayoutRouteId = RouteId | "/" | "/advice" | "/advice/survey" | "/auth" | "/auth/login" | "/auth/sign-up" | "/calendar" | "/journal" | "/journal/[id]" | "/mood" | "/mood/breathingExercise" | "/mood/depressed" | "/mood/happy" | "/mood/history" | "/mood/meditation" | "/mood/sad" | "/mood/stressed" | "/mood/Tired" | "/mood/upset" | "/mood/yoga" | "/moodActivities" | "/profile" | "/task" | "/tracker" | null
+type LayoutRouteId = RouteId | "/" | "/advice" | "/advice/survey" | "/auth" | "/auth/login" | "/auth/sign-up" | "/calendar" | "/journal" | "/journal/[id]" | "/mood" | "/mood/anxious" | "/mood/breathingExercise" | "/mood/calm" | "/mood/confused" | "/mood/content" | "/mood/depressed" | "/mood/energetic" | "/mood/excited" | "/mood/frustrated" | "/mood/happy" | "/mood/history" | "/mood/lonely" | "/mood/loved" | "/mood/meditation" | "/mood/nuetral" | "/mood/sad" | "/mood/stressed" | "/mood/Tired" | "/mood/upset" | "/mood/yoga" | "/moodActivities" | "/profile" | "/task" | "/tracker" | null
 type LayoutParams = RouteParams & { id?: string }
 type LayoutParentData = EnsureDefined<{}>;
 
