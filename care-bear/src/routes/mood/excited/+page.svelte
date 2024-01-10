@@ -117,7 +117,7 @@ const toggleDescription = (title) => {
 <div class="bg-gray-100 font-sans min-h-screen">
   <!-- Header -->
   <header class="bg-orange-200 text-black text-center py-4">
-    <h1 class="text-4xl font-bold">Depressed</h1>
+    <h1 class="text-4xl font-bold">Excited</h1>
     <p class="text-lg">Find calmness and inner peace</p>
   </header>
 

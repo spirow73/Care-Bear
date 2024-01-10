@@ -40,7 +40,7 @@
 	} else if (lowerCaseSelectedMood === 'loved') {
 		activityPage = './mood/loved';
 	} else if (lowerCaseSelectedMood === 'neutral') {
-		activityPage = './mood/neutral';
+		activityPage = './mood/nuetral';
 
 	  } else {
 		activityPage = '';
