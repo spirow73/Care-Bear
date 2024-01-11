@@ -21,7 +21,6 @@
 
 	// Function to handle task deletion remains the same
 	function handleDelete() {
-		console.log(task_id);
 		removeDbTask(task_id);
 	}
 

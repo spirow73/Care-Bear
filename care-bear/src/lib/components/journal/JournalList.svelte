@@ -1,6 +1,7 @@
 <script>
 	import JournalEntryFront from './JournalEntryFront.svelte';
 	import { fade } from 'svelte/transition'; // Importa la transición
+	import * as ActualJournals from '$lib/journalStore';
 
 	export let journals;
 	export let numOfEntries = 3;
@@ -11,7 +12,7 @@
 				'Are you sure you want to delete this journal? This will remove all associated entries and cannot be undone.'
 			)
 		) {
-			await journals.removeJournal(journalId);
+			await ActualJournals.removeJournal(journalId);
 		}
 	}
 </script>
