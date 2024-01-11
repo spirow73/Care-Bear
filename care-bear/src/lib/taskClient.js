@@ -1,47 +1,58 @@
 import { supabase } from './supabaseClient';
+import { get } from 'svelte/store';
+import user from './userStore'; // Asegúrate de que este es el nombre correcto de tu store de usuario
 
 // Fetch tasks from the database with optional filters and sort options
 export async function fetchTasks({ filter = {}, sort = 'deadline' } = {}) {
-    try {
-        let query = supabase.from('task').select('*');
+	try {
+		const currentUser = get(user);
+		if (!currentUser || !currentUser.user || !currentUser.user.id) {
+			throw new Error('No user ID found in the store.');
+		}
 
-        // Apply filter for completion status if provided
-        if (filter.isCompleted !== undefined) {
-            query = query.eq('isCompleted', filter.isCompleted);
-        }
+		let query = supabase.from('task').select('*').eq('user_id', currentUser.user.id); // Asume que la tabla 'task' tiene una columna 'user_id'
 
-        // Apply sorting based on the sort option
-        query = query.order(sort, { ascending: true });
+		if (filter.isCompleted !== undefined) {
+			query = query.eq('isCompleted', filter.isCompleted);
+		}
 
-        const { data, error } = await query;
-        if (error) {
-            throw new Error(error.message);
-        }
+		query = query.order(sort, { ascending: true });
 
-        return data.map((task) => ({
-            ...task,
-            deadline: new Date(task.deadline) // Ensure deadline is a Date object
-        }));
-    } catch (error) {
-        console.error('Error fetching tasks:', error);
-        throw error;
-    }
+		const { data, error } = await query;
+		if (error) {
+			throw new Error(error.message);
+		}
+
+		return data.map((task) => ({
+			...task,
+			deadline: new Date(task.deadline)
+		}));
+	} catch (error) {
+		console.error('Error fetching tasks:', error);
+		throw error;
+	}
 }
 
 // Other functions (fetchLast3Tasks, createTask, updateTask, deleteTask) remain unchanged
 
-
-
 export async function fetchLast3Tasks() {
 	try {
+		const currentUser = get(user);
+		if (!currentUser || !currentUser.user || !currentUser.user.id) {
+			throw new Error('No user ID found in the store.');
+		}
+
 		const { data, error } = await supabase
 			.from('task')
 			.select('*')
+			.eq('user_id', currentUser.user.id) // Filtra por el ID del usuario
 			.order('created_at', { ascending: false })
 			.limit(3);
+
 		if (error) {
 			throw new Error(error.message);
 		}
+
 		return data.map((task) => ({
 			...task,
 			deadline: new Date(task.deadline)
@@ -54,11 +65,19 @@ export async function fetchLast3Tasks() {
 
 export async function createTask(task) {
 	try {
+		const currentUser = get(user);
+		if (!currentUser || !currentUser.user || !currentUser.user.id) {
+			throw new Error('No user ID found in the store.');
+		}
+
+		// Añade el ID del usuario al objeto de la tarea antes de insertarlo
+		task.user_id = currentUser.user.id;
+
 		const { data, error } = await supabase.from('task').insert([task]).select();
 		if (error) {
 			throw error;
 		}
-		console.log('createTask return:', data); // Null
+
 		return data[0];
 	} catch (error) {
 		console.error('Error creating task:', error);

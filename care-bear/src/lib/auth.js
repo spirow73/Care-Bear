@@ -1,38 +1,44 @@
 import { supabase } from './supabaseClient';
+import { get } from 'svelte/store';
+import user from './userStore';
 
-async function loginWithGoogle() {
-	const { data, error } = await supabase.auth.signInWithOAuth({
-		provider: 'google'
+async function registerUser(email, password) {
+	const { data, error } = await supabase.auth.signUp({
+		email: email,
+		password: password
 	});
 
-	console.log('data:', data);
-
-	// Si no hay error y el usuario está presente
 	if (!error && data) {
+		user.setSession(data);
 	}
 
 	if (error) {
 		console.error('Error logging in:', error);
+		return error;
 	}
+}
+
+async function loginUser(email, password) {
+	const { data, error } = await supabase.auth.signInWithPassword({
+		email: email,
+		password: password
+	});
+
+	if (!error && data) {
+		// Pasamos el objeto completo a 'setSession'
+		user.setSession(data);
+	}
+
+	if (error) {
+		console.error('Error logging in:', error);
+		return error;
+	}
+	return data;
 }
 
 function logOut() {
 	supabase.auth.signOut();
+	user.logOut();
 }
 
-export { loginWithGoogle, logOut };
-
-import { supabase } from './supabaseClient';
-
-async function loginWithGoogle() {
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: 'google',
-  });
-
-  if (error) {
-    console.error('Error during login:', error);
-    return { error };
-  }
-
-  return { user, session };
-}
+export { registerUser, loginUser, logOut };

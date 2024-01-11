@@ -48,6 +48,7 @@ export const dictionary = {
 		"/calendar": [8],
 		"/journal": [9],
 		"/journal/[id]": [10],
+		"/(auth)/login": [3],
 		"/moodActivities": [32],
 		"/mood": [11],
 		"/mood/Tired": [29],
@@ -71,8 +72,10 @@ export const dictionary = {
 		"/mood/upset": [30],
 		"/mood/yoga": [31],
 		"/profile": [33],
+		"/(auth)/register": [4],
 		"/task": [34],
-		"/tracker": [35]
+		"/tracker": [35],
+		"/(auth)/welcome": [5]
 	};
 
 export const hooks = {
