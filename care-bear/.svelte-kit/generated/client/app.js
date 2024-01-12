@@ -36,7 +36,8 @@ export const nodes = [
 	() => import('./nodes/32'),
 	() => import('./nodes/33'),
 	() => import('./nodes/34'),
-	() => import('./nodes/35')
+	() => import('./nodes/35'),
+	() => import('./nodes/36')
 ];
 
 export const server_loads = [];
@@ -49,9 +50,9 @@ export const dictionary = {
 		"/journal": [9],
 		"/journal/[id]": [10],
 		"/(auth)/login": [3],
-		"/moodActivities": [32],
+		"/moodActivities": [33],
 		"/mood": [11],
-		"/mood/Tired": [29],
+		"/mood/Tired": [30],
 		"/mood/anxious": [12],
 		"/mood/breathingExercise": [13],
 		"/mood/calm": [14],
@@ -68,13 +69,14 @@ export const dictionary = {
 		"/mood/meditation": [25],
 		"/mood/nuetral": [26],
 		"/mood/sad": [27],
-		"/mood/stressed": [28],
-		"/mood/upset": [30],
-		"/mood/yoga": [31],
-		"/profile": [33],
+		"/mood/side": [28],
+		"/mood/stressed": [29],
+		"/mood/upset": [31],
+		"/mood/yoga": [32],
+		"/profile": [34],
 		"/(auth)/register": [4],
-		"/task": [34],
-		"/tracker": [35],
+		"/task": [35],
+		"/tracker": [36],
 		"/(auth)/welcome": [5]
 	};
 
