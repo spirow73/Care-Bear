@@ -1,6 +1,8 @@
 // Create a writable object with user id and session token
 import { writable } from 'svelte/store';
 import { supabase } from './supabaseClient';
+import taskStore from './taskStore';
+import journalStore from './journalStore';
 
 const initialState = {
 	accessToken: null,
@@ -8,6 +10,7 @@ const initialState = {
 	user: null,
 	expiresAt: null
 };
+
 const userStore = writable(initialState);
 
 const setSession = (data) => {
@@ -38,6 +41,10 @@ const setSession = (data) => {
 const logOut = async () => {
 	await supabase.auth.signOut();
 	userStore.set(initialState);
+	taskStore.logOut();
+	journalStore.logOut();
+
+	console.log('Logged out');
 };
 
 export default {

@@ -9,8 +9,12 @@
 	import taskstore from '$lib/taskStore';
 	import { onMount } from 'svelte';
 
+	let moodEntries = [];
+	import user from '$lib/userStore';
+
 	onMount(async () => {
 		await taskstore.loadDbTasks();
+		moodEntries = await fetchLatestMoodEntries();
 	});
 
 	let isOn = false;
@@ -18,10 +22,6 @@
 	const toggleImage = () => {
 		isOn = !isOn;
 		let moodEntries = [];
-
-		onMount(async () => {
-			moodEntries = await fetchLatestMoodEntries();
-		});
 	};
 
 	const moods = [
@@ -34,8 +34,6 @@
 		{ description: 'Excited', emoji: '🤩' },
 		{ description: 'Calm', emoji: '😌' }
 	];
-
-	import user from '$lib/userStore';
 </script>
 
 <body>
@@ -57,7 +55,7 @@
 		</div>
 	</div>
 
-	<SpeechToText />
+	<!-- <SpeechToText /> -->
 
 	<div class="container mx-auto p-4">
 		<div class="flex flex-col md:flex-row gap-4">

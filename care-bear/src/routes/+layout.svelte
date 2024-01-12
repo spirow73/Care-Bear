@@ -3,6 +3,15 @@
 	import '../app.css';
 	import profile from '$lib/components/images/profile.png';
 	import DarkModeButton from '$lib/components/generic/DarkModeButton.svelte';
+	import user from '$lib/userStore';
+	import Button from '$lib/components/generic/Button.svelte';
+
+	const handleLogout = (event) => {
+		event.preventDefault(); // Previene la navegación
+		user.logOut(); // Suponiendo que esto es una acción sincrónica
+		window.location.href = '/welcome'; // Redirige después del logout
+	};
+
 	const animations = {
 		enter: (node) => {
 			node.animate(
@@ -131,22 +140,43 @@
 						Calendar
 					</a>
 					<a
-					href="/advice"
-					class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
-					use:animations.enter
-					use:animations.leave
-				>
-					Advice
-				</a>
-					<a
-						href="/profile"
+						href="/advice"
 						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
 						use:animations.enter
 						use:animations.leave
 					>
-						<!-- Profile -->
-						<img src={profile} alt="circle with a silouet" class="h-6 w-6 ml-2 relative top-1.5" />
+						Advice
 					</a>
+					{#if $user.user}
+						<a
+							href="/profile"
+							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Profile
+						</a>
+
+						<a
+							href="/welcome"
+							class="button-style transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							on:click={handleLogout}
+							use:animations.enter
+							use:animations.leave
+						>
+							LogOut
+						</a>
+					{:else}
+						<a
+							href="/welcome"
+							class="button-style transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Login / Register
+						</a>
+					{/if}
+
 					<DarkModeButton />
 				</div>
 			</div>
@@ -170,5 +200,28 @@
 		background-attachment: fixed;
 		height: 100vh;
 		margin: 0;
+	}
+
+	.button-style {
+		padding: 10px 20px; /* Agrega un relleno para darle tamaño al botón */
+		background-color: #007bff; /* Color de fondo del botón */
+		color: white; /* Color del texto */
+		border: none; /* Sin borde */
+		border-radius: 5px; /* Bordes redondeados */
+		text-align: center; /* Alinea el texto al centro */
+		text-decoration: none; /* Quita la subrayado del enlace */
+		font-weight: bold; /* Hace el texto más grueso */
+		transition: background-color 0.3s, transform 0.3s; /* Suaviza la transición de colores y transformación */
+	}
+
+	.button-style:hover,
+	.button-style:focus {
+		background-color: #0056b3; /* Cambia el color de fondo al pasar el ratón por encima */
+		transform: scale(1.05); /* Ligeramente más grande al pasar el ratón por encima */
+	}
+
+	.button-style:active {
+		background-color: #004085; /* Color de fondo cuando se hace clic */
+		transform: scale(0.95); /* Ligeramente más pequeño al hacer clic */
 	}
 </style>

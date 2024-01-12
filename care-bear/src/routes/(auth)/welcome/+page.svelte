@@ -9,7 +9,7 @@
 
 	function handleGetStartedClick(event) {
 		event.preventDefault(); // Prevenir el comportamiento predeterminado
-		goto('/sign-up');
+		goto('/register');
 	}
 </script>
 

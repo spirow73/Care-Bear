@@ -116,6 +116,10 @@ export async function deleteJournalEntryInStore(journalId, entryId) {
 	}
 }
 
+function logOut() {
+	journals.set([]);
+}
+
 export default {
 	subscribe: journals.subscribe,
 	loadJournals,
@@ -124,5 +128,6 @@ export default {
 	removeJournal,
 	addJournalEntry,
 	editJournalEntryInStore,
-	deleteJournalEntryInStore
+	deleteJournalEntryInStore,
+	logOut
 };
