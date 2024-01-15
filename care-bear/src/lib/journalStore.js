@@ -66,6 +66,7 @@ export async function addJournalEntry(journalId, userId, newEntryData) {
 		}
 
 		const newEntry = await createJournalEntry(journalId, userId, newEntryData);
+
 		journals.update((currentJournals) =>
 			currentJournals.map((journal) =>
 				journal.journal_id === journalId

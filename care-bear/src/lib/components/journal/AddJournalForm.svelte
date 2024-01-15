@@ -5,7 +5,6 @@
 
 	let title = '';
 	let description = '';
-	let userId = 1; // Ensure you obtain the current user's ID appropriately
 
 	let darkModeClass = '';
 	$: darkModeClass = $theme === 'dark' ? 'dark' : '';
@@ -21,8 +20,7 @@
 
 		const newJournalData = {
 			title,
-			description,
-			user_id: $user.user.id // Ensure this value is obtained appropriately
+			description
 		};
 
 		console.log(newJournalData);
