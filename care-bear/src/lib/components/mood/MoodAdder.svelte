@@ -144,6 +144,36 @@ onMount(() => {
 </body>
 
 
+<style>
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio (adjust as needed) */
+        height: 0;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div class="absolute top-12 right-0 w-1/4 p-16">
+	<div class="bg-gray-300 rounded-md pl-4">
+    <div class="flex flex-col items-center h-full">
+        <h1 class="text-2xl font-bold mb-4">Inspirational</h1>
+		<p>Embrace each day with gratitude. Life's journey is a canvas; challenges are brushstrokes. Believe in your strength, create positive change. Your unique journey enriches life's tapestry. Move forward, triumph with courage, inspire others. Your simple, touching story paints a masterpiece. Keep inspiring.</p>
+    </div>
+	</div>
+
+	<div class="bg-gray-300 rounded-md mt-4"> 
+	<h1 class="text-2xl font-bold mb-4">Soothing Music</h1>
+	<div class="video-container"><iframe src="https://www.youtube.com/embed/lFcSrYw-ARY" frameborder="0" allowfullscreen class="w-full h-full" /></div>
+	</div>
+</div>
+
 
 
 <!-- Mobile -->
