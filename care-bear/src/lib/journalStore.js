@@ -10,10 +10,8 @@ import {
 	deleteJournalEntry
 } from './journalClient';
 
-// Este es el store que mantendrá los datos de tus journals
-export const journals = writable([]);
+const journals = writable([]);
 
-// Carga inicial de los journals desde la base de datos
 export async function loadJournals() {
 	try {
 		const loadedJournals = await fetchJournals();
@@ -23,144 +21,114 @@ export async function loadJournals() {
 	}
 }
 
-// Añadir un nuevo journal
 export async function addJournal(newJournalData) {
 	try {
 		const newJournal = await createJournal(newJournalData);
-		// Asegúrate de que newJournal tenga una propiedad journal_entry inicializada
-		const journalWithEntries = { ...newJournal, journal_entry: [] };
-
-		journals.update((currentJournals) => {
-			// Coloca el nuevo journal al final del arreglo
-			return [...currentJournals, journalWithEntries];
-		});
+		if (newJournal) {
+			const journalWithEntries = { ...newJournal, journal_entry: [] };
+			journals.update((currentJournals) => [...currentJournals, journalWithEntries]);
+		} else {
+			console.error('Received null or undefined journal');
+		}
 	} catch (error) {
 		console.error('Error adding a new journal:', error);
 	}
 }
 
-// Actualizar un journal existente
 export async function editJournal(journalId, updatedJournalData) {
 	try {
 		const updatedJournal = await updateJournal(journalId, updatedJournalData);
-		journals.update((currentJournals) => {
-			return currentJournals.map((journal) =>
-				journal.id === updatedJournal.id ? updatedJournal : journal
-			);
-		});
+		journals.update((currentJournals) =>
+			currentJournals.map((journal) =>
+				journal.journal_id === updatedJournal.journal_id ? updatedJournal : journal
+			)
+		);
 	} catch (error) {
 		console.error('Error updating journal:', error);
 	}
 }
 
-// Eliminar un journal
 export async function removeJournal(journalId) {
 	try {
 		await deleteJournal(journalId);
-		journals.update((currentJournals) => {
-			return currentJournals.filter((journal) => journal.journal_id !== journalId);
-		});
+		journals.update((currentJournals) =>
+			currentJournals.filter((journal) => journal.journal_id !== journalId)
+		);
 	} catch (error) {
 		console.error('Error removing journal:', error);
 	}
 }
 
-// Cargar un journal específico por ID - opcional, dependiendo de tu uso
-export async function getJournal(journalId) {
+export async function addJournalEntry(journalId, userId, newEntryData) {
 	try {
-		const journal = await fetchJournalById(journalId);
-		return journal;
+		if (!newEntryData || !userId) {
+			throw new Error('newEntryData or userId is undefined');
+		}
+
+		const newEntry = await createJournalEntry(journalId, userId, newEntryData);
+
+		journals.update((currentJournals) =>
+			currentJournals.map((journal) =>
+				journal.journal_id === journalId
+					? { ...journal, journal_entry: [...journal.journal_entry, newEntry] }
+					: journal
+			)
+		);
 	} catch (error) {
-		console.error('Error fetching a specific journal:', error);
+		console.error('Error adding new journal entry:', error);
 	}
 }
 
-// Función para obtener todas las entradas de un journal específico por ID
-export async function getJournalEntries(journalId) {
-	let loadedJournals = get(journals);
-
-	// Si el store está vacío, carga los datos antes de intentar acceder a ellos
-	if (loadedJournals.length === 0) {
-		await loadJournals();
-		loadedJournals = get(journals);
-	}
-
-	const journal = loadedJournals.find((j) => j.journal_id === journalId);
-
-	// Devuelve las entradas de ese journal, si existen
-	return journal ? journal.journal_entry : [];
-}
-
-export async function updateJournalEntryInStore(entryId, updatedEntryData) {
+export async function editJournalEntryInStore(journalId, entryId, updatedEntryData) {
 	try {
-		// Primero actualiza la entrada en la base de datos
 		const updatedEntry = await editJournalEntry(entryId, updatedEntryData);
-
-		// Actualiza el store
-		journals.update((currentJournals) => {
-			return currentJournals.map((journal) => {
-				// Comprueba si el journal actual contiene la entrada que estamos actualizando
-				if (journal.journal_entry.some((entry) => entry.journal_entry_id === entryId)) {
-					// Actualiza la entrada específica dentro del journal
-					return {
-						...journal,
-						journal_entry: journal.journal_entry.map((entry) => {
-							if (entry.journal_entry_id === entryId) {
-								return { ...entry, ...updatedEntry };
-							}
-							return entry;
-						})
-					};
-				}
-				return journal;
-			});
-		});
-
-		console.log(get(journals));
-		return updatedEntry;
+		journals.update((currentJournals) =>
+			currentJournals.map((journal) =>
+				journal.journal_id === journalId
+					? {
+							...journal,
+							journal_entry: journal.journal_entry.map((entry) =>
+								entry.entry_id === entryId ? updatedEntry : entry
+							)
+					  }
+					: journal
+			)
+		);
 	} catch (error) {
 		console.error('Error updating journal entry in store:', error);
 	}
 }
 
-export async function addJournalEntry(journalId, userId, newEntryData) {
+export async function deleteJournalEntryInStore(journalId, entryId) {
 	try {
-		const newEntry = await createJournalEntry(journalId, userId, newEntryData);
-		if (newEntry) {
-			journals.update((currentJournals) => {
-				return currentJournals.map((journal) => {
-					if (journal.journal_id === journalId) {
-						return {
+		await deleteJournalEntry(entryId);
+		journals.update((currentJournals) =>
+			currentJournals.map((journal) =>
+				journal.journal_id === journalId
+					? {
 							...journal,
-							journal_entry: [...journal.journal_entry, newEntry]
-						};
-					}
-					return journal;
-				});
-			});
-		}
+							journal_entry: journal.journal_entry.filter((entry) => entry.entry_id !== entryId)
+					  }
+					: journal
+			)
+		);
 	} catch (error) {
-		console.error('Error adding new journal entry:', error);
-		throw error;
+		console.error('Error deleting journal entry:', error);
 	}
 }
 
-export async function deleteJournalEntryInStore(journalId, entryId) {
-	try {
-		await deleteJournalEntry(journalId, entryId);
-		journals.update((currentJournals) => {
-			return currentJournals.map((journal) => {
-				if (journal.journal_id === journalId) {
-					return {
-						...journal,
-						journal_entry: journal.journal_entry.filter((entry) => entry.entry_id !== entryId)
-					};
-				}
-				return journal;
-			});
-		});
-	} catch (error) {
-		console.error('Error deleting journal entry:', error);
-		throw error;
-	}
+function logOut() {
+	journals.set([]);
 }
+
+export default {
+	subscribe: journals.subscribe,
+	loadJournals,
+	addJournal,
+	editJournal,
+	removeJournal,
+	addJournalEntry,
+	editJournalEntryInStore,
+	deleteJournalEntryInStore,
+	logOut
+};

@@ -5,7 +5,7 @@
 
 <div class="mt-6">
 	<div
-		class="relative p-4 bg-white shadow-lg rounded-lg mb-6 transition-all hover:shadow-xl bg-gray-50"
+		class="relative p-4 bg-fuchsia-100 shadow-lg rounded-lg mb-6 transition-all hover:shadow-xl"
 	>
 		{#if entry.content}
 			<div class="text-gray-800 whitespace-pre-line">{entry.content}</div>
@@ -20,7 +20,7 @@
 			<div class="flex justify-center items-center h-32">
 				<!-- Aumenta la altura para contenido vacío -->
 				<button
-					class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors"
+					class="px-4 py-2 bg-button-1 text-white rounded-full hover:bg-button-2 transition-colors"
 					on:click={onEditContent}
 				>
 					Add Content

@@ -1,6 +1,9 @@
-describe('sum test', () => {
-	it('adds 1 + 2 to equal 3', () => {
-	  expect(1 + 2).toBe(3);
+// Create a vitest
+
+import { describe, expect, test } from 'vitest';
+
+describe('First test', () => {
+	test('should pass', () => {
+		expect(true).toBe(true);
 	});
-  });
-  
+});

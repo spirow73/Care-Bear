@@ -23,7 +23,7 @@ jobs:
         run: |
           cd care-bear
           npm install
-          
+
       - name: Run Unit Tests
         run: |
           cd care-bear
@@ -31,6 +31,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
+          cd care-bear
           docker build . -t my-svelte-app
 
       - name: Notify on Failure

@@ -1,1 +1,8 @@
 node_modules
+.svelte-kit
+care-bear/.svelte-kit/ambient.d.ts
+care-bear/.svelte-kit/generated/client/app.js
+care-bear/.svelte-kit/generated/server/internal.js
+care-bear/.svelte-kit/types/route_meta_data.json
+care-bear/.svelte-kit/types/src/routes/$types.d.ts
+care-bear/.svelte-kit/types/src/routes/$types.d.ts

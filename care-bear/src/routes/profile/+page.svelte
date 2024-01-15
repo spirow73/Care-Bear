@@ -2,4 +2,12 @@
     import Profile from '../../lib/components/Profile.svelte';
 </script>
 
-<Profile />
+<svelte:head>
+    <title>User Profile</title>
+</svelte:head>
+
+<body>
+    <Profile />
+
+
+</body>
