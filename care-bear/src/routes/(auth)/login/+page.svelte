@@ -3,13 +3,19 @@
 	import InputField from '$lib/components/generic/InputField.svelte';
 	import { goto } from '$app/navigation';
 	import { loginUser } from '$lib/auth';
+	import user from '$lib/userStore';
 
 	let email = '';
 	let password = '';
 
+	let error = '';
+
 	async function handleLoginClick() {
 		await loginUser(email, password);
-		goto('/'); // Redirige solo si el inicio de sesión es exitoso
+		if ($user.user) {
+			goto('/');
+		}
+		error = 'Login failed';
 	}
 
 	function handleGetStartedClick() {
@@ -18,7 +24,7 @@
 
 	async function handleSubmit(event) {
 		event.preventDefault();
-		await handleLoginClick(); // Solo maneja el inicio de sesión, no redirige
+		let loginSuccess = handleLoginClick(); // Asegúrate de que handleLoginClick devuelve true/false basado en el éxito del login
 	}
 </script>
 
@@ -36,5 +42,7 @@
 			secondaryText="Get Started"
 			secondaryHandle={handleGetStartedClick}
 		/>
+
+		<p>{error}</p>
 	</div>
 </form>

@@ -101,10 +101,7 @@ export async function deleteJournal(journalId) {
 	}
 }
 
-export async function createJournalEntry(journalId, newEntryData) {
-	const currentUser = get(user);
-	const userId = currentUser.user.id;
-
+export async function createJournalEntry(journalId, userId, newEntryData) {
 	try {
 		// Desestructura el objeto newEntryData para asegurarte de que todos los campos
 		// sean pasados individualmente y no como un objeto.
