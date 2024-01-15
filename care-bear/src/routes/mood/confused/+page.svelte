@@ -3,7 +3,7 @@
 <script>
 	let confusedExercise = [
 		{
-			title: 'Take a Break:',
+			title: 'Take a Break',
 			description: [
 				'Recognize the signs of confusion or mental fatigue, and give yourself permission to take a break.',
 				'Step away from the task or situation causing confusion, creating physical and mental distance.',
@@ -94,7 +94,7 @@
 			]
 		},
 		{
-			title: 'Watch a Documentary:',
+			title: 'Watch a Documentary',
 			description: [
 				'Expand your knowledge and gain new perspectives by immersing yourself in a thought-provoking documentary.',
 				'Choose a documentary that aligns with your interests or explores a topic you want to learn more about.',
@@ -109,7 +109,7 @@
 			]
 		},
 		{
-			title: 'Explore Art Galleries or Museums:',
+			title: 'Explore Art Galleries or Museums',
 			description: [
 				'Immerse yourself in the rich tapestry of artistic and cultural expression by visiting art galleries or museums.',
 				'Research and choose a gallery or museum that showcases artworks or exhibits aligned with your interests.',
@@ -148,9 +148,10 @@
 			<!-- Breathing Techniques -->
 			<section>
 				<h2 class="text-2xl font-bold mb-4">Techniques To Improve Out Your Mood</h2>
+				<div class="bg-slate-300 p-8 rounded-lg">
 				{#each confusedExercise as { title, description }}
-					<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-						<h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+					<div class="bg-white rounded-lg shadow-md p-6 mb-8"on:click={() => toggleDescription(title)}>
+						<h3 class="text-xl font-bold mb-2" >
 							{title}
 						</h3>
 						{#if selectedTitle === title}
@@ -160,6 +161,7 @@
 						{/if}
 					</div>
 				{/each}
+				</div>
 			</section>
 		</main>
 	</div>

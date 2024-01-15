@@ -64,7 +64,7 @@
 			]
 		},
 		{
-			title: 'Have a Heart-to-Heart Conversation:',
+			title: 'Have a Heart-to-Heart Conversation',
 			description: [
 				'Initiate a meaningful and open-hearted conversation to strengthen emotional connections.',
 				'Choose a quiet and comfortable setting, free from distractions, to facilitate honest dialogue.',
@@ -79,7 +79,7 @@
 			]
 		},
 		{
-			title: 'Enjoy a Picnic in the Backyard:',
+			title: 'Enjoy a Picnic in the Backyard',
 			description: [
 				'Create a delightful outdoor experience by organizing a picnic in the comfort of your backyard.',
 				'Prepare a picnic basket with an assortment of your favorite snacks, sandwiches, and refreshing beverages.',
@@ -94,7 +94,7 @@
 			]
 		},
 		{
-			title: 'Share a Movie Night:',
+			title: 'Share a Movie Night',
 			description: [
 				'Organize a cozy movie night to create shared cinematic experiences with loved ones.',
 				"Curate a selection of films that resonate with everyone's tastes and preferences.",
@@ -109,7 +109,7 @@
 			]
 		},
 		{
-			title: 'Create a Family or Friend Photo Album:',
+			title: 'Create a Family or Friend Photo Album',
 			description: [
 				'Preserve cherished memories by crafting a personalized photo album with loved ones.',
 				'Select a theme, such as a memorable family vacation or a special event, for your album.',
@@ -148,9 +148,10 @@
 			<!-- Breathing Techniques -->
 			<section>
 				<h2 class="text-2xl font-bold mb-4">Techniques To Improve Out Your Mood</h2>
+				<div class="bg-slate-300 p-8 rounded-lg">
 				{#each lovedExercise as { title, description }}
-					<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-						<h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+					<div class="bg-white rounded-lg shadow-md p-6 mb-8" on:click={() => toggleDescription(title)}>
+						<h3 class="text-xl font-bold mb-2" >
 							{title}
 						</h3>
 						{#if selectedTitle === title}
@@ -160,6 +161,7 @@
 						{/if}
 					</div>
 				{/each}
+				</div>
 			</section>
 		</main>
 	</div>

@@ -102,7 +102,8 @@ onMount(() => {
 
 <!-- Wide screens -->
 <Toaster/>
-<body class="overflow-hidden">
+<div class="flex-1">
+<!-- <body class="overflow-hidden"> -->
 <main class={`max-w-screen-md mx-auto  p-6 ${currentTheme === 'dark' ? 'bg-gray-800 text-white' : 'lg:flex lg:flex-wrap lg:justify-center lg:gap-4 sm:w-full'}`}>
     <h1 class="text-2xl font-bold mb-4 text-center mx-auto lg:mr-4">How are you feeling today?</h1>
     <div class="lg:w-1/4 cursor-pointer p-4 m-2 rounded-lg transition-transform transform hover:scale-105 hidden lg:block"></div>
@@ -110,7 +111,7 @@ onMount(() => {
         {#each Object.keys(moods) as moodId}
             <div
                 id={`mood_${moodId}`}
-                class={` grid-cols-6 gap-4 cursor-pointer p-1 m-2 rounded-lg transition-transform transform hover:scale-105 shadow-md ${
+                class={`sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 grid-cols-6 gap-4 cursor-pointer p-1 m-2 rounded-lg transition-transform transform hover:scale-105 shadow-md ${
                     selectedMood === moodId ? 'border border-red' : ' bg-fuchsia-100'
                 }`}
                 on:click={() => selectMood(moodId)}
@@ -141,37 +142,27 @@ onMount(() => {
         <MoodAdvisor {selectedMood} />
     {/if}
 </main>
-</body>
+<!-- </body> -->
+</div>
 
+<div class="flex">
+    <div class="flex-1">
 
-<style>
-    .video-container {
-        position: relative;
-        overflow: hidden;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio (adjust as needed) */
-        height: 0;
-    }
+        <div class="absolute top-12 right-0 w-full md:w-1/4 p-4 md:p-16">
+            <h1 class="text-2xl font-bold mb-4">Inspirational</h1>
+            <div class="bg-gray-300 rounded-md pl-4">
+                <div class="flex flex-col items-center h-full">
+                    <p>Embrace each day with gratitude. Life's journey is a canvas; challenges are brushstrokes. Believe in your strength, create positive change. Your unique journey enriches life's tapestry. Move forward, triumph with courage, inspire others. Your simple, touching story paints a masterpiece. Keep inspiring.</p>
+                </div>
+            </div>
 
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>
-<div class="absolute top-12 right-0 w-1/4 p-16">
-	<div class="bg-gray-300 rounded-md pl-4">
-    <div class="flex flex-col items-center h-full">
-        <h1 class="text-2xl font-bold mb-4">Inspirational</h1>
-		<p>Embrace each day with gratitude. Life's journey is a canvas; challenges are brushstrokes. Believe in your strength, create positive change. Your unique journey enriches life's tapestry. Move forward, triumph with courage, inspire others. Your simple, touching story paints a masterpiece. Keep inspiring.</p>
+            <div class="bg-gray-300 rounded-md mt-4"> 
+                <h1 class="text-2xl font-bold mb-4">Soothing Music</h1>
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/lFcSrYw-ARY" frameborder="0" allowfullscreen class="w-full h-full" /></div>
+            </div>
+        </div>
+
     </div>
-	</div>
-
-	<div class="bg-gray-300 rounded-md mt-4"> 
-	<h1 class="text-2xl font-bold mb-4">Soothing Music</h1>
-	<div class="video-container"><iframe src="https://www.youtube.com/embed/lFcSrYw-ARY" frameborder="0" allowfullscreen class="w-full h-full" /></div>
-	</div>
 </div>
 
 

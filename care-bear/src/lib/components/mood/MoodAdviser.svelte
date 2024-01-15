@@ -60,11 +60,14 @@
 	});
   </script>
 
+
   {#if showDefaultActivities && !activityPage}
+  <div class="flex">
+    <div class="flex-1">
   <div class="flex  overflow-y-auto">
   <div class="absolute top-10 left-0 w-1/4 pt-8  place-content-between ">
   
-	<div class="pt-9">
+	<div class="pt-9 flex-auto">
 	  <h1 class="text-2xl font-bold text-center">Mood Activities</h1>
 	  <div class="max-w-md mx-auto mt-10 p-6 space-y-4">
 		<a href="./mood/yoga" class="block text-black-200 hover:text-white">
@@ -81,13 +84,15 @@
 	</div>
 	</div>
 </div>
+</div>
+</div>
   {:else if selectedMood && activityPage}
-	<div class="pt-1"></div>
-	  <div class="max-w-md mx-auto mt-1 p-6 space-y-4">
+	<div class="pt-3"></div>
+	  <div class="max-w-md mx-auto mt-3 p-6 space-y-4">
 		<a href={activityPage} class="block text-black-200 hover:text-white">
-		  <div class="p-9 ... bg-orange-200 pt-6 pb-8 rounded-md text-center shadow-md">Exercises to help  your current Mood "{selectedMood}"</div>
+		  <div class="p-6 ... bg-orange-200 pt-6 pb-8 text-black  rounded hover:bg-button-2 text-center border-solid border-2 border-sky-500 ">Exercises to help  your current Mood "{selectedMood}"</div>
 		</a>
 	  </div>
 	
   {/if}
-  
+ 

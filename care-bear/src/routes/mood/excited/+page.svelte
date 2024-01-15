@@ -126,9 +126,10 @@ const toggleDescription = (title) => {
     <!-- Breathing Techniques -->
     <section>
       <h2 class="text-2xl font-bold mb-4"> Techniques To Improve Out Your Mood</h2>
+      <div class="bg-slate-300 p-8 rounded-lg">
       {#each excitedExercise as { title, description }}
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8"  on:click={() => toggleDescription(title)}>
+          <h3 class="text-xl font-bold mb-2">
             {title}
           </h3>
           {#if selectedTitle === title}
@@ -138,6 +139,7 @@ const toggleDescription = (title) => {
           {/if}
         </div>
       {/each}
+      </div>
     </section>
   </main>
 </div>

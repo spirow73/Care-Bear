@@ -3,7 +3,7 @@
 <script>
 	let calmExercise = [
 		{
-			title: 'Read a book:',
+			title: 'Read a book',
 			description: [
 				'Read a book that you enjoy. Choose a genre that you find uplifting and inspiring.',
 				'Create a cozy reading nook at home, enhancing the environment for relaxation.',
@@ -125,9 +125,10 @@
 			<!-- Breathing Techniques -->
 			<section>
 				<h2 class="text-2xl font-bold mb-4">Techniques To Help Out Your Mood</h2>
+				<div class="bg-slate-300 p-8 rounded-lg">
 				{#each calmExercise as { title, description }}
-					<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-						<h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+					<div class="bg-white rounded-lg shadow-md p-6 mb-8"  on:click={() => toggleDescription(title)}>
+						<h3 class="text-xl font-bold mb-2">
 							{title}
 						</h3>
 						{#if selectedTitle === title}
@@ -137,6 +138,7 @@
 						{/if}
 					</div>
 				{/each}
+				</div>
 			</section>
 		</main>
 	</div>

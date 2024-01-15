@@ -3,7 +3,7 @@
 <script>
 	let frustratedExercise = [
 		{
-			title: 'Deep Breathing:',
+			title: 'Deep Breathing',
 			description: [
 				'Tap into the therapeutic benefits of deep breathing to foster relaxation and reduce stress.',
 				'Choose a quiet and comfortable space where you can sit or lie down without interruptions.',
@@ -19,7 +19,7 @@
 		},
 
 		{
-			title: 'Drink Herbal Tea:',
+			title: 'Drink Herbal Tea',
 			description: [
 				'Indulge in the soothing ritual of drinking herbal tea to promote relaxation and enhance well-being.',
 				'Select a herbal tea variety that aligns with your taste preferences and desired effects, such as calming chamomile or invigorating peppermint.',
@@ -64,7 +64,7 @@
 			]
 		},
 		{
-			title: 'Constructive Problem-Solving: ',
+			title: 'Constructive Problem-Solving ',
 			description: [
 				'Approach challenges with a positive and solution-oriented mindset to foster constructive problem-solving.',
 				'Acknowledge the issue at hand, breaking it down into manageable components for a clearer understanding.',
@@ -79,7 +79,7 @@
 			]
 		},
 		{
-			title: 'Create a Positive Playlist: ',
+			title: 'Create a Positive Playlist ',
 			description: [
 				'Craft a mood-boosting playlist filled with songs that radiate positivity and uplift your spirits.',
 				'Explore diverse genres, choosing tracks with upbeat tempos, empowering lyrics, and melodies that resonate with you.',
@@ -94,7 +94,7 @@
 			]
 		},
 		{
-			title: 'Watch a Documentary:',
+			title: 'Watch a Documentary',
 			description: [
 				'Embark on an enlightening journey by watching a documentary that piques your interest or explores a new subject.',
 				"Choose a documentary that aligns with your curiosity, whether it's about history, science, nature, or social issues.",
@@ -109,7 +109,7 @@
 			]
 		},
 		{
-			title: 'Bird Watching:',
+			title: 'Bird Watching',
 			description: [
 				'Immerse yourself in the wonders of nature by taking up the delightful hobby of bird watching.',
 				'Select a serene location, such as a park, nature reserve, or your backyard, where bird activity is prevalent.',
@@ -148,9 +148,10 @@
 			<!-- Breathing Techniques -->
 			<section>
 				<h2 class="text-2xl font-bold mb-4">Techniques To Improve Out Your Mood</h2>
+				<div class="bg-slate-300 p-8 rounded-lg">
 				{#each frustratedExercise as { title, description }}
-					<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-						<h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+					<div class="bg-white rounded-lg shadow-md p-6 mb-8" on:click={() => toggleDescription(title)}>
+						<h3 class="text-xl font-bold mb-2" >
 							{title}
 						</h3>
 						{#if selectedTitle === title}
@@ -160,6 +161,7 @@
 						{/if}
 					</div>
 				{/each}
+				</div>
 			</section>
 		</main>
 	</div>

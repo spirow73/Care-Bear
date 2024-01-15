@@ -53,7 +53,7 @@
         ]
     },
     {
-        title: "Watch a Feel-Good Movie:",
+        title: "Watch a Feel-Good Movie",
         description: [
             "Select a movie known for its positive and uplifting themes. Look for genres like comedy, romance, or family films.",
             "Think about your personal preferences and what type of movie brings you joy. It could be a classic favorite or something new.",
@@ -67,7 +67,7 @@
         ]
     },
     {
-        title: "Practice Affirmations:",
+        title: "Practice Affirmations",
         description: [
          "Affirmations are positive statements about yourself, your abilities, or your life. Identify areas where you seek positivity and encouragement.",
         "Tailor affirmations to address your specific needs, goals, or challenges. Make them resonate with your personal aspirations.",
@@ -132,9 +132,10 @@ const toggleDescription = (title) => {
     <!-- Breathing Techniques -->
     <section>
       <h2 class="text-2xl font-bold mb-4"> Techniques To Improve Out Your Mood</h2>
+      <div class="bg-slate-300 p-8 rounded-lg">
       {#each anxiousExercise as { title, description }}
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8" on:click={() => toggleDescription(title)}>
+          <h3 class="text-xl font-bold mb-2" >
             {title}
           </h3>
           {#if selectedTitle === title}
@@ -144,6 +145,7 @@ const toggleDescription = (title) => {
           {/if}
         </div>
       {/each}
+    </div>
     </section>
   </main>
 </div>

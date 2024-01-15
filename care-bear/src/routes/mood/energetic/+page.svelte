@@ -3,7 +3,7 @@
 <script>
 	let energeticExercise = [
 		{
-			title: 'Go for a Run:',
+			title: 'Go for a Run',
 			description: [
 				'Revitalize your mind and body by embracing the invigorating activity of running.',
 				'Choose a scenic route or a favorite trail to make your run more enjoyable and engaging.',
@@ -49,7 +49,7 @@
 			]
 		},
 		{
-			title: 'Photography Exploration:',
+			title: 'Photography Exploration',
 			description: [
 				'Unleash your creativity and capture the world through the lens of photography, embarking on an exciting visual journey.',
 				"Equip yourself with a camera, whether it's a professional DSLR or a high-quality smartphone, to begin your photographic exploration.",
@@ -64,7 +64,7 @@
 			]
 		},
 		{
-			title: 'Participate in an Escape Room Challenge:',
+			title: 'Participate in an Escape Room Challenge',
 			description: [
 				'Embark on an exhilarating and immersive adventure by participating in an escape room challenge.',
 				'Gather a group of friends or family members to join you in this collaborative and puzzle-solving experience.',
@@ -79,7 +79,7 @@
 			]
 		},
 		{
-			title: 'Go Indoor Rock Climbing:',
+			title: 'Go Indoor Rock Climbing',
 			description: [
 				'Embark on a thrilling and physically engaging adventure by trying indoor rock climbing.',
 				'Visit a local indoor climbing gym that provides a safe and controlled environment for climbers of all skill levels.',
@@ -118,9 +118,10 @@
 			<!-- Breathing Techniques -->
 			<section>
 				<h2 class="text-2xl font-bold mb-4">Techniques To Improve Out Your Mood</h2>
+				<div class="bg-slate-300 p-8 rounded-lg">
 				{#each energeticExercise as { title, description }}
-					<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-						<h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+					<div class="bg-white rounded-lg shadow-md p-6 mb-8"  on:click={() => toggleDescription(title)}>
+						<h3 class="text-xl font-bold mb-2">
 							{title}
 						</h3>
 						{#if selectedTitle === title}
@@ -130,6 +131,7 @@
 						{/if}
 					</div>
 				{/each}
+				</div>
 			</section>
 		</main>
 	</div>

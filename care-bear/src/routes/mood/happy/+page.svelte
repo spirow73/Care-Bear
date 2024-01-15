@@ -3,7 +3,7 @@
 <script>
 	let happyExercise = [
     {
-        title: "Outdoor Jogging:",
+        title: "Outdoor Jogging",
         description: [
             "Take a joyful jog in a nearby park or around your neighborhood.",
             "Focus on your breathing and let the rhythmic movement clear your mind of stress.",
@@ -13,7 +13,7 @@
         ]
     },
     {
-        title: "Swimming Session:",
+        title: "Swimming Session",
         description: [
             "Dive into a pool or the ocean for a refreshing and happy swim.",
             "Opt for a mix of strokes to engage different muscle groups and promote relaxation.",
@@ -23,7 +23,7 @@
         ]
     },
     {
-        title: "Rock Climbing:",
+        title: "Rock Climbing",
         description: [
             "Try indoor or outdoor rock climbing for a thrilling and physically engaging experience.",
             "Focus on each climb as a metaphor for overcoming challenges in your life.",
@@ -33,7 +33,7 @@
         ]
     },
     {
-        title: "Rollerblading Fun:",
+        title: "Rollerblading Fun",
         description: [
             "Glide through your surroundings on rollerblades, embracing the feeling of freedom.",
             "Rollerblade in a scenic location, enjoying the sights as you cruise.",
@@ -43,7 +43,7 @@
         ]
     },
     {
-        title: "Ultimate Frisbee:",
+        title: "Ultimate Frisbee",
         description: [
             "Gather friends for a game of Ultimate Frisbee, combining teamwork and enjoyment.",
             "Focus on the friendly competition and teamwork aspects to distract from stressors.",
@@ -53,7 +53,7 @@
         ]
     },
     {
-        title: "Picnic and Outdoor Games:",
+        title: "Picnic and Outdoor Games",
         description: [
             "Have a picnic in the park and engage in outdoor games like badminton or bocce.",
             "Organize a friendly tournament to add a playful competitive element to your picnic.",
@@ -63,7 +63,7 @@
         ]
     },
     {
-        title: "Nature Walk and Bird Watching:",
+        title: "Nature Walk and Bird Watching",
         description: [
             "Go for a leisurely nature walk and enjoy bird watching as you stroll.",
             "Bring binoculars to get a closer look at different bird species and their behaviors.",
@@ -97,9 +97,10 @@ const toggleDescription = (title) => {
     <!-- Breathing Techniques -->
     <section>
       <h2 class="text-2xl font-bold mb-4"> Techniques To Help Out Your Mood</h2>
+      <div class="bg-slate-300 p-8 rounded-lg">
       {#each happyExercise as { title, description }}
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8"on:click={() => toggleDescription(title)}>
+          <h3 class="text-xl font-bold mb-2" >
             {title}
           </h3>
           {#if selectedTitle === title}
@@ -109,6 +110,7 @@ const toggleDescription = (title) => {
           {/if}
         </div>
       {/each}
+      </div>
     </section>
   </main>
 </div>
