@@ -12,11 +12,10 @@
 
 	async function handleLoginClick() {
 		await loginUser(email, password);
-		if (user.user) {
+		if ($user.user) {
 			goto('/');
-			return true;
 		}
-		return false;
+		error = 'Login failed';
 	}
 
 	function handleGetStartedClick() {
@@ -26,14 +25,6 @@
 	async function handleSubmit(event) {
 		event.preventDefault();
 		let loginSuccess = handleLoginClick(); // Asegúrate de que handleLoginClick devuelve true/false basado en el éxito del login
-		goto('/');
-
-		if (loginSuccess) {
-			goto('/');
-		} else {
-			// Manejar el caso de fallo de inicio de sesión, por ejemplo, mostrando un mensaje de error
-			error = 'Login failed';
-		}
 	}
 </script>
 
