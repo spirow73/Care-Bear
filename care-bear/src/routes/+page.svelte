@@ -8,11 +8,16 @@
 	import TaskList from '$lib/components/task/TaskList.svelte';
 	import taskstore from '$lib/taskStore';
 	import { onMount } from 'svelte';
-
-	let moodEntries = [];
+	import { goto } from '$app/navigation';
 	import user from '$lib/userStore';
 
+	let moodEntries = [];
+
 	onMount(async () => {
+		if (!$user.user) {
+			goto('/welcome');
+			return;
+		}
 		await taskstore.loadDbTasks();
 		moodEntries = await fetchLatestMoodEntries();
 	});

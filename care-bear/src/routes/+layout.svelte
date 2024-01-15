@@ -95,59 +95,59 @@
 
 			<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mobilenav">
 				<div class="text-sm lg:flex-grow">
-					<a
-						href="/"
-						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
-						use:animations.enter
-						use:animations.leave
-					>
-						Home
-					</a>
-
-					<a
-						href="/journal"
-						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
-						use:animations.enter
-						use:animations.leave
-					>
-						Journal
-					</a>
-
-					<a
-						href="/task"
-						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
-						use:animations.enter
-						use:animations.leave
-					>
-						Tasks
-					</a>
-
-					<a
-						href="/mood"
-						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
-						use:animations.enter
-						use:animations.leave
-					>
-						Mood
-					</a>
-
-					<a
-						href="/calendar"
-						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
-						use:animations.enter
-						use:animations.leave
-					>
-						Calendar
-					</a>
-					<a
-						href="/advice"
-						class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
-						use:animations.enter
-						use:animations.leave
-					>
-						Advice
-					</a>
 					{#if $user.user}
+						<a
+							href="/"
+							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Home
+						</a>
+
+						<a
+							href="/journal"
+							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Journal
+						</a>
+
+						<a
+							href="/task"
+							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Tasks
+						</a>
+
+						<a
+							href="/mood"
+							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Mood
+						</a>
+
+						<a
+							href="/calendar"
+							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Calendar
+						</a>
+						<a
+							href="/advice"
+							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
+							use:animations.enter
+							use:animations.leave
+						>
+							Advice
+						</a>
 						<a
 							href="/profile"
 							class="transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
@@ -166,7 +166,7 @@
 						>
 							LogOut
 						</a>
-					{:else}
+						<!-- {:else}
 						<a
 							href="/welcome"
 							class="button-style transition-all block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
@@ -174,7 +174,7 @@
 							use:animations.leave
 						>
 							Login / Register
-						</a>
+						</a> -->
 					{/if}
 
 					<DarkModeButton />
