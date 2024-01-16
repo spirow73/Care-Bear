@@ -37,8 +37,8 @@ async function loginUser(email, password) {
 }
 
 function logOut() {
-	supabase.auth.signOut();
 	user.logOut();
+	supabase.auth.signOut();
 }
 
 export { registerUser, loginUser, logOut };

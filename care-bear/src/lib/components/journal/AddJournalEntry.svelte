@@ -8,7 +8,7 @@
 	let title = '';
 	let content = '';
 	const user_id = $user.user.id;
-	
+
 	let darkModeClass = '';
 	$: darkModeClass = $theme === 'dark' ? 'dark' : '';
 	let isFormValid = false;
@@ -29,6 +29,9 @@
 		console.log('Saving entry with data:', entryData);
 
 		await journalStore.addJournalEntry(journalId, user_id, entryData);
+
+		title = '';
+		content = '';
 	}
 </script>
 
