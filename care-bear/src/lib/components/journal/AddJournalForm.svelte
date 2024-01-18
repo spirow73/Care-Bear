@@ -1,6 +1,7 @@
 <script>
 	import journalStore from '$lib/journalStore.js';
 	import theme from '../../../stores/themeStore.js';
+	import SpeechToText from '$lib/components/Speech_To_Text.svelte';
 	import user from '$lib/userStore.js';
 
 	let title = '';
@@ -77,6 +78,7 @@
 			Add Journal
 		</button>
 	</div>
+	<SpeechToText/>
 </form>
 
 <style>
