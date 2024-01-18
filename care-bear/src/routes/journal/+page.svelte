@@ -1,14 +1,16 @@
 <script>
-	import JournalList from '$lib/components/journal/JournalList.svelte';
 	import AddJournalForm from '$lib/components/journal/AddJournalForm.svelte';
+	import JournalList from '$lib/components/journal/JournalList.svelte';
+	import journalStore from '$lib/journalStore';
 	import { onMount } from 'svelte';
-	import { journals, loadJournals } from '$lib/journalStore.js';
-	import { slide, fade } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
+	import up from '$lib/components/images/up.png'
+  import down from '$lib/components/images/down.png';
 
 	let showAddJournalForm = false;
 
 	onMount(async () => {
-		await loadJournals();
+		await journalStore.loadJournals();
 	});
 
 	function toggleAddJournalForm() {
@@ -19,33 +21,26 @@
 <!-- Contenedor principal -->
 <div class="my-4">
 	<!-- Contenedor del botón y el formulario con un fondo blanco cuando el formulario es visible -->
-	<div class={showAddJournalForm ? 'bg-white py-4' : ''}>
+	<div class={showAddJournalForm ? 'bg-fuchsia-200 py-4' : ''}>
 		{#if showAddJournalForm}
-			<!-- Aplicar la transición de deslizamiento al formulario -->
-			<div class="mt-4" transition:slide>
-				<AddJournalForm />
-
-				<div class="text-center">
-					<button
-						class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-						on:click={toggleAddJournalForm}
-					>
-						{showAddJournalForm ? 'Hide Add Journal Form' : 'Add Journal'}
-					</button>
-				</div>
-			</div>
+		<div transition:slide ><AddJournalForm /></div>
+		<div class="mt-4 flex flex-col items-center">
+			<span class="block mb-2 text-black text-center text-lg"><b>Close</b></span>
+			<button class="mx-auto w-6 h-6" on:click={toggleAddJournalForm}>
+				<img src={up} alt="Up Button Image" />
+			</button>
+		</div>
 		{:else}
-			<div class="text-center">
-				<button
-					class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-					on:click={toggleAddJournalForm}
-				>
-					{showAddJournalForm ? 'Hide Add Journal Form' : 'Add Journal'}
+			<div class="flex flex-col items-center">
+				<span class="block mb-2 text-black text-center  text-lg"><b>Add journal</b></span>
+				<button class="mx-auto w-6 h-6" on:click={toggleAddJournalForm}>
+					<img src={down} alt="Down Button Image" class="">
 				</button>
 			</div>
 		{/if}
 	</div>
 </div>
+	
 
 <!-- Lista de journals -->
-<JournalList journals={$journals} numOfEntries={3} />
+<JournalList journals={$journalStore} numOfEntries={3} />

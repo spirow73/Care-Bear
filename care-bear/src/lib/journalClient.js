@@ -1,13 +1,23 @@
 import { supabase } from './supabaseClient';
+import user from './userStore';
+import { get } from 'svelte/store';
 
 export async function fetchJournals() {
 	try {
-		let { data, error } = await supabase.from('journal').select(`
-		  *,
-		  journal_entry:journal_id ( * )
-		`);
+		// Obtén el estado actual del userStore
+		const currentUser = get(user);
+
+		// Verifica si hay un usuario y un ID de usuario en la store
+		if (!currentUser || !currentUser.user || !currentUser.user.id) {
+			throw new Error('No user ID found in the store.');
+		}
+
+		// Utiliza el ID del usuario para obtener los journals asociados
+		const { data, error } = await supabase
+			.from('journal')
+			.select('*, journal_entry:journal_id ( * )')
+			.eq('user_id', currentUser.user.id); // Asume que tus journals tienen un campo 'user_id'
 		if (error) throw error;
-		// La respuesta incluirá cada journal con un array 'journal_entry' de sus entradas correspondientes
 		return data;
 	} catch (error) {
 		console.error('Error fetching journals:', error);
@@ -17,7 +27,7 @@ export async function fetchJournals() {
 
 export async function fetchJournalById(journalId) {
 	try {
-		let { data, error } = await supabase
+		const { data, error } = await supabase
 			.from('journal')
 			.select('*')
 			.eq('journal_id', journalId)
@@ -32,7 +42,17 @@ export async function fetchJournalById(journalId) {
 
 export async function createJournal(journal) {
 	try {
-		let { data, error } = await supabase.from('journal').insert([journal]).select();
+		const currentUser = get(user);
+		if (!currentUser || !currentUser.user || !currentUser.user.id) {
+			throw new Error('No user ID found in the store.');
+		}
+
+		// Añade el ID del usuario al objeto del journal antes de insertarlo
+		journal.user_id = currentUser.user.id;
+
+		console.log(journal);
+
+		const { data, error } = await supabase.from('journal').insert([journal]).select();
 		if (error) throw error;
 		return data[0];
 	} catch (error) {
@@ -43,7 +63,7 @@ export async function createJournal(journal) {
 
 export async function updateJournal(journalId, updatedFields) {
 	try {
-		let { data, error } = await supabase
+		const { data, error } = await supabase
 			.from('journal')
 			.update(updatedFields)
 			.eq('journal_id', journalId)
@@ -62,14 +82,16 @@ export async function deleteJournal(journalId) {
 		const { error: deleteEntriesError } = await supabase
 			.from('journal_entry') // Asegúrate de que este es el nombre correcto de la tabla
 			.delete()
-			.eq('journal_id', journalId);
+			.eq('journal_id', journalId)
+			.select();
 		if (deleteEntriesError) throw deleteEntriesError;
 
 		// Una vez que todas las entradas estén eliminadas, elimina el journal
 		const { data, error: deleteJournalError } = await supabase
 			.from('journal')
 			.delete()
-			.eq('journal_id', journalId);
+			.eq('journal_id', journalId)
+			.select();
 		if (deleteJournalError) throw deleteJournalError;
 
 		return data;

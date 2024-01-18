@@ -153,36 +153,41 @@
 		}
 		// Add more meditation techniques
 	];
+	let selectedTitle = null;
+
+const toggleDescription = (title) => {
+  selectedTitle = selectedTitle === title ? null : title;
+};
 </script>
 
+<div class="bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');">
 <div class="bg-gray-100 font-sans min-h-screen">
-	<!-- Header -->
-	<header class="bg-orange-200 text-black text-center py-4">
-		<h1 class="text-4xl font-bold">Meditation Techniques</h1>
-		<p class="text-lg">Find calmness and inner peace</p>
-	</header>
+  <!-- Header -->
+  <header class="bg-orange-200 text-black text-center py-4">
+	<h1 class="text-4xl font-bold">Meditation</h1>
+	<p class="text-lg">Find calmness and inner peace</p>
+  </header>
 
-	<!-- Main Content -->
-	<main class="container mx-auto my-8">
-		<!-- Meditation Techniques -->
-		<section class="mt-12">
-			<h2 class="text-2xl font-bold mb-4">Meditation Techniques</h2>
-			{#each meditationTechniques as { title, description, videoUrl }}
-				<div class="bg-white rounded-lg shadow-md mb-8 p-6">
-					<h3 class="text-xl font-bold mb-2">{title}</h3>
-					{#each description as step}
-						<p class="text-gray-700 mb-2">{step}</p>
-					{/each}
-					<div class="aspect-w-16 aspect-h-9">
-						<iframe src={videoUrl} frameborder="0" allowfullscreen class="w-full h-full" />
-					</div>
-				</div>
+  <!-- Main Content -->
+  <main class="container mx-auto my-8">
+	<!-- Breathing Techniques -->
+	<section>
+	  <h2 class="text-2xl font-bold mb-4">Meditation Techniques</h2>
+	  <div class="bg-slate-300 p-8 rounded-lg">
+	  {#each meditationTechniques as { title, description }}
+		<div class="bg-white rounded-lg shadow-md p-6 mb-8">
+		  <h3 class="text-xl font-bold mb-2" on:click={() => toggleDescription(title)}>
+			{title}
+		  </h3>
+		  {#if selectedTitle === title}
+			{#each description as step}
+			  <p class="text-gray-700 mb-2">{step}</p>
 			{/each}
-		</section>
-	</main>
-
-	<!-- Footer -->
-	<footer class="bg-gray-200 text-gray-700 text-center py-4">
-		<p>&copy; 2023 Meditation Techniques. All rights reserved.</p>
-	</footer>
+		  {/if}
+		</div>
+	  {/each}
+	  </div>
+	</section>
+  </main>
+</div>
 </div>

@@ -1,18 +1,22 @@
 <script>
-	import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
 	import AddJournalEntry from '$lib/components/journal/AddJournalEntry.svelte';
+	import JournalEntry from '$lib/components/journal/JournalEntry.svelte';
+	import journalStore from '$lib/journalStore';
 	import { onMount } from 'svelte';
-	import { getJournalEntries } from '$lib/journalStore.js';
 	import { slide } from 'svelte/transition';
+	import up from '$lib/components/images/up.png';
+	import down from '$lib/components/images/down.png';
+
+	onMount(async () => {
+		await journalStore.loadJournals();
+	});
 
 	export let data;
 
-	let entries = [];
 	let showAddEntryForm = false;
 
-	onMount(async () => {
-		entries = await getJournalEntries(Number(data.id));
-	});
+	// Usar una asignación reactiva para mantener actualizadas las entradas
+	$: entries = $journalStore.find((j) => j.journal_id === Number(data.id))?.journal_entry || [];
 
 	function toggleAddEntryForm() {
 		showAddEntryForm = !showAddEntryForm;
@@ -20,28 +24,24 @@
 </script>
 
 <div class="my-4">
-	<div class={showAddEntryForm ? 'bg-white py-4' : ''}>
+	<div class={showAddEntryForm ? 'bg-brown-900 py-4' : ''}>
 		{#if showAddEntryForm}
-			<div class="mt-4" transition:slide>
-				<AddJournalEntry journalId={Number(data.id)} />
-				<div class="text-center mt-4">
-					<button
-						class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-						on:click={toggleAddEntryForm}
-					>
-						Hide Add Entry Form
-					</button>
-				</div>
-			</div>
+		<div transition:slide>
+			<AddJournalEntry journalId={Number(data.id)} />
+		</div>
+		<div class="mt-4 flex flex-col items-center">
+			<span class="block mb-2 text-black text-center text-lg"><b>Close</b></span>
+			<button class="mx-auto w-6 h-6" on:click={toggleAddEntryForm}>
+				<img src={up} alt="Up Button Image" />
+			</button>
+		</div>
 		{:else}
-			<div class="text-center">
-				<button
-					class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-					on:click={toggleAddEntryForm}
-				>
-					Add Journal Entry
-				</button>
-			</div>
+		<div class="flex flex-col items-center">
+			<span class="block mb-2 text-black text-center  text-lg"><b>Add Journal Entry</b></span>
+			<button class="mx-auto w-6 h-6" on:click={toggleAddEntryForm}>
+				<img src={down} alt="Down Button Image">
+			</button>
+		</div>
 		{/if}
 	</div>
 </div>
