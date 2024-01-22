@@ -59,6 +59,20 @@ export async function removeJournal(journalId) {
 	}
 }
 
+export async function removeJournalEntry(entryId) {
+	try {
+		await deleteJournalEntry(entryId);
+		journals.update((currentJournals) =>
+			currentJournals.map((journal) => ({
+				...journal,
+				journal_entry: journal.journal_entry.filter((entry) => entry.entry_id !== entryId)
+			}))
+		);
+	} catch (error) {
+		console.error('Error removing journal entry:', error);
+	}
+}
+
 export async function addJournalEntry(journalId, userId, newEntryData) {
 	try {
 		if (!newEntryData || !userId) {
@@ -127,6 +141,7 @@ export default {
 	addJournal,
 	editJournal,
 	removeJournal,
+	removeJournalEntry,
 	addJournalEntry,
 	editJournalEntryInStore,
 	deleteJournalEntryInStore,

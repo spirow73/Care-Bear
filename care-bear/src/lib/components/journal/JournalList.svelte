@@ -1,9 +1,9 @@
 <script>
 	import JournalEntryFront from './JournalEntryFront.svelte';
 	import { fade } from 'svelte/transition'; // Importa la transición
-	import * as ActualJournals from '$lib/journalStore';
+	import { removeJournal } from '$lib/journalStore';
 
-	export let journals;
+	export let journals = importedJournals;
 	export let numOfEntries = 3;
 
 	async function handleDelete(journalId) {
@@ -12,7 +12,7 @@
 				'Are you sure you want to delete this journal? This will remove all associated entries and cannot be undone.'
 			)
 		) {
-			await ActualJournals.removeJournal(journalId);
+			await removeJournal(journalId);
 		}
 	}
 </script>
@@ -48,12 +48,12 @@
 				{#if journal.journal_entry.length}
 					<ul>
 						{#each journal.journal_entry.slice(0, numOfEntries) as entry}
-							<a href={`/journal/${entry.journal_id}`} class="block">
-								<li class="border-b last:border-b-0 border-gray-900">
+							<li class="border-b last:border-b-0 border-gray-900">
+								<a href={`/journal/${entry.journal_id}`}>
 									<!-- El borde se aplica a cada entrada -->
 									<JournalEntryFront {entry} />
-								</li>
-							</a>
+								</a>
+							</li>
 						{/each}
 					</ul>
 				{/if}

@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import up from '$lib/components/images/up.png'
-  import down from '$lib/components/images/down.png';
+	import down from '$lib/components/images/down.png';
 
 	let showAddJournalForm = false;
 
