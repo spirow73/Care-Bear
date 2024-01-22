@@ -53,7 +53,7 @@
 		{#if tasksForDay.length > 0}
 			<div class="task-layout" style="display: flex; flex-direction: row; gap: 1rem;">
 				<div class="task-list-container" style="flex: 1;">
-					<TaskList title="Tasks for the Day" tasks={tasksForDay} />
+					<TaskList title="Tasks for the Day" tasks={tasksForDay} deadline={currentEventDate} />
 				</div>
 				<div style="flex: 1;">
 					<TaskAdder calendarDate={currentEventDate} {closeEventModal} />
