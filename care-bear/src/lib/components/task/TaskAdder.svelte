@@ -10,6 +10,7 @@
 
 	export const title = 'Add Task';
 	export let calendarDate = null;
+	export let closeEventModal;
 
 	$: formattedDeadline = new Date(calendarDate).toLocaleDateString('en-EN', {
 		day: 'numeric',
@@ -60,6 +61,7 @@
 		toast.success('Task added!', {
 			style: 'background: #84B59F'
 		});
+		closeEventModal();
 	}
 </script>
 
