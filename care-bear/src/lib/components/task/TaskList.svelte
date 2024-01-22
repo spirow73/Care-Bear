@@ -36,9 +36,20 @@
 		loadTasks(); // Reload tasks on filter or sort option change
 	}
 
-	// console.log(deadline.getTime());
-	// console.log(tasks[1].deadline.getTime());
-	// console.log(tasks[1].deadline.getTime() === deadline.getTime());
+	// Crear una funcion para saber si la tarea se encuentra en el dia seleccionado
+	function isTaskInSelectedDay(task) {
+		if (deadline === null) {
+			return true;
+		} else {
+			// Vamos a coger la fecha de la tarea y le vamos a quitar la informacion de la
+			// hora, minutos, segundos y milisegundos
+			const taskDate = new Date(task.deadline);
+			taskDate.setHours(0, 0, 0, 0);
+
+			// Ahora comparamos
+			return taskDate.getTime() === deadline.getTime();
+		}
+	}
 </script>
 
 <div>
@@ -73,7 +84,7 @@
 					isCompleted={task.isCompleted}
 					task_id={task.task_id}
 				/>
-			{:else if deadline.getTime() === task.deadline.getTime()}
+			{:else if isTaskInSelectedDay(task)}
 				<Task
 					title={task.title}
 					description={task.description}
@@ -95,7 +106,7 @@
 					isCompleted={task.isCompleted}
 					task_id={task.task_id}
 				/>
-			{:else if deadline.getTime() === task.deadline.getTime()}
+			{:else if isTaskInSelectedDay(task)}
 				<Task
 					title={task.title}
 					description={task.description}
