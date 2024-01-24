@@ -1,0 +1,499 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/routes/mood/energetic/+page.svelte</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/routes/mood/energetic</a> +page.svelte</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/24</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/4</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/18</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;!-- App.svelte --&gt;
+&nbsp;
+&lt;script&gt;
+	let energeticExercise = [
+		{
+			title: 'Go for a Run',
+			description: [
+				'Revitalize your mind and body by embracing the invigorating activity of running.',
+				'Choose a scenic route or a favorite trail to make your run more enjoyable and engaging.',
+				'Prioritize comfort by wearing appropriate running shoes and breathable athletic attire.',
+				'Begin with a dynamic warm-up to prepare your muscles for the physical activity and prevent injuries.',
+				"Set achievable goals, whether it's running a certain distance or completing a specific time duration.",
+				'Listen to energizing music or podcasts to enhance your running experience and maintain motivation.',
+				'Practice proper running form, focusing on maintaining a steady pace and controlled breathing.',
+				'Celebrate your achievements, whether big or small, and acknowledge the positive impact on your physical and mental well-being.',
+				'Consider incorporating interval training or varying your routes to add diversity to your running routine.',
+				'Make running a regular part of your fitness regimen, enjoying the numerous health benefits and the sense of accomplishment it brings.'
+			]
+		},
+&nbsp;
+		{
+			title: 'Try High-Intensity Interval Training (HIIT)',
+			description: [
+				'Elevate your fitness routine by engaging in High-Intensity Interval Training (HIIT), a dynamic and efficient workout method.',
+				'Start with a brief warm-up to prepare your body for the intensity of the workout and prevent injuries.',
+				'Alternate between short bursts of intense exercise and brief periods of rest, maximizing calorie burn and cardiovascular benefits.',
+				'Incorporate a variety of exercises such as jumping jacks, burpees, and mountain climbers to target different muscle groups.',
+				'Tailor the intensity and duration to your fitness level, gradually increasing as your stamina improves.',
+				'Utilize bodyweight exercises or include equipment like dumbbells for added resistance and challenge.',
+				'Maintain proper form during each exercise to ensure effectiveness and reduce the risk of injury.',
+				'Embrace the flexibility of HIIT, as it can be adapted to various time constraints, making it a time-efficient workout option.',
+				'Celebrate your progress and the post-workout endorphin boost, enhancing your mood and overall well-being.',
+				'Integrate HIIT sessions into your weekly fitness routine, enjoying the versatility and effectiveness of this impactful workout.'
+			]
+		},
+		{
+			title: 'Painting or Drawing',
+			description: [
+				'Unlock your creativity and express yourself through the artistic endeavors of painting or drawing.',
+				'Gather high-quality art supplies, including paints, brushes, canvases, or sketchbooks, to enhance your creative experience.',
+				"Choose a subject that inspires you, whether it's a scene from nature, a portrait, or abstract concepts that ignite your imagination.",
+				'Experiment with different techniques and styles, allowing yourself the freedom to explore and discover your artistic preferences.',
+				'Create a dedicated art space that fosters focus and inspiration, optimizing your creative process.',
+				'Immerse yourself in the meditative and therapeutic aspects of the artistic process, letting your mind wander as you create.',
+				'Share your creations with others or join art communities to receive feedback, encouragement, and inspiration.',
+				'Embrace imperfections and view mistakes as opportunities for growth, fostering a positive and nurturing attitude toward your art.',
+				'Reflect on the emotions and thoughts that emerge during your artistic sessions, adding depth and personal meaning to your creations.',
+				'Make painting or drawing a consistent practice, allowing your skills to evolve and witnessing the transformative power of self-expression.'
+			]
+		},
+		{
+			title: 'Photography Exploration',
+			description: [
+				'Unleash your creativity and capture the world through the lens of photography, embarking on an exciting visual journey.',
+				"Equip yourself with a camera, whether it's a professional DSLR or a high-quality smartphone, to begin your photographic exploration.",
+				'Explore various genres of photography, including landscapes, portraits, macro, or abstract, to diversify your visual storytelling.',
+				'Experiment with different settings, lighting conditions, and perspectives, allowing for a dynamic and unique photographic style to emerge.',
+				'Research and learn photography techniques, such as composition rules and editing skills, to enhance the quality of your images.',
+				'Create themed photo projects to provide structure and focus to your exploration, fostering a deeper connection with your subjects.',
+				'Share your photographs on social media platforms or photography communities to receive feedback and connect with fellow enthusiasts.',
+				"Reflect on the stories each photograph tells, capturing the essence and emotion of the moments you've frozen in time.",
+				'Immerse yourself in the world around you, paying attention to details and finding beauty in unexpected places.',
+				'Make photography an ongoing passion, continually refining your skills and experiencing the world with a heightened sense of observation.'
+			]
+		},
+		{
+			title: 'Participate in an Escape Room Challenge',
+			description: [
+				'Embark on an exhilarating and immersive adventure by participating in an escape room challenge.',
+				'Gather a group of friends or family members to join you in this collaborative and puzzle-solving experience.',
+				"Choose an escape room with a theme that intrigues you, whether it's a mystery, adventure, or historical setting.",
+				'Collaborate with your team to solve puzzles, decipher codes, and uncover hidden clues within the escape room.',
+				'Engage in effective communication and teamwork to overcome challenges and progress through the storyline.',
+				'Enjoy the thrill of racing against the clock, heightening the sense of urgency and excitement.',
+				'Celebrate the accomplishment of successfully solving the escape room, fostering a sense of teamwork and achievement.',
+				'Reflect on the experience, discussing the highlights and memorable moments with your fellow participants.',
+				'Consider trying different escape rooms with varying levels of difficulty, keeping the challenge fresh and engaging.',
+				'Make escape room challenges a periodic activity, creating lasting memories and strengthening bonds with your team.'
+			]
+		},
+		{
+			title: 'Go Indoor Rock Climbing',
+			description: [
+				'Embark on a thrilling and physically engaging adventure by trying indoor rock climbing.',
+				'Visit a local indoor climbing gym that provides a safe and controlled environment for climbers of all skill levels.',
+				'Attend an orientation session to familiarize yourself with the equipment, safety protocols, and basic climbing techniques.',
+				'Begin with climbs suited to your skill level, gradually progressing to more challenging routes as you gain confidence.',
+				'Engage your entire body in the climbing experience, utilizing strength, balance, and problem-solving skills.',
+				'Embrace the supportive community within the climbing gym, where climbers often encourage and cheer each other on.',
+				'Set personal goals for your climbs, challenging yourself to reach new heights and conquer different types of climbing routes.',
+				"Celebrate your achievements, whether it's completing a challenging route or improving your climbing technique.",
+				'Consider joining climbing classes or workshops to enhance your skills and meet fellow climbing enthusiasts.',
+				'Make indoor rock climbing a regular part of your fitness routine, enjoying the physical and mental benefits of this dynamic and rewarding activity.'
+			]
+		}
+	];
+&nbsp;
+	let selectedTitle = <span class="cstat-no" title="statement not covered" >null;</span>
+&nbsp;
+	const toggleDescription = (title) =&gt; {
+<span class="cstat-no" title="statement not covered" >		selectedTitle = selectedTitle === title ? null : title;</span>
+	};
+&lt;/script&gt;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >&lt;div</span>
+	class="bg-cover bg-center"
+	style="background-image: url('https://img.freepik.com/premium-photo/dreamy-ocean-coast-summer_360074-15698.jpg');"
+&gt;
+<span class="cstat-no" title="statement not covered" >	&lt;div class="bg-gray-100 font-sans min-h-screen"&gt;</span>
+		&lt;!-- Header --&gt;
+<span class="cstat-no" title="statement not covered" >		&lt;header class="bg-orange-200 text-black text-center py-4"&gt;</span>
+<span class="cstat-no" title="statement not covered" >			&lt;h1 class="text-4xl font-bold"&gt;Energetic&lt;/h1&gt;</span>
+<span class="cstat-no" title="statement not covered" >			&lt;p class="text-lg"&gt;Find calmness and inner peace&lt;/p&gt;</span>
+		&lt;/header&gt;
+&nbsp;
+		&lt;!-- Main Content --&gt;
+<span class="cstat-no" title="statement not covered" >		&lt;main class="container mx-auto my-8"&gt;</span>
+			&lt;!-- Breathing Techniques --&gt;
+<span class="cstat-no" title="statement not covered" >			&lt;section&gt;</span>
+<span class="cstat-no" title="statement not covered" >				&lt;h2 class="text-2xl font-bold mb-4"&gt;Techniques To Improve Out Your Mood&lt;/h2&gt;</span>
+<span class="cstat-no" title="statement not covered" >				&lt;div class="bg-slate-300 p-8 rounded-lg"&gt;</span>
+				{#<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >each <span class="cstat-no" title="statement not covered" ></span>e</span>nergeticExercise as { title, description }}</span>
+<span class="cstat-no" title="statement not covered" >					&lt;div class="bg-white rounded-lg shadow-md p-6 mb-8"  on:click={() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >toggleDescription(</span>title)}&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >						&lt;h3 class="text-xl font-bold mb-2"&gt;</span>
+							{<span class="cstat-no" title="statement not covered" >title}</span>
+						&lt;/h3&gt;
+						{#if <span class="cstat-no" title="statement not covered" >selectedTitle === title}</span>
+							{#<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >each <span class="cstat-no" title="statement not covered" ></span>d</span>escription as step}</span>
+<span class="cstat-no" title="statement not covered" >								&lt;p class="text-gray-700 mb-2"&gt;{<span class="cstat-no" title="statement not covered" >step}&lt;/p&gt;</span></span>
+							{/each}
+						{/if}
+					&lt;/div&gt;
+				{/each}
+				&lt;/div&gt;
+			&lt;/section&gt;
+		&lt;/main&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2024-01-24T19:28:52.787Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    
