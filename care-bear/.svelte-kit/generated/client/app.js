@@ -82,6 +82,8 @@ export const dictionary = {
 
 export const hooks = {
 	handleError: (({ error }) => { console.error(error) }),
+
+	reroute: (() => {})
 };
 
 export { default as root } from '../root.svelte';
