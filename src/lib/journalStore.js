@@ -1,7 +1,6 @@
-import { writable, get } from 'svelte/store';
+import { writable } from 'svelte/store';
 import {
 	fetchJournals,
-	fetchJournalById,
 	createJournal,
 	updateJournal,
 	deleteJournal,
@@ -104,7 +103,7 @@ export async function editJournalEntryInStore(journalId, entryId, updatedEntryDa
 							journal_entry: journal.journal_entry.map((entry) =>
 								entry.entry_id === entryId ? updatedEntry : entry
 							)
-					  }
+					}
 					: journal
 			)
 		);
@@ -122,7 +121,7 @@ export async function deleteJournalEntryInStore(journalId, entryId) {
 					? {
 							...journal,
 							journal_entry: journal.journal_entry.filter((entry) => entry.entry_id !== entryId)
-					  }
+						}
 					: journal
 			)
 		);

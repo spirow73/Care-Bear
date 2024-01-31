@@ -20,23 +20,32 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: |
-          cd care-bear
-          npm install
+        run: npm install
+
+      - name: Check the linting
+        run: npm run lint
 
       - name: Run Unit Tests
-        run: |
-          cd care-bear
-          npm run test
+        run: npm run test
 
-      - name: Build the Docker image
-        run: |
-          cd care-bear
-          docker build . -t my-svelte-app
+      # If everything is successful, build the actual project
+      - name: Build the project
+        run: npm run build
+     
+
+      # - name: Deploy to Railway
+      #   uses: railwayapp/cli-action@v1.1.0
+      #   with:
+      #     args: deploy
+
+      # - name: Build the Docker image
+      #   run: |
+      #     cd care-bear
+      #     docker build . -t my-svelte-app
 
       - name: Notify on Failure
         if: failure()
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -47,20 +56,3 @@ jobs:
               title: "Build Failure",
               body: issue_body
             })
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Super-Linter
-        uses: super-linter/super-linter@v5.7.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: MyDefaultBranch
-          DISABLE_ERRORS: true
-          #OUTPUT_FOLDER: Reports
-          OUTPUT_DETAILS: detailed
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_POWERSHELL: false

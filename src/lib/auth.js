@@ -1,5 +1,4 @@
 import { supabase } from './supabaseClient';
-import { get } from 'svelte/store';
 import user from './userStore';
 
 async function registerUser(email, password) {
