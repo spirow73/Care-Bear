@@ -16,6 +16,7 @@
 		"@babel/core": "^7.23.7",
 		"@babel/preset-env": "^7.23.8",
 		"@sveltejs/adapter-auto": "^3.1.0",
+		"@sveltejs/adapter-node": "^4.0.1",
 		"@sveltejs/kit": "^2.2.0",
 		"autoprefixer": "^10.4.16",
 		"babel-jest": "^29.7.0",
@@ -42,7 +43,6 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.38.4",
-		"@sveltejs/adapter-node": "^2.1.0",
 		"darkreader": "^4.9.73",
 		"svelte-french-toast": "^1.2.0"
 	}
