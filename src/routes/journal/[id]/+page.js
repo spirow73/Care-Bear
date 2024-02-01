@@ -1,4 +1,4 @@
-export const load = ({ fetch, params }) => {
+export const load = ({ params }) => {
 	// console.log(params);
 	return params;
 };

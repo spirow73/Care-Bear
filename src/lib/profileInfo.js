@@ -1,5 +1,3 @@
-import { supabase } from './supabaseClient.js';
-
 const LOCAL_STORAGE_KEY = 'userProfile';
 
 export async function fetchUserProfile(supabase, userId) {
